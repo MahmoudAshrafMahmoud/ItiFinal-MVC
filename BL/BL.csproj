@@ -40,14 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\Test.cs" />
+    <Compile Include="SharedModels\CartListModel.cs" />
+    <Compile Include="SharedModels\CartModel.cs" />
+    <Compile Include="SharedModels\CategoryModel.cs" />
+    <Compile Include="SharedModels\OrderModel.cs" />
+    <Compile Include="SharedModels\ProductModel.cs" />
+    <Compile Include="SharedModels\UserModel.cs" />
+    <Compile Include="SharedModels\VendorRequest.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Admin\" />
-    <Folder Include="General\" />
-    <Folder Include="Vendor\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{fe762df0-66ab-4eb3-8a6e-a76955c18fa0}</Project>

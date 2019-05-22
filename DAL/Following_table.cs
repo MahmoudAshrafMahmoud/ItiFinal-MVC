@@ -14,9 +14,9 @@ namespace DAL
     
     public partial class Following_table
     {
-        public int follow_Id { get; set; }
-        public int User_Id { get; set; }
-        public int Vendor_Id { get; set; }
+        public int follow_id { get; set; }
+        public int User_id { get; set; }
+        public int Vendor_id { get; set; }
     
         public virtual User_table User_table { get; set; }
         public virtual User_table User_table1 { get; set; }

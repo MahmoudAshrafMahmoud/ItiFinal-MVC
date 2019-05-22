@@ -28,6 +28,7 @@ namespace DAL
         public int Vendor_id { get; set; }
         public string State { get; set; }
         public byte[] Image { get; set; }
+        public System.DateTime Add_Date { get; set; }
     
         public virtual Category_table Category_table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
