@@ -13,7 +13,6 @@ namespace BL
     {
         CraftsEntities context = new CraftsEntities();
         CartListModel MycartItems = new CartListModel();
-
         public void AddItemToCart(int ProductID)
         {
             //Get Product Data
@@ -25,21 +24,18 @@ namespace BL
             MycartItems.ProductTotalPrice = MycartItems.ProductData.Product_Price;
             CartModel MyCart = new CartModel();
             bool oldCartCheck = checkForOldCart();
-            if (oldCartCheck == false)
-            {
+            if (oldCartCheck == false) {
                  MyCart = addToNewCart();
             }
-            else
-            {
+            else {
                  MyCart = addToOldCart(ProductID);
             }
             // Add Cart to session
             HttpContext.Current.Session["cart"] = MyCart;
 
-            //TotalPrice();
+            RecalculateTotalPrice();
             //return RedirectToAction("Home", "category");
         }
-
         public bool checkForOldCart(){
             bool oldCart;
             if (HttpContext.Current.Session["cart"] == null){
@@ -61,8 +57,8 @@ namespace BL
             HttpContext.Current.Session["count"] = 1;
             return Newcart;
         }
-
-        public CartModel addToOldCart(int ProductID){
+        public CartModel addToOldCart(int ProductID)
+           {
             //Getting Cart from session
             CartModel Mycart = (CartModel)HttpContext.Current.Session["cart"];
             //Check if the product exsits
@@ -90,5 +86,18 @@ namespace BL
             }
             return Mycart;
         }
+        public void RecalculateTotalPrice()
+        {
+            CartModel Mycart = (CartModel)HttpContext.Current.Session["cart"];
+            double TotalPrice = 0;
+            for (int i = 0; i < Mycart.CartItem.Count(); i++)
+            {
+                TotalPrice = TotalPrice + Mycart.CartItem[i].ProductQty * Mycart.CartItem[i].ProductData.Product_Price;
+                Mycart.CartItem[i].ProductTotalPrice = Mycart.CartItem[i].ProductQty * Mycart.CartItem[i].ProductData.Product_Price;
+            }
+            Mycart.OrderTotalPrice = TotalPrice;
+            HttpContext.Current.Session["TotalPrice"] = TotalPrice;
+            HttpContext.Current.Session["cart"] = Mycart;
         }
+    }
     }
