@@ -8,5 +8,8 @@ namespace BL.SharedModels
 {
     class CartListModel
     {
+        public Product_table ProductData { get; set; }
+        public int ProductQty { get; set; }
+        public int ProductTotalPrice { get; set; }
     }
 }
