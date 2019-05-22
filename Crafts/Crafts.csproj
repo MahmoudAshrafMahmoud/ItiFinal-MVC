@@ -123,6 +123,10 @@
     <Folder Include="Views\Vendor\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{f73e4966-5dc6-4539-bcb1-d2fd87abe205}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{FE762DF0-66AB-4EB3-8A6E-A76955C18FA0}</Project>
       <Name>DAL</Name>
