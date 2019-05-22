@@ -8,5 +8,7 @@ namespace BL.SharedModels
 {
     class CategoryModel
     {
+        public int Cat_Id { set; get; }
+        public string Cat_Name { set; get; }
     }
 }

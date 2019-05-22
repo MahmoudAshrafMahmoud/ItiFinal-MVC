@@ -8,5 +8,8 @@ namespace BL.SharedModels
 {
     class VendorRequest
     {
+        public int user_id { set; get; }
+        public DateTime date { set; get; }
+        public int req_id { set; get; }
     }
 }
