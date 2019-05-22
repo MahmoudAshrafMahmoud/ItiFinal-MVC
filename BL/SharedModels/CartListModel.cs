@@ -10,6 +10,6 @@ namespace BL.SharedModels
     {
         public Product_table ProductData { get; set; }
         public int ProductQty { get; set; }
-        public int ProductTotalPrice { get; set; }
+        public double ProductTotalPrice { get; set; }
     }
 }
