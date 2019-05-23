@@ -24,5 +24,17 @@ namespace BL
             }).ToList();
             return query;
         }
+
+        public List<ProductModel> productsForTestingCartMethods()
+        {
+            List<ProductModel> producttest = context.Product_table.Select(s => new ProductModel
+            {
+                Product_Id = s.Product_Id,
+                Product_Name = s.Product_Name,
+                Product_Description = s.Product_Description,
+                Image = s.Image
+            }).ToList();
+            return producttest;
+        }
     }
 }

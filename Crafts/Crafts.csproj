@@ -235,7 +235,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_Main.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Vendor\VendorOrders.cshtml" />
+    <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -249,6 +249,7 @@
     <Folder Include="Views\Category\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\User\" />
+    <Folder Include="Views\Vendor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">

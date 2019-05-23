@@ -10,13 +10,17 @@ namespace Crafts.Controllers
 {
     public class CartController : Controller
     {
-        List<BL.Order> newd = new List<BL.Order>();
-
+        BL.Product productLogic = new BL.Product();
 
         // GET: Cart
         public ActionResult Index()
+        { 
+            return View();
+        }
+
+        public ActionResult ShowProductToTest()
         {
-           
+            List<BL.SharedModels.ProductModel> testproducts = productLogic.productsForTestingCartMethods(); 
             return View();
         }
     }
