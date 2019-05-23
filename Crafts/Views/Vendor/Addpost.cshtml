@@ -1,0 +1,164 @@
+﻿@model List<BL.SharedModels.CategoryModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Addpost</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div> 
+        <div class=" row" >
+            <div class="col-3 border border-primary" style="min-height:800px">
+
+            </div>
+            <div class="col-9 border border-primary" style=" min-height:800px">
+                    <input id="city" type="text" class="form-control col-lg-4"  placeholder="Add new product">
+            </div>
+        </div>
+        <div id="new-post">
+
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">New product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    
+                </div>
+                <div class="modal-body">
+                    <form id="post-form" action="/Vendor/Addpost" method="post" enctype="multipart/form-data">
+                       <input type="file" name="Image" />
+                        <br /><br />
+                        <input type="text" name="Product_Description" placeholder="description" class="form-control col-12" />
+                        <br />
+                        <input type="number" name="Product_Price" placeholder="price" class="form-control col-12" />
+                        <br />
+                        <input type="text" name="Product_Name" placeholder="product Name" class="form-control col-12" />
+                        <br />
+                          <select class="dropdown dropdown-menu btn-outline-warning col-12 form-control"name="cat_name"  >
+                              <option class="dropdown-item"> Choose Catigory</option>
+                               @foreach(var item in Model)
+                               {
+                                   <option class="dropdown-item">
+                                       @item.Cat_Name
+                                   </option>
+                               }
+                          </select>
+                        <br />
+                        <button type="submit"id="submit"  style="float:right" class="btn btn-outline-success">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#city').focus(function () {
+            //open bootsrap modal
+            $('#myModal').modal({
+                show: true
+            });
+        });
+
+        $('#submit').click(function () {
+            
+            input = $('#post-form');
+            for (i = 0; i < input.length; i++) {
+                cities.push(input[i].value);
+            }
+
+            //if (cities.length === 0) {
+            //    $('.error').text('please select a city...stupid');
+            //} else {
+            //    $('.error').text('');
+            //    var data = JSON.stringify(cities);
+            //    console.log(data);
+            //}
+        });
+    </script>
+    <script>
+        preview(files)
+        {
+            if (files.length === 0)
+                return;
+
+            var mimeType = files[0].type;
+            if (mimeType.match(/image\/*/) == null) {
+                this.message = "Only images are supported.";
+                return;
+            }
+            var reader = new FileReader();
+            this.imagePath = files;
+            reader.readAsDataURL(files[0]);
+            reader.onload = (_event) => {
+                this.imgURL = reader.result;
+                this.displayinput = true;
+            }
+        }
+        
+    </script>
+    <script>
+        var newpost = document.getElementById("post-form");
+        console.log(newpost.profilepic.value);
+        var newdiv = document.getElementById("new-div");
+        var postimg = document.createElement("img");
+        postimg.setAttribute("src", newpost.profilepic.value);
+        var postdescription = document.createElement("p");
+        postdescription.innerText = newpost.description.value;
+    </script>
+    
+</body>
+</html>
