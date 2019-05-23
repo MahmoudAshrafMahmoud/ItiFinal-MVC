@@ -19,5 +19,6 @@ namespace BL.SharedModels
         public int Order_Phone { get; set; }
         public float Expected_Price { get; set; }
         public byte[] Image { get; set; }
+        public int OrderDetail_Id { get; set; }
     }
 }

@@ -33,10 +33,21 @@ namespace BL
                              Order_Address = s.Order_Address,
                              Order_Phone = s.Order_Phone,
                              Expected_Price = (float)s.Expected_Price,
-                             Image = (byte[])l.Image
+                             Image = (byte[])l.Image,
+                             OrderDetail_Id=v.OrderDetail_Id
                          }).ToList();
                                              
             return query;
+        }
+
+        public bool AcceptOrder(int id)
+        {
+            (from p in context.OrderDetails_table
+             where p.OrderDetail_Id == id
+             select p).ToList().ForEach(x => x.Approval = "yes");
+
+            context.SaveChanges();
+            return true;
         }
     }
 }

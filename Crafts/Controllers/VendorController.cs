@@ -20,6 +20,13 @@ namespace Crafts.Controllers
             return View();
         }
 
+        //Vendor submit orders 
+        public ActionResult SubmitOrder(int id)
+        {
+            Vendor myvendor = new Vendor();
+            myvendor.AcceptOrder(id);
+            return RedirectToAction("VendorOrders");
+        }
 
     }
 }
