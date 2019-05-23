@@ -69,6 +69,9 @@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="index.html">Home</a>
                                     </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.html">About</a>
+                                    </li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
                                         <ul class="dropdown-menu">
@@ -85,7 +88,7 @@
                                         </ul>
                                     </li>
                                     
-                                    <li class="nav-item submenu dropdown">
+                                    @*<li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
@@ -96,7 +99,7 @@
                                                 <a class="nav-link" href="elements.html">Elements</a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>*@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="index.html">Login</a>
                                     </li>
@@ -139,7 +142,7 @@
 
                                     <li class="nav-item">
                                         <a href="#" class="icons">
-                                            <i class="lnr lnr lnr-cart"></i>
+                                            <i class="lnr lnr lnr-cart" aria-hidden="true"></i>
                                         </a>
                                     </li>
 
@@ -154,26 +157,7 @@
     </header>
     <!--================Header Menu Area =================-->
     <!--================Home Banner Area =================-->
-    <section class="home_banner_area">
-        <div class="overlay"></div>
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content row">
-                    <div class="offset-lg-2 col-lg-8">
-                        <h3>
-                            Handmade Crafts
-                            <br />Made With Love
-                        </h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                        </p>
-                        <a class="white_bg_btn" href="#">View Collection</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!--================End Home Banner Area =================-->
 
     @RenderBody()
