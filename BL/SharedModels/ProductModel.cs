@@ -14,4 +14,4 @@ namespace BL.SharedModels
         public double Product_Price { set; get; }
         public byte[] Image { get; set; }
     }
-}
+}         
