@@ -52,6 +52,7 @@
     <Compile Include="SharedModels\CategoryModel.cs" />
     <Compile Include="SharedModels\OrderModel.cs" />
     <Compile Include="SharedModels\ProductModel.cs" />
+    <Compile Include="SharedModels\test.cs" />
     <Compile Include="SharedModels\UserModel.cs" />
     <Compile Include="SharedModels\VendorRequest.cs" />
     <Compile Include="User.cs" />
