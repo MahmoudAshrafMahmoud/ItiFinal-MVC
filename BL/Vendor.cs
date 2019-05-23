@@ -1,53 +1,53 @@
 ﻿using BL.SharedModels;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
-using System.IO;
 
 namespace BL
 {
-  public class Vendor
+    public class Vendor
     {
-       public static void addnewproduct(ProductModel newproduct , string cat_name)
+        CraftsEntities context = new CraftsEntities();
+
+        //Get Vendor orders
+        public  List<OrderModel> VendorOrdersReview(int v_id)
         {
-            byte[] fileData = null;
-            var binaryreader = new BinaryReader(newproduct.Image.InputStream);
-            fileData = binaryreader.ReadBytes(newproduct.Image.ContentLength);
-            using (CraftsEntities context = new CraftsEntities() )
-            {
-                var catid =int.Parse((from c in context.Category_table where c.Cat_Name == cat_name select c.Cat_Id).FirstOrDefault().ToString());
-                Product_table pro = new Product_table
-                {
-                    Product_Name = newproduct.Product_Name,
-                    Product_Description = newproduct.Product_Description,
-                    Product_Price = newproduct.Product_Price,
-                    Add_Date = DateTime.Now,
-                    Image=fileData,
-                    Cat_id= catid,
-                    Vendor_id=1,
-                    State="pendding"
-                };
-                context.Product_table.Add(pro);
-                context.SaveChanges();
-            }
+            var query = (from v in context.OrderDetails_table
+                         join s in context.Order_table
+                         on v.Order_Id equals s.Order_Id
+                         join l in context.Product_table
+                         on v.Pro_Id equals l.Product_Id
+                         where v.Approval=="pending" && l.Vendor_id==v_id
+                         select new OrderModel()
+                         {
+                             Product_Name = l.Product_Name,
+                             Product_Price = l.Product_Price,
+                             Quantity = v.Quantity,
+                             Order_id = s.Order_Id,
+                             Vendor_id = l.Vendor_id,
+                             Approval = v.Approval,
+                             Order_Date = s.Order_Date.ToString(),
+                             Order_Address = s.Order_Address,
+                             Order_Phone = s.Order_Phone,
+                             Expected_Price = (float)s.Expected_Price,
+                             Image = (byte[])l.Image,
+                             OrderDetail_Id=v.OrderDetail_Id
+                         }).ToList();
+                                             
+            return query;
         }
-        
-        public static List<CategoryModel> allcatigories()
+
+        public bool AcceptOrder(int id)
         {
-            using (CraftsEntities context = new CraftsEntities())
-            {
-                var cat = (from c in context.Category_table
-                           select new CategoryModel
-                           {
-                               Cat_Id = c.Cat_Id
-,
-                               Cat_Name = c.Cat_Name
-                           }).ToList();
-                return cat;
-            }
+            (from p in context.OrderDetails_table
+             where p.OrderDetail_Id == id
+             select p).ToList().ForEach(x => x.Approval = "yes");
+
+            context.SaveChanges();
+            return true;
         }
     }
 }

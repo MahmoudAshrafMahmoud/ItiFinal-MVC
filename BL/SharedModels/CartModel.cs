@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 namespace BL.SharedModels
 {
-    class CartModel
+   public class CartModel
     {
         public List<CartListModel> CartItem { get; set; }
         public int UserID { get; set; }
