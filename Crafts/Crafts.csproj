@@ -236,6 +236,7 @@
     <Content Include="Views\Shared\_Main.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
+    <Content Include="Views\Category\showCategories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -246,7 +247,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Category\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\User\" />
     <Folder Include="Views\Vendor\" />

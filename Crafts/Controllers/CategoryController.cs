@@ -18,6 +18,12 @@ namespace Crafts.Controllers
 
             return View();
         }
+        public ActionResult showCategories()
+        {
+            Category mycat = new Category();
+            ViewBag.Categories = mycat.AllCategories();
+            return View();
+        }
 
 
     }
