@@ -33,7 +33,7 @@ namespace BL
                              Order_Address = s.Order_Address,
                              Order_Phone = s.Order_Phone,
                              Expected_Price = (float)s.Expected_Price,
-                             Image = l.Image
+                             Image = (byte[])l.Image
                          }).ToList();
                                              
             return query;
