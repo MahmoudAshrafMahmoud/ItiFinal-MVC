@@ -19,7 +19,6 @@ namespace DAL
         public string Approval { get; set; }
         public int Pro_Id { get; set; }
         public int Order_Id { get; set; }
-    
         public virtual Order_table Order_table { get; set; }
         public virtual Product_table Product_table { get; set; }
     }

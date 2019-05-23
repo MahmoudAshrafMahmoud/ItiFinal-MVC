@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 namespace BL.SharedModels
 {
-    class UserModel
+   public class UserModel
     {
         public string fname { get; set; }
         public string lname { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 namespace BL.SharedModels
 {
-    class CategoryModel
+   public class CategoryModel
     {
         public int Cat_Id { set; get; }
         public string Cat_Name { set; get; }

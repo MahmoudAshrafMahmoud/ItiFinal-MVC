@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 namespace BL.SharedModels
 {
-    class VendorRequest
+   public class VendorRequest
     {
         public int user_id { set; get; }
         public DateTime date { set; get; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL.SharedModels
 {
-    class OrderModel
+   public class OrderModel
     {
         public string Pro_Name { set; get; }
         public string Pro_Desc { set; get; }
