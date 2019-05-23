@@ -11,11 +11,10 @@ namespace Crafts.Controllers
     {
         // GET: Category Products
         //We will replace id input parameter (this default one) with any id 
-        public ActionResult CategoryProducts(int id=1)
+        public ActionResult CategoryProducts(int id = 1)
         {
-            Product myProduct = new Product();
-            var CategoryProducts = myProduct.CategoryProducts(id);
-
+            Product pro = new Product();
+            ViewBag.products = pro.CategoryProducts(id);
             return View();
         }
         public ActionResult showCategories()
