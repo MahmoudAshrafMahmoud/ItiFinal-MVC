@@ -245,6 +245,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
@@ -274,6 +275,11 @@
     <Content Include="Views\Cart\cartDisplay.cshtml" />
     <Content Include="Views\Cart\cartDisplayEmpty.cshtml" />
     <Content Include="Views\Shared\_UpdateQuantityText.cshtml" />
+    <Content Include="Views\Cart\ShowProductToTest.cshtml" />
+    <Content Include="Views\Category\showCategories.cshtml" />
+    <Content Include="Views\Vendor\VendorOrders.cshtml" />
+    <Content Include="Views\Category\CategoryProducts.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\User\Home.cshtml" />
     <None Include="Web.Debug.config">
@@ -289,6 +295,7 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\User\" />
+    <Folder Include="Views\Vendor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">
@@ -296,7 +303,7 @@
       <Name>BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{FE762DF0-66AB-4EB3-8A6E-A76955C18FA0}</Project>
+      <Project>{fe762df0-66ab-4eb3-8a6e-a76955c18fa0}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
