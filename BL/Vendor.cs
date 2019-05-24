@@ -44,7 +44,16 @@ namespace BL
         {
             (from p in context.OrderDetails_table
              where p.OrderDetail_Id == id
-             select p).ToList().ForEach(x => x.Approval = "yes");
+             select p).ToList().ForEach(x => x.Approval = "Approved");
+
+            context.SaveChanges();
+            return true;
+        }
+        public bool RejectOrder(int id)
+        {
+            (from p in context.OrderDetails_table
+             where p.OrderDetail_Id == id
+             select p).ToList().ForEach(x => x.Approval = "Rejected");
 
             context.SaveChanges();
             return true;
