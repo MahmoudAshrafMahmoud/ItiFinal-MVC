@@ -49,5 +49,33 @@ namespace BL
             context.SaveChanges();
             return true;
         }
+
+        //select TOP 4 User_Id,Rating from User_table
+        //ORDER BY Rating DESC
+
+
+
+
+        List<User_table> selectVendor = new List<User_table>();
+
+        public List<User_table> getTopTrendVendors()
+        {
+            var result = context.User_table 
+
+              .OrderByDescending(g => g.Rating)
+               .Take(5)                      
+              .Select(                            
+              r => new { User_Id = r.User_Id, Name = r.FName , Image = r.ProfilePicture}).ToList();
+
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                int x = result[i].User_Id;
+                selectVendor.Add(context.User_table.FirstOrDefault(s => s.User_Id == x));
+            }
+
+
+            return selectVendor;
+        }
     }
 }
