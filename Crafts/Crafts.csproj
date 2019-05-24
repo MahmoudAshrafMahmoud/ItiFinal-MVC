@@ -98,6 +98,7 @@
     <Content Include="Assests\css\bootstrap.css" />
     <Content Include="Assests\css\breadcrumb.css" />
     <Content Include="Assests\css\font-awesome.min.css" />
+    <Content Include="Assests\css\multiItemSlider.css" />
     <Content Include="Assests\css\responsive.css" />
     <Content Include="Assests\css\style.css" />
     <Content Include="Assests\css\_about.css" />
@@ -193,6 +194,7 @@
     <Content Include="Assests\js\jquery.form.js" />
     <Content Include="Assests\js\jquery.validate.min.js" />
     <Content Include="Assests\js\mail-script.js" />
+    <Content Include="Assests\js\multiItemSlider.js" />
     <Content Include="Assests\js\popper.js" />
     <Content Include="Assests\js\stellar.js" />
     <Content Include="Assests\js\theme.js" />

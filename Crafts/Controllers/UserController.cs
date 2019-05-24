@@ -48,5 +48,12 @@ namespace Crafts.Controllers
             }
 
         }
+
+        public ActionResult logout()
+        {
+            Session.Clear();
+            return RedirectToAction("login", "User");
+        }
+
     }
 }
