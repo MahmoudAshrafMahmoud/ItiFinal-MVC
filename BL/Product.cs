@@ -32,6 +32,7 @@ namespace BL
                 Product_Id = s.Product_Id,
                 Product_Name = s.Product_Name,
                 Product_Description = s.Product_Description,
+                Product_Price = s.Product_Price,
                 Image = s.Image
             }).ToList();
             return producttest;

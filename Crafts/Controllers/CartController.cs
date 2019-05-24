@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BL;
 using DAL;
+using BL.SharedModels;
 
 namespace Crafts.Controllers
 {
@@ -20,8 +21,46 @@ namespace Crafts.Controllers
 
         public ActionResult ShowProductToTest()
         {
-            List<BL.SharedModels.ProductModel> testproducts = productLogic.productsForTestingCartMethods(); 
+            List<BL.SharedModels.ProductModel> testproducts = productLogic.productsForTestingCartMethods();
+            ViewBag.productstest = testproducts;
             return View();
         }
+
+        BL.Cart CartLogic = new BL.Cart();
+        public PartialViewResult Add(int ID)
+        {
+            CartLogic.AddItemToCart(ID);
+            return PartialView("_shoppingCart");
+        }
+        public ActionResult cartDisplay()
+        {
+            if (CartLogic.viewMyCart() != null)
+            {
+                CartModel MyCart = CartLogic.viewMyCart();
+                ViewBag.cart = MyCart;
+                ViewBag.CartItems = MyCart.CartItem;
+                return View("cartDisplay");
+            }
+            else
+            {
+                return View("cartDisplayEmpty");
+
+            }
+
+        }
+        public PartialViewResult Increase(int ID)
+        {
+            CartLogic.increase(ID);
+            return PartialView("_UpdateQuantityText");
+
+        }
+        public PartialViewResult Decrease(int ID)
+        {
+            CartLogic.decrease(ID);
+            return PartialView("_UpdateQuantityText");
+
+        }
+
+
     }
 }
