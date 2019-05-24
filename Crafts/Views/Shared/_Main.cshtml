@@ -76,15 +76,8 @@
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
                                         <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="category.html">Category</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="single-product.html">Category</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="checkout.html">Category</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cart.html">Category</a>
-                                            </li>
+                                           
+                                            @{Html.RenderAction("showCategories", "Category");}
                     
                                         </ul>
                                     </li>
@@ -159,9 +152,13 @@
     <!--================Home Banner Area =================-->
     
     <!--================End Home Banner Area =================-->
+
     <section style="margin-top:125px">
+
         @RenderBody()
+
     </section>
+
     <!--================ start footer Area  =================-->
     <footer class="footer-area section_gap">
         <div class="container">
