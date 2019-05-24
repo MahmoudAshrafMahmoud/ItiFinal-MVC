@@ -12,7 +12,7 @@ namespace Crafts.Controllers
         
         // GET: Vendor orders 
         // we remove v_id =1 (default value)
-        public ActionResult VendorOrders(int v_id=5)
+        public ActionResult VendorOrders(int v_id=1)
         {
             Vendor myvendor = new Vendor();
             var orders = myvendor.VendorOrdersReview(v_id);

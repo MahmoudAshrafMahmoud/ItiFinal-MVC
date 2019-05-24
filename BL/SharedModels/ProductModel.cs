@@ -23,5 +23,6 @@ namespace BL.SharedModels
         public int Quantity { set; get; }
 
         public string VendorName { set; get; }
+        public int Vendor_id { get; set; }
     }
 }
