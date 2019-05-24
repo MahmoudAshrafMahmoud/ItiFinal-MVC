@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using System.Web;
+
 namespace BL.SharedModels
 {
     public class ProductModel
@@ -23,6 +25,7 @@ namespace BL.SharedModels
         public int Quantity { set; get; }
 
         public string VendorName { set; get; }
+        public HttpPostedFileBase insertedimg { get; set; }
         public int Vendor_id { get; set; }
     }
-}
+}         

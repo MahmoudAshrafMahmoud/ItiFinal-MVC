@@ -4368,3 +4368,12 @@ h6 {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+
+/*Omnia >>> Class for text in the Slider in Home Page*/
+
+/*.textSlider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}*/
