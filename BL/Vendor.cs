@@ -2,6 +2,7 @@
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,71 @@ namespace BL
 
             context.SaveChanges();
             return true;
+        }
+
+        public static void addnewproduct (ProductModel newproduct , string cat_name)
+        {
+            byte[] fileData = null;
+            var binaryReader = new BinaryReader(newproduct.insertedimg.InputStream);
+            fileData = binaryReader.ReadBytes(newproduct.insertedimg.ContentLength);
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                var catid = int.Parse((from c in context.Category_table where c.Cat_Name == cat_name select c.Cat_Id).FirstOrDefault().ToString());
+                var pro = new Product_table
+                {
+                    Product_Name = newproduct.Product_Name,
+                    Product_Description = newproduct.Product_Description,
+                    Product_Price = newproduct.Product_Price,
+                    Cat_id = catid,
+                    Image = fileData,
+                    Add_Date = DateTime.Now,
+                    State = "pendding",
+                    Vendor_id = 1
+                };
+                context.Product_table.Add(pro);
+                context.SaveChanges();
+            }
+        }
+        public static List<CategoryModel> allcatigories()
+        {
+            using(CraftsEntities context = new CraftsEntities())
+            {
+                var cat = (from c in context.Category_table
+                           select new CategoryModel
+                           {
+                               Cat_Name = c.Cat_Name,
+                               Cat_Id = c.Cat_Id
+                           }).ToList();
+                return cat;
+            }
+        }
+
+        //select TOP 4 User_Id,Rating from User_table
+        //ORDER BY Rating DESC
+
+
+
+
+        List<User_table> selectVendor = new List<User_table>();
+
+        public List<User_table> getTopTrendVendors()
+        {
+            var result = context.User_table 
+
+              .OrderByDescending(g => g.Rating)
+               .Take(5)                      
+              .Select(                            
+              r => new { User_Id = r.User_Id, Name = r.FName , Image = r.ProfilePicture}).ToList();
+
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                int x = result[i].User_Id;
+                selectVendor.Add(context.User_table.FirstOrDefault(s => s.User_Id == x));
+            }
+
+
+            return selectVendor;
         }
     }
 }

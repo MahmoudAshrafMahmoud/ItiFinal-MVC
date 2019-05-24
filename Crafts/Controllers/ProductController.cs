@@ -9,6 +9,7 @@ namespace Crafts.Controllers
 {
     public class ProductController : Controller
     {
+
         
     }
 }
