@@ -285,8 +285,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Product\" />
-    <Folder Include="Views\User\" />
-    <Folder Include="Views\Vendor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">
@@ -294,7 +292,7 @@
       <Name>BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{FE762DF0-66AB-4EB3-8A6E-A76955C18FA0}</Project>
+      <Project>{fe762df0-66ab-4eb3-8a6e-a76955c18fa0}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
