@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,6 +98,7 @@
     <Content Include="Assests\css\bootstrap.css" />
     <Content Include="Assests\css\breadcrumb.css" />
     <Content Include="Assests\css\font-awesome.min.css" />
+    <Content Include="Assests\css\multiItemSlider.css" />
     <Content Include="Assests\css\responsive.css" />
     <Content Include="Assests\css\style.css" />
     <Content Include="Assests\css\_about.css" />
@@ -192,6 +194,7 @@
     <Content Include="Assests\js\jquery.form.js" />
     <Content Include="Assests\js\jquery.validate.min.js" />
     <Content Include="Assests\js\mail-script.js" />
+    <Content Include="Assests\js\multiItemSlider.js" />
     <Content Include="Assests\js\popper.js" />
     <Content Include="Assests\js\stellar.js" />
     <Content Include="Assests\js\theme.js" />
@@ -247,6 +250,8 @@
     <Content Include="Views\Vendor\VendorOrders.cshtml" />
     <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\login.cshtml" />
+    <Content Include="Views\User\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -257,8 +262,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Category\" />
     <Folder Include="Views\Product\" />
-    <Folder Include="Views\User\" />
+    <Folder Include="Views\Vendor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "CategoryProducts";
+    ViewBag.Title = "SelectedCategory";
     Layout = "~/Views/Shared/_Main.cshtml";
 }
 
@@ -55,31 +55,32 @@
                     </div>
                 </div>
                 <div class="latest_product_inner row">
-                   
-                @foreach (var item in  ViewBag.products){
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <div class="f_p_item">
-                            <div class="f_p_img">
-                                <img class="img-fluid" src="data:image;base64,@System.Convert.ToBase64String(item.Image)" alt="">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="lnr lnr-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
+
+                    @foreach (var item in ViewBag.products)
+                    {
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <div class="f_p_item">
+                                <div class="f_p_img">
+                                    <img class="img-fluid" src="data:image;base64,@System.Convert.ToBase64String(item.Image)" alt="">
+                                    <div class="p_icon">
+                                        <a href="#">
+                                            <i class="lnr lnr-heart"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="lnr lnr-cart"></i>
+                                        </a>
+                                    </div>
                                 </div>
+                                <a href="#">
+                                    <h4>@item.Product_Name</h4>
+                                </a>
+                                <h5>$@item.Product_Price</h5>
                             </div>
-                            <a href="#">
-                                <h4>@item.Product_Name</h4>
-                            </a>
-                            <h5>$@item.Product_Price</h5>
                         </div>
-                    </div> 
-                    
+
                     }
-                    
-                    
+
+
 
 
                 </div>
@@ -254,3 +255,5 @@
     </div>
 </section>
 <!--================End Category Product Area =================-->
+
+
