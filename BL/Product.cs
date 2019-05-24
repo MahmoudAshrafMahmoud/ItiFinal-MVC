@@ -36,6 +36,30 @@ namespace BL
             }).ToList();
             return producttest;
         }
+
+        public List<ProductModel> ProductDetailsView(int pro_id)
+        {
+            var productdetail = (from ProductView in context.Product_table join 
+                                 CatName in context.Category_table
+                                 on ProductView.Cat_id equals CatName.Cat_Id
+                                 join Vendorname in context.User_table
+                                 on ProductView.Vendor_id equals Vendorname.User_Id
+                         where ProductView.Product_Id == pro_id
+                         select new ProductModel
+                         {
+                             Product_Id = ProductView.Product_Id,
+                             Product_Name = ProductView.Product_Name,
+                             Product_Description = ProductView.Product_Description,
+                             Product_Price = ProductView.Product_Price,
+                             Image = ProductView.Image,
+                             CatID=ProductView.Cat_id,
+                             VendorID=ProductView.Vendor_id,
+                            CatName=CatName.Cat_Name,
+                             VendorName=Vendorname.User_Name
+                         }).ToList();
+
+            return productdetail;
+        }
         
     }
 }

@@ -13,5 +13,15 @@ namespace BL.SharedModels
         public string Product_Description { set; get; }
         public double Product_Price { set; get; }
         public byte[] Image { get; set; }
+
+        public int VendorID { set; get; } 
+
+        public int CatID { set; get; }
+
+        public string CatName { set; get; }
+
+        public int Quantity { set; get; }
+
+        public string VendorName { set; get; }
     }
 }
