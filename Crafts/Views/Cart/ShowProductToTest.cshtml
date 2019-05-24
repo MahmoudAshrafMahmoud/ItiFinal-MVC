@@ -3,8 +3,42 @@
     ViewBag.Title = "ShowProductToTest";
     Layout = "~/Views/Shared/_Main.cshtml";
 }
-
-<h2>ShowProductToTest</h2>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 
+
+    <div class="latest_product_inner row">
+        @foreach (var item in ViewBag.productstest)
+        {
+            var base64 = Convert.ToBase64String(@item.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            <div class="col-lg-4 col-md-2 col-sm-2">
+                <div class="f_p_item">
+                    <div class="f_p_img">
+                        <img class="img-fluid w-50" src="@imgSrc" alt="">
+                        <div class="p_icon">
+                            <a href="#">
+                                <i class="lnr lnr-heart"></i>
+                            </a>
+                            <a href="#">
+                                <i class="lnr lnr-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <h4>@item.Product_Name</h4>
+                    </a>
+                    <h5>@item.Product_Price</h5>
+                    <div class="product_button ml-auto mr-auto trans_200">
+                        @Ajax.ActionLink("Add To Cart", "Add", "Cart", new { ID = @item.Product_Id },  new AjaxOptions { UpdateTargetId = "shoppingCartID", InsertionMode = InsertionMode.Replace , HttpMethod = "GET" })
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+} 

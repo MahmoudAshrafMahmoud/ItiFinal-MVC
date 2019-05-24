@@ -10,7 +10,7 @@ using System.Web;
 
 namespace BL
 {
-    class Cart
+    public class Cart
     {
         CraftsEntities context = new CraftsEntities();
         CartListModel MycartItems = new CartListModel();
@@ -109,9 +109,10 @@ namespace BL
         }
         public CartModel viewMyCart()
         {
+
             return (CartModel)HttpContext.Current.Session["cart"];
         }
-        public CartModel increase(int ID)
+        public void increase(int ID)
         {
             CartModel Mycart = (CartModel)HttpContext.Current.Session["cart"];
 
@@ -125,9 +126,8 @@ namespace BL
             }
             RecalculateTotalPrice();
             HttpContext.Current.Session["cart"] = Mycart;
-            return Mycart;
         }
-        public CartModel decrease(int ID)
+        public void decrease(int ID)
         {
             CartModel Mycart = (CartModel)HttpContext.Current.Session["cart"];
             //Check if the product exsits
@@ -143,7 +143,6 @@ namespace BL
             }
             RecalculateTotalPrice();
             HttpContext.Current.Session["cart"] = Mycart;
-            return Mycart;
         }
         public void clearCart()
         {
