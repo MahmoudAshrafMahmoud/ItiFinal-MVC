@@ -6,12 +6,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BL
 {
     public class Vendor
     {
         CraftsEntities context = new CraftsEntities();
+       static User_table usersession= (User_table) HttpContext.Current.Session["user"] ;
+       
 
         //Get Vendor orders
         public  List<OrderModel> VendorOrdersReview(int v_id)
@@ -67,8 +70,7 @@ namespace BL
                     Cat_id = catid,
                     Image = fileData,
                     Add_Date = DateTime.Now,
-                    State = "pendding",
-                    Vendor_id = 1
+                    Vendor_id = usersession.User_Id
                 };
                 context.Product_table.Add(pro);
                 context.SaveChanges();
@@ -114,6 +116,27 @@ namespace BL
 
 
             return selectVendor;
+        }
+        //function to get product details due to vendor id 
+        public static List<ProductModel> getproductdetails()
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                var pro = (from p in context.Product_table
+                           where p.Vendor_id == 1
+                           join c in context.Category_table
+    on p.Cat_id equals c.Cat_Id
+                           select new ProductModel
+                           {
+                               Image = p.Image,
+                               Product_Description = p.Product_Description,
+                               Product_Price = p.Product_Price,
+                               Catigory_name = c.Cat_Name,
+                               Product_Name=p.Product_Name
+                           }).ToList();
+                return pro;
+                           
+            }
         }
     }
 }

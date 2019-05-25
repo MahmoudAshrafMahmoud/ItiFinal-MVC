@@ -17,5 +17,6 @@ namespace BL.SharedModels
         public byte[] Image { get; set; }
         public HttpPostedFileBase insertedimg { get; set; }
         public int Vendor_id { get; set; }
+        public string Catigory_name { get; set; }
     }
 }         
