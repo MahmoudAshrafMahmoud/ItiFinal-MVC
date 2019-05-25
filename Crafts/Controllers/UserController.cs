@@ -31,7 +31,6 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult login()
         {
-            ViewBag.ID = id;
             return View();
         }
 
