@@ -55,5 +55,11 @@ namespace Crafts.Controllers
             return RedirectToAction("login", "User");
         }
 
+        [HttpGet]
+        public ActionResult RegisterNewUser()
+        {
+            return View();
+        }
+
     }
 }
