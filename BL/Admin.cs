@@ -44,8 +44,17 @@ namespace BL
             Request_table req = new Request_table();
             req = context.Request_table.Where(x => x.Request_Id == id).FirstOrDefault();
             req.reqState = status;
-            context.SaveChanges();
+            int userid = req.User_Id;
 
+            if (req.reqState.ToLower() == "approved")
+            {
+                User_table user = new User_table();
+                user = context.User_table.Where(x => x.User_Id == userid).FirstOrDefault();
+                user.Type_id = 2;
+            }
+
+
+            context.SaveChanges();
         }
     }
 }
