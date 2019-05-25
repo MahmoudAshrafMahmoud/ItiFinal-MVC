@@ -47,5 +47,7 @@ namespace BL
             context.SaveChanges();
 
         }
+
+        public List<Product_table> 
     }
 }
