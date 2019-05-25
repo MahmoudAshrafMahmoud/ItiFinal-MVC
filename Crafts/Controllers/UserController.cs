@@ -28,9 +28,34 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult login()
         {
-
+            ViewBag.ID = id;
             return View();
         }
+
+        public ActionResult Show_Orders(int id)
+        {
+            BL.Order order = new BL.Order();
+
+            List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
+
+            return View(ViewOrders);
+
+        }
+
+        public ActionResult ViewDtails(int id)
+        {
+            BL.Order order = new BL.Order();
+
+            List<MyOrdersModel> ViewOrdersDetails = order.ShowMyOrdersDetails(id);
+            return View(ViewOrdersDetails);
+        }
+
+        public ActionResult Be_Vendor(int id)
+        {
+            return PartialView();
+        }
+
+
         [HttpPost]
         public ActionResult login(string User_Email, string Password)
         {

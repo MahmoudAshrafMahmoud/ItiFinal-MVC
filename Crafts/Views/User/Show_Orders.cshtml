@@ -1,0 +1,43 @@
+﻿
+@model List<BL.SharedModels.MyOrdersModel>
+
+@{
+    ViewBag.Title = "Show_Orders";
+}
+
+
+<div id="div1">
+
+    <table class="table-bordered table table-hover">
+
+        <thead>
+            <tr>
+                <td>Order Number</td>
+                <td>Date</td>
+                <td>Ship To</td>
+                <td>Phone</td>
+                <td>Order Total</td>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.Date</td>
+                    <td>@item.Address</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Total</td>
+                    <td>@Ajax.ActionLink("View Details", "ViewDtails", new { id = @item.OrderId }, new AjaxOptions { UpdateTargetId = "div1" })</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    <b> @Model.Count items </b> 
+</div>
+
