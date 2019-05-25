@@ -142,7 +142,14 @@
                                         <a href="#" class="icons">
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
+                                        <a href="@Url.Action("cartDisplay","Cart")" class="icons">
+
+                                                <i class="fas fa-shopping-cart"></i>
+
+                                            </a>
+
                                     </li>
+                                    <span id="shoppingCartID" class= "pr-4 mt-3"> @Session["count"] </span>
 
                                     <hr>
                                 </ul>
@@ -157,10 +164,13 @@
     <!--================Home Banner Area =================-->
     <!--================End Home Banner Area =================-->
 
-    <section style="margin-top:125px">
+    
 
-        @RenderBody()
+        <section style="margin-top:125px">
 
+            @RenderBody()
+
+       
     </section>
 
     <!--================ start footer Area  =================-->
@@ -272,7 +282,12 @@
     <script src="../Assests/vendors/counter-up/jquery.counterup.js"></script>
     <script src="../Assests/js/mail-script.js"></script>
     <script src="../Assests/js/theme.js"></script>
+    @RenderSection("scripts", required: false)
+
+
     <script src="../Assests/js/multiItemSlider.js"></script>
+
+
 </body>
 
 </html>
