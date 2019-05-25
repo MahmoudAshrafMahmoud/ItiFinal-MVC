@@ -345,6 +345,7 @@
     <Content Include="Views\Show_Orders.cshtml" />
     <Content Include="Views\User\Show_Orders.cshtml" />
     <Content Include="Views\User\ViewDtails.cshtml" />
+    <Content Include="Views\Vendor\Addpost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
