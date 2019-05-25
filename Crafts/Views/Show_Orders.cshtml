@@ -1,19 +1,14 @@
 ﻿
-@{
-    ViewBag.Title = "Show_Orders";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 @model List<BL.SharedModels.MyOrdersModel>
 
-
 @{
     ViewBag.Title = "Show_Orders";
 }
+
 
 <div id="div1">
 
-    <table class="table table-bordered table-hover" >
+    <table class="table-bordered table table-hover">
 
         <thead>
             <tr>
@@ -37,17 +32,12 @@
                     <td>@item.Phone</td>
                     <td>@item.Total</td>
                     <td>@Ajax.ActionLink("View Details", "ViewDtails", new { id = @item.OrderId }, new AjaxOptions { UpdateTargetId = "div1" })</td>
-
                 </tr>
             }
 
         </tbody>
 
     </table>
-
-
+    <b> @Model.Count items </b> 
 </div>
-
-
-
 
