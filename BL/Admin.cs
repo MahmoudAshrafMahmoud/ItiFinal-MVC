@@ -48,9 +48,11 @@ namespace BL
 
         }
 
-        public void display()
+        public List<Product_table> ProductsRequestsDisplay()
         {
-
+            return  context.Product_table.Where(s => s.State == "pending").ToList();
+            
+        
         }
     }
 }

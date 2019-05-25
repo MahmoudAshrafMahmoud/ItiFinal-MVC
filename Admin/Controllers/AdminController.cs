@@ -11,8 +11,9 @@ namespace Admin.Controllers
 {
     public class AdminController : Controller
     {
-        
+
         // GET: Admin
+        BL.Admin admin = new BL.Admin();
 
         public ActionResult Index()
         {
@@ -34,7 +35,6 @@ namespace Admin.Controllers
         public ActionResult VendorDescision(int id, string status)
         {
 
-            BL.Admin admin = new BL.Admin();
 
             admin.AdminDescision(id, status);
             return RedirectToAction("DisplayVendorRegister");
@@ -42,8 +42,8 @@ namespace Admin.Controllers
 
         public ActionResult ProductsRequestsDisplay()
         {
+            ViewBag.products = admin.ProductsRequestsDisplay();
             return View();
-
         }
 
     }
