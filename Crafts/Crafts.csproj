@@ -211,6 +211,7 @@
     <Content Include="Assests\js\popper.js" />
     <Content Include="Assests\js\stellar.js" />
     <Content Include="Assests\js\theme.js" />
+    <Content Include="Assests\postdesign.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />

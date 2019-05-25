@@ -65,11 +65,13 @@
             width: 80px;
             cursor: pointer;
         }
+
+
     </style>
 </head>
 <body>
     <div> 
-        <div class=" row" >
+        <div class=" row count" >
            
             <div  style="padding-left:150px">
                     <input id="city" style="margin:0px 100px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
@@ -77,19 +79,34 @@
         </div>
           @foreach (var i in Model)
           {
-              <div>
+            <div>
                 @{ var getimage = Convert.ToBase64String(i.Image);
                     var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
+                }
+            </div>
+
+            
+
+                
+
+                   
+                    <img src="@Url.Content(picture)" style="width:100px ; height:100px" />
+                    <span>@i.Catigory_name </span>
+
+               
+
+               
+                    <h3 class="card-title">@i.Product_Name</h3>
+                    <p>@i.Product_Description</p>
+
+                    
+                       <span>@i.Product_Price</span>
+                  
+
+        
+
+           
                     }
-                  <img src="@Url.Content(picture)" />
-                  <br />
-                  <h3>@i.Product_Name</h3>
-                  <p>@i.Product_Price</p>
-                  <p>@i.Catigory_name</p>
-                  <br />
-                  <p>@i.Product_Description</p>
-              </div>
-          }
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -104,7 +121,7 @@
                     <form id="post-form" action="/Vendor/Addpost" method="post" enctype="multipart/form-data">
                         <div class="image-upload">
                             <label for="file-input">
-                                <img src="https://goo.gl/pB9rpQ" />
+                                <img src="~/Assests/img/upload.png" />
                             </label>
                             <input id="file-input" type="file" />
                         </div>
