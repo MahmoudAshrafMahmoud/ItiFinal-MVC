@@ -7,7 +7,7 @@
     @*@Ajax.ActionLink((string)item.Cat_Name, "CategoryProducts", new { id = item.Cat_Id
 }, new AjaxOptions { InsertionMode = InsertionMode.Replace, OnComplete = "asd" },new { @class = "nav-link" })*@
 
-    @Html.ActionLink((string)item.Cat_Name, "SelectedCategory", "Category", new { id = item.Cat_Id })
+    @Html.ActionLink((string)item.Cat_Name, "SelectedCategory", "Category", new { id = item.Cat_Id }, new { @class = "nav-link" })
 </li>
 }
 
