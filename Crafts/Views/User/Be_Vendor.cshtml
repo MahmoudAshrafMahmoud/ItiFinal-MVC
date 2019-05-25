@@ -1,40 +1,66 @@
-﻿
- 
-<div class="container">
-    <h2>Do you want to Regist as a vendor</h2>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Ok</button>
+﻿@using System.Web.Mvc.Ajax
+@{
+    ViewBag.Title = "Be_Vendor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-    
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        
-                        <div>Tell us What kind of products which you will supply</div> 
-                        
-                        <textarea></textarea>
-                        
-                        <br/>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
-                        <button type="submit" class="btn btn-default">Ok</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        
+<div id="ajaxdiv">
 
-                    </form>
-                </div>
-                
-            </div>
-      
+    @using (Ajax.BeginForm("VendorRegister", new AjaxOptions { HttpMethod = "POST",UpdateTargetId= "ajaxdiv", InsertionMode = InsertionMode.Replace }))
+    {
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Full Name <span style="color: red">*</span></label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="FullName">
         </div>
-    </div>
-  
+
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Email address <span style="color: red">*</span></label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="Email">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlInput1">National ID <span style="color: red">*</span></label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="NationalId">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Seller Information</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Bio"></textarea>
+        </div>
+
+        <input type="submit" class="btn btn-Info btn-lg" value="ok">
+    }
+
 </div>
+
+
+    @*<form method="post" action="/user/VendorRegister">
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Full Name <span style="color: red">*</span></label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="FullName">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address <span style="color: red">*</span></label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="Email">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">National ID <span style="color: red">*</span></label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="NationalId">
+            </div>
+
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Seller Information</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Bio"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-Info btn-lg" >OK</button>
+        </form>*@
 

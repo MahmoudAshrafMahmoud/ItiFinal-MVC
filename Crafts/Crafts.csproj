@@ -209,6 +209,7 @@
     <Content Include="Assests\img\product\single-product\s-product-s-2.jpg" />
     <Content Include="Assests\img\product\single-product\s-product-s-3.jpg" />
     <Content Include="Assests\img\product\single-product\s-product-s-4.jpg" />
+    <Content Include="Assests\img\upload.png" />
     <Content Include="Assests\js\bootstrap.min.js" />
     <Content Include="Assests\js\contact.js" />
     <Content Include="Assests\js\custom.js" />
@@ -223,6 +224,7 @@
     <Content Include="Assests\js\popper.js" />
     <Content Include="Assests\js\stellar.js" />
     <Content Include="Assests\js\theme.js" />
+    <Content Include="Assests\postdesign.css" />
     <Content Include="Assests\vendors\animate-css\animate.css" />
     <Content Include="Assests\vendors\animate-css\wow.min.js" />
     <Content Include="Assests\vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.css" />
@@ -336,6 +338,11 @@
     <Content Include="Views\Product\ProductView.cshtml" />
     <Content Include="Views\User\Be_Vendor.cshtml" />
     <Content Include="Views\User\DisplayUserPage.cshtml" />
+    <Content Include="Views\User\Show_Orders.cshtml" />
+    <Content Include="Views\User\ViewDtails.cshtml" />
+    <Content Include="Views\User\Be_Vendor.cshtml" />
+    <Content Include="Views\User\VendorRegister.cshtml" />
+    <Content Include="Views\Show_Orders.cshtml" />
     <Content Include="Views\User\Show_Orders.cshtml" />
     <Content Include="Views\User\ViewDtails.cshtml" />
     <None Include="Web.Debug.config">
