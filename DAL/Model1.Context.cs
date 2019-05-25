@@ -37,5 +37,6 @@ namespace DAL
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Type_table> Type_table { get; set; }
         public virtual DbSet<User_table> User_table { get; set; }
+        public virtual DbSet<Message_table> Message_table { get; set; }
     }
 }
