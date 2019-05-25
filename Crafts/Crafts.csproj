@@ -209,6 +209,7 @@
     <Content Include="Assests\img\product\single-product\s-product-s-2.jpg" />
     <Content Include="Assests\img\product\single-product\s-product-s-3.jpg" />
     <Content Include="Assests\img\product\single-product\s-product-s-4.jpg" />
+    <Content Include="Assests\img\upload.png" />
     <Content Include="Assests\js\bootstrap.min.js" />
     <Content Include="Assests\js\contact.js" />
     <Content Include="Assests\js\custom.js" />
@@ -223,6 +224,7 @@
     <Content Include="Assests\js\popper.js" />
     <Content Include="Assests\js\stellar.js" />
     <Content Include="Assests\js\theme.js" />
+    <Content Include="Assests\postdesign.css" />
     <Content Include="Assests\vendors\animate-css\animate.css" />
     <Content Include="Assests\vendors\animate-css\wow.min.js" />
     <Content Include="Assests\vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.css" />
@@ -311,19 +313,15 @@
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Category\showCategories.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Main.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <Content Include="Views\Vendor\VendorOrders.cshtml" />
-    <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Shared\_shoppingCart.cshtml" />
     <Content Include="Views\Cart\cartDisplay.cshtml" />
     <Content Include="Views\Cart\cartDisplayEmpty.cshtml" />
     <Content Include="Views\Shared\_UpdateQuantityText.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <Content Include="Views\Category\showCategories.cshtml" />
-    <Content Include="Views\Vendor\VendorOrders.cshtml" />
-    <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\User\Home.cshtml" />
@@ -334,7 +332,19 @@
     <Content Include="Views\VendorOrders.cshtml" />
     <Content Include="Views\Vendor\Search.cshtml" />
     <Content Include="Views\SelectedCategory.cshtml" />
-    <Content Include="Views\User\Contact.cshtml" />
+    <Content Include="Views\Cart\Receipt.cshtml" />
+    <Content Include="Views\Category\Products.cshtml" />
+    <Content Include="Views\Category\SelectedCategory.cshtml" />
+    <Content Include="Views\Product\ProductView.cshtml" />
+    <Content Include="Views\User\Be_Vendor.cshtml" />
+    <Content Include="Views\User\DisplayUserPage.cshtml" />
+    <Content Include="Views\User\Show_Orders.cshtml" />
+    <Content Include="Views\User\ViewDtails.cshtml" />
+    <Content Include="Views\User\Be_Vendor.cshtml" />
+    <Content Include="Views\User\VendorRegister.cshtml" />
+    <Content Include="Views\Show_Orders.cshtml" />
+    <Content Include="Views\User\Show_Orders.cshtml" />
+    <Content Include="Views\User\ViewDtails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -345,7 +355,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">

@@ -50,13 +50,27 @@ namespace Crafts.Controllers
             BL.Order order = new BL.Order();
 
             List<MyOrdersModel> ViewOrdersDetails = order.ShowMyOrdersDetails(id);
-            return View(ViewOrdersDetails);
+            return PartialView(ViewOrdersDetails);
         }
 
         public ActionResult Be_Vendor(int id)
         {
-            return PartialView();
+            return View();
         }
+
+        //Vendor Register
+        //[HttpPost]
+        //public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
+        //{
+        //    User_table USer = (User_table)Session["user"];
+
+        //    int id= USer.User_Id ;
+        //    BL.User user = new BL.User();
+        //    ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
+        //    return PartialView();
+        //}
+
+
 
 
         [HttpPost]

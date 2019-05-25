@@ -5,14 +5,14 @@
 }
 
 <script type="text/javascript">
-    alert("asdljiasd");
-    function hi(event) {
-        console.log(event.target);
-        alert("hoajsod");
-    }
-      function getTextBoxContent() {
-    return document.getElementById('myinput').value;
-}
+//    alert("asdljiasd");
+//    function hi(event) {
+//        console.log(event.target);
+//        alert("hoajsod");
+//    }
+//      function getTextBoxContent() {
+//    return document.getElementById('myinput').value;
+//}
 </script>
 
 <!--================Home Banner Area =================-->
@@ -42,11 +42,19 @@
                        new AjaxOptions { UpdateTargetId = "mysection", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" })
     </div>
 </div>*@
+@*ViewBag.orders.Vendor_id*@
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
 
-@*<% using @(Ajax.BeginForm("Search", "vendor", new {id = ViewBag.Vendor_id }, new AjaxOptions { UpdateTargetId = "mysection" })) { %>
+
+@*@Session["userID"]*@
+<% using @(Ajax.BeginForm("Search", "vendor", new {id =1 }, new AjaxOptions { UpdateTargetId = "mysection" })) { %>
    @Html.TextBox("search", null, new { @class = "form-control" }) 
 <input type="submit" value="Search" />
-<% } %>*@
+<% } %>
+
+
 
 <!--================Order Details Area =================-->
 <section id="mysection" class="order_details p_120">
