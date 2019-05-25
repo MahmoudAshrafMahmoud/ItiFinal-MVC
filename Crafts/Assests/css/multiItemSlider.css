@@ -19,15 +19,21 @@
                 text-align: center;
                 padding: 10px;
                 margin: 10px;
-                background: #f1f1f1;
                 color: #666;
+                /*HEIGHT: 250PX;*/
+                /* background: #f1f1f1; */
             }
 
-    .MultiCarousel .leftLst, .MultiCarousel .rightLst {
-        position: absolute;
-        border-radius: 50%;
-        top: calc(50% - 20px);
-    }
+.prodec {
+    height: 50px;
+}
+
+
+.MultiCarousel .leftLst, .MultiCarousel .rightLst {
+    position: absolute;
+    border-radius: 50%;
+    top: calc(50% - 20px);
+}
 
     .MultiCarousel .leftLst {
         left: 0;

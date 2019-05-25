@@ -17,6 +17,9 @@ namespace Crafts.Controllers
         {
             if (Session["user"] != null)
             {
+
+                List<ProductModel> topSeller = ul.topSellerSup();
+                ViewBag.topSeller = topSeller;
                 return View();
             }
             else
@@ -84,6 +87,12 @@ namespace Crafts.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult RegisterNewUser()
+        {
+            return View();
         }
 
     }

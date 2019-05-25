@@ -4,17 +4,6 @@
     Layout = "~/Views/Shared/_Main.cshtml";
 }
 
-<script type="text/javascript">
-    alert("asdljiasd");
-    function hi(event) {
-        console.log(event.target);
-        alert("hoajsod");
-    }
-      function getTextBoxContent() {
-    return document.getElementById('myinput').value;
-}
-</script>
-
 <!--================Home Banner Area =================-->
 <section class="banner_area">
     <div class="banner_inner d-flex align-items-center">
@@ -30,23 +19,6 @@
     </div>
 </section>
 <!--================End Home Banner Area =================-->
-@*<button class="btn btn-block" onclick="hi(event)">iisdcisjcsidc</button>*@
-  <!-- Another variation with a button -->
-@*<div class="input-group">
-    <input id="myinput" type="text" class="form-control" placeholder="Search this blog">
-    <div class="input-group-append">
-        <button class="btn btn-secondary" type="button">
-            <i class="fa fa-search"></i>
-        </button>
-        @Ajax.ActionLink("", "Add", "Cart", new {search=getTextBoxContent(), id = ViewBag.Vendor_id },
-                       new AjaxOptions { UpdateTargetId = "mysection", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" })
-    </div>
-</div>*@
-
-@*<% using @(Ajax.BeginForm("Search", "vendor", new {id = ViewBag.Vendor_id }, new AjaxOptions { UpdateTargetId = "mysection" })) { %>
-   @Html.TextBox("search", null, new { @class = "form-control" }) 
-<input type="submit" value="Search" />
-<% } %>*@
 
 <!--================Order Details Area =================-->
 <section id="mysection" class="order_details p_120">
@@ -215,7 +187,7 @@
                 </div>
             </div>
             @Ajax.ActionLink("Submit Order", "SubmitOrder", new { id = item.OrderDetail_Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "mysection", OnComplete = "asd" },new { @class = "btn btn-info" })
-            @Ajax.ActionLink("Reject Order", "RejectOrder", new { id = item.OrderDetail_Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "mysection", OnComplete = "asd" }, new { @class = "btn btn-danger" })
+            
         }
        
     </div>

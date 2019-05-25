@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="BootstrapMvc.Bootstrap4, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BootstrapMvc.Bootstrap4.1.2.0\lib\net451\BootstrapMvc.Bootstrap4.dll</HintPath>
     </Reference>
@@ -324,6 +330,10 @@
     <Content Include="Views\Cart\Receipt.cshtml" />
     <Content Include="Views\Category\Products.cshtml" />
     <Content Include="Views\Category\SelectedCategory.cshtml" />
+    <Content Include="Views\User\RegisterNewUser.cshtml" />
+    <Content Include="Views\VendorOrders.cshtml" />
+    <Content Include="Views\Vendor\Search.cshtml" />
+    <Content Include="Views\SelectedCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -334,6 +344,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Vendor\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">
