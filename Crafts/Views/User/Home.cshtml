@@ -81,10 +81,15 @@
                                     <a href="#">
                                         <i class="far fa-heart"></i>
                                     </a>
-                                    <a href="#">
-                                        <i class="fas fa-cart-plus"></i>
-
-                                    </a>
+                              
+                                    @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "shoppingCartID",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   },
+                                   new { @class = "fas fa-cart-plus" })
                                 </div>
                             </div>
                             <div class="prodec">
@@ -120,10 +125,16 @@
                                         <a href="#">
                                             <i class="far fa-heart"></i>
                                         </a>
-                                        <a href="#">
-                                            <i class="fas fa-cart-plus"></i>
 
-                                        </a>
+                                        @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "shoppingCartID",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   },
+                                   new { @class = "fas fa-cart-plus" })
+
                                     </div>
                                 </div>
                                 <div class="prodec">
