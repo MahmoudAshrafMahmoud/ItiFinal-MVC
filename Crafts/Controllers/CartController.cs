@@ -60,7 +60,20 @@ namespace Crafts.Controllers
             return PartialView("_UpdateQuantityText");
 
         }
-
+        public ActionResult checkout(int phone, string address)
+        {
+            Session.Add("checkOutRequest",true);
+            CartModel MyCart = CartLogic.viewMyCart();
+            ViewBag.cart = MyCart;
+            ViewBag.CartItems = MyCart.CartItem;
+            bool success = CartLogic.checkout( phone, address);
+            if (success == true)
+            { return View("Receipt");}
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+        }
 
     }
 }

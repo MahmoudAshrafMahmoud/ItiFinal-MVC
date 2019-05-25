@@ -84,10 +84,17 @@
                                 <a href="#">
                                     <i class="far fa-heart"></i>
                                 </a>
-                                <a href="#">
-                                    <i class="fas fa-cart-plus"></i>
-                                    
-                                </a>
+
+                                    @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "shoppingCartID",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   },
+                                   new { @class = "fas fa-cart-plus"})
+
+
                             </div>
                         </div>
                         <a href="#">
@@ -104,7 +111,7 @@
     </div>
 </section>
 
-<section class="feature_product_area section_gap container">
+<section class="feature_product_area container">
     <div class="main_box">
         <div class="container-fluid">
             <div class="row">
@@ -146,7 +153,11 @@
 </section>
 
 
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
 
 
+ 
 
 

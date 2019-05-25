@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="BootstrapMvc.Bootstrap4, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BootstrapMvc.Bootstrap4.1.2.0\lib\net451\BootstrapMvc.Bootstrap4.dll</HintPath>
     </Reference>
@@ -213,9 +219,36 @@
     <Content Include="Assests\js\jquery.validate.min.js" />
     <Content Include="Assests\js\mail-script.js" />
     <Content Include="Assests\js\multiItemSlider.js" />
+    <Content Include="Assests\js\navbaricons.js" />
     <Content Include="Assests\js\popper.js" />
     <Content Include="Assests\js\stellar.js" />
     <Content Include="Assests\js\theme.js" />
+    <Content Include="Assests\vendors\animate-css\animate.css" />
+    <Content Include="Assests\vendors\animate-css\wow.min.js" />
+    <Content Include="Assests\vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="Assests\vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Assests\vendors\bootstrap-datepicker\bootstrap-select.css" />
+    <Content Include="Assests\vendors\bootstrap-datepicker\bootstrap-select.js" />
+    <Content Include="Assests\vendors\counter-up\jquery.counterup.js" />
+    <Content Include="Assests\vendors\counter-up\jquery.waypoints.min.js" />
+    <Content Include="Assests\vendors\flipclock\timer.js" />
+    <Content Include="Assests\vendors\isotope\imagesloaded.pkgd.min.js" />
+    <Content Include="Assests\vendors\isotope\isotope-min.js" />
+    <Content Include="Assests\vendors\jquery-ui\jquery-ui.css" />
+    <Content Include="Assests\vendors\jquery-ui\jquery-ui.js" />
+    <Content Include="Assests\vendors\lightbox\simpleLightbox.css" />
+    <Content Include="Assests\vendors\lightbox\simpleLightbox.min.js" />
+    <Content Include="Assests\vendors\linericon\fonts\Linearicons-Free.svg" />
+    <Content Include="Assests\vendors\linericon\style.css" />
+    <Content Include="Assests\vendors\nice-select\css\nice-select.css" />
+    <Content Include="Assests\vendors\nice-select\css\style.css" />
+    <Content Include="Assests\vendors\nice-select\js\jquery.nice-select.js" />
+    <Content Include="Assests\vendors\nice-select\js\jquery.nice-select.min.js" />
+    <Content Include="Assests\vendors\owl-carousel\assets\ajax-loader.gif" />
+    <Content Include="Assests\vendors\owl-carousel\assets\animated.css" />
+    <Content Include="Assests\vendors\owl-carousel\assets\owl.carousel.css" />
+    <Content Include="Assests\vendors\owl-carousel\owl.carousel.min.css" />
+    <Content Include="Assests\vendors\owl-carousel\owl.carousel.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -233,6 +266,14 @@
     <Content Include="Assests\fonts\fontawesome-webfont.woff" />
     <Content Include="Assests\fonts\fontawesome-webfont.woff2" />
     <Content Include="Assests\fonts\FontAwesome.otf" />
+    <Content Include="Assests\vendors\.DS_Store" />
+    <Content Include="Assests\vendors\linericon\.DS_Store" />
+    <Content Include="Assests\vendors\linericon\fonts\Linearicons-Free.eot" />
+    <Content Include="Assests\vendors\linericon\fonts\Linearicons-Free.ttf" />
+    <Content Include="Assests\vendors\linericon\fonts\Linearicons-Free.woff" />
+    <Content Include="Assests\vendors\linericon\fonts\Linearicons-Free.woff2" />
+    <Content Include="Assests\vendors\nice-select\.DS_Store" />
+    <Content Include="Assests\vendors\owl-carousel\.DS_Store" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -267,13 +308,11 @@
     </Content>
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Category\showCategories.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Main.cshtml" />
-    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <Content Include="Views\Vendor\VendorOrders.cshtml" />
     <Content Include="Views\Category\CategoryProducts.cshtml" />
@@ -288,6 +327,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\User\Home.cshtml" />
+    <Content Include="Views\Cart\Receipt.cshtml" />
+    <Content Include="Views\Category\Products.cshtml" />
+    <Content Include="Views\Category\SelectedCategory.cshtml" />
+    <Content Include="Views\User\RegisterNewUser.cshtml" />
     <Content Include="Views\VendorOrders.cshtml" />
     <Content Include="Views\Vendor\Search.cshtml" />
     <Content Include="Views\SelectedCategory.cshtml" />

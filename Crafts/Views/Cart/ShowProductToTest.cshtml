@@ -30,7 +30,8 @@
                     </a>
                     <h5>@item.Product_Price</h5>
                     <div class="product_button ml-auto mr-auto trans_200">
-                        @Ajax.ActionLink("Add To Cart", "Add", "Cart", new { ID = @item.Product_Id },  new AjaxOptions { UpdateTargetId = "shoppingCartID", InsertionMode = InsertionMode.Replace , HttpMethod = "GET" })
+                        @Ajax.ActionLink("Add To Cart", "Add", "Cart", new { ID = @item.Product_Id }, 
+                       new AjaxOptions { UpdateTargetId = "shoppingCartID", InsertionMode = InsertionMode.Replace , HttpMethod = "GET" })
                     </div>
 
                 </div>

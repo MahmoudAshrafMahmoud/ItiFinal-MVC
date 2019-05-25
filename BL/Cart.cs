@@ -76,6 +76,7 @@ namespace BL
                 {
                     Mycart.CartItem[i].ProductQty = Mycart.CartItem[i].ProductQty + 1;
                     Mycart.CartItem[i].ProductTotalPrice = Mycart.CartItem[i].ProductQty * Mycart.CartItem[i].ProductData.Product_Price;
+                    HttpContext.Current.Session["count"] = Convert.ToInt32(HttpContext.Current.Session["count"]) + 1;
                     item = true;
                 }
             }
@@ -156,11 +157,11 @@ namespace BL
             CartModel Mycart = (CartModel)HttpContext.Current.Session["cart"];
             using (CraftsEntities conn = new CraftsEntities())
             {
-                if (HttpContext.Current.Session["UserID"] != null)
+                if (HttpContext.Current.Session["userID"] != null)
                 {
                     Order_table NewOrder = new Order_table();
                     NewOrder.Expected_Price = Mycart.OrderTotalPrice;
-                    NewOrder.User_Id = int.Parse(HttpContext.Current.Session["UserID"].ToString());
+                    NewOrder.User_Id = int.Parse(HttpContext.Current.Session["userID"].ToString());
                     NewOrder.Order_Date = DateTime.Now;
                     NewOrder.Order_Phone = phone;
                     NewOrder.Order_Address = address;
@@ -172,6 +173,7 @@ namespace BL
                         NewOrderItem.Order_Id = NewOrder.Order_Id;
                         NewOrderItem.Pro_Id = Mycart.CartItem[i].ProductData.Product_Id;
                         NewOrderItem.Quantity = Mycart.CartItem[i].ProductQty;
+                        NewOrderItem.Approval = "pending";
                         conn.OrderDetails_table.Add(NewOrderItem);
                     }
                     conn.SaveChanges();
