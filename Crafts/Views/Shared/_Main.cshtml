@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../Assests/vendors/jquery-ui/jquery-ui.css">
     <!-- main css -->
     <link rel="stylesheet" href="../Assests/css/style.css">
+
     <link rel="stylesheet" href="../Assests/css/responsive.css">
 
     <!--Home Style for slider-->
@@ -63,8 +64,8 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        @*<span class="icon-bar"></span>
+                        <span class="icon-bar"></span>*@
                     </button>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
@@ -72,10 +73,10 @@
                             <div class="col-lg-7 pr-0">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home</a>
+                                        <a class="nav-link"  href="@Url.Action("Home","User")">Home</a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">About</a>
+                                        <a class="nav-link" href="@Url.Action("About","Home")">About</a>
                                     </li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
@@ -86,27 +87,27 @@
                                         </ul>
                                     </li>
 
-                                    @*<li class="nav-item submenu dropdown">
+                                   <li class="nav-item submenu dropdown" id="ProfileID">
                                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="login.html">Login</a>
+                                                    <a class="nav-link" href="login.html">My Orders</a>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="tracking.html">Tracking</a>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="elements.html">Elements</a>
+                                                    <a class="nav-link" href="@Url.Action("Logout","User")">Logout</a>
                                                 </li>
                                             </ul>
-                                        </li>*@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Login</a>
+                                        </li>
+                                    <li class="nav-item active " id="LoginID">
+                                        <a class="nav-link" href="@Url.Action("Login","User")">Login</a>
                                     </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Register</a>
+                                    <li class="nav-item active notuser" id="RegisterID">
+                                        <a class="nav-link" href="@Url.Action("Register","User")">Register</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
+                                        <a class="nav-link"  href="@Url.Action("Contact","Home")">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -114,11 +115,11 @@
                             <div class="col-lg-5">
                                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                     <hr>
-                                    <li class="nav-item">
+                                    @*<li class="nav-item">
                                         <a href="#" class="icons">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </a>
-                                    </li>
+                                    </li>*@
 
                                     <hr>
 
@@ -132,24 +133,19 @@
 
                                     <li class="nav-item">
                                         <a href="#" class="icons">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="far fa-heart" aria-hidden="true"></i>
                                         </a>
                                     </li>
 
                                     <hr>
 
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
+                                        <a href="@Url.Action("cartDisplay","Cart")" class="icons">
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
-                                        <a href="@Url.Action("cartDisplay","Cart")" class="icons">
-
-                                                <i class="fas fa-shopping-cart"></i>
-
-                                            </a>
-
                                     </li>
-                                    <span id="shoppingCartID" class= "pr-4 mt-3"> @Session["count"] </span>
+                                    <span id="shoppingCartID" class= "font-weight-bold pr-4 mt-3 nav-link" > @Session["count"]  <br />
+                                    @Session["TotalPrice"] L.E </span>
 
                                     <hr>
                                 </ul>
@@ -282,10 +278,28 @@
     <script src="../Assests/vendors/counter-up/jquery.counterup.js"></script>
     <script src="../Assests/js/mail-script.js"></script>
     <script src="../Assests/js/theme.js"></script>
+    <script src="../Assests/js/navbaricons.js"></script>
+
     @RenderSection("scripts", required: false)
 
 
     <script src="../Assests/js/multiItemSlider.js"></script>
+    <script type="text/javascript">
+
+        if ('@Session["userID"]' == "") {
+            document.getElementById("LoginID").classList.remove("hide")
+            document.getElementById("RegisterID").classList.remove("hide")
+            document.getElementById("ProfileID").classList.add("hide")
+
+        }
+        else {
+            document.getElementById("LoginID").classList.add("hide")
+            document.getElementById("RegisterID").classList.add("hide")
+            document.getElementById("ProfileID").classList.remove("hide")
+        }
+
+    </script>
+  
 </body>
 
 </html>

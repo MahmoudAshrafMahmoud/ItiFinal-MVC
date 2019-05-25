@@ -52,6 +52,22 @@ Table of Content:
 
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
+#demoFont {
+    font-family: 'Century Gothic';
+    font-size: 25px;
+    margin-top:95px;
+    letter-spacing: 0.4px;
+    word-spacing: 2px;
+    color: #75685F;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+.hide{
+display:none;
+}
 body {
   line-height: 24px;
   font-size: 14px;

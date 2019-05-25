@@ -28,7 +28,6 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult login()
         {
-            ViewBag.ID = id;
             return View();
         }
 
@@ -63,8 +62,15 @@ namespace Crafts.Controllers
             if (user != null)
             {
                 Session.Add("user", user);
-                return RedirectToAction("Home", "User");
-
+                Session.Add("userID", user.User_Id);
+                if (Session["checkOutRequest"] != null)
+                {
+                    return RedirectToAction("cartDisplay", "Cart");
+                }
+                else
+                {
+                    return RedirectToAction("Home", "User");
+                }
             }
             else
             {
@@ -77,7 +83,7 @@ namespace Crafts.Controllers
         public ActionResult logout()
         {
             Session.Clear();
-            return RedirectToAction("login", "User");
+            return RedirectToAction("Index", "Home");
         }
 
     }
