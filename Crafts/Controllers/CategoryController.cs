@@ -17,7 +17,7 @@ namespace Crafts.Controllers
         //    ViewBag.products = pro.CategoryProducts(id);
         //    return View();
         //}
-        public ActionResult SelectedCategory(int id = 1)
+        public ActionResult SelectedCategory(int id)
         {
             Product pro = new Product();
             ViewBag.products = pro.CategoryProducts(id);

@@ -11,134 +11,52 @@
     <div class="row">
         <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
             <div class="MultiCarousel-inner">
-                <div class="item">
+
+                @*<div class="item">
                     <div class="pad15">
                         <p class="lead">Multi Item Carousel</p>
                         <p>₹ 1</p>
                         <p>₹ 6000</p>
                         <p>50% off</p>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
+                </div>*@
+
+
+
+
+
+                @foreach (BL.SharedModels.ProductModel item in ViewBag.topSeller)
+                 {
+                    var base64 = Convert.ToBase64String(@item.Image);
+                    var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
+                    <div class="col col1 item">
+                        <div class="f_p_item ">
+                            <div class="f_p_img ">
+                                <img class="img-fluid" src="@ImgSRC" alt="@ViewBag.Product_Description">
+                                <div class="p_icon">
+                                    <a href="#">
+                                        <i class="far fa-heart"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fas fa-cart-plus"></i>
+
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="prodec">
+                                <a href="#">
+                                    <h4>@item.Product_Name</h4>
+                                </a>
+                            </div>
+
+                            <h5>@item.Product_Price LE</h5>
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="pad15">
-                        <p class="lead">Multi Item Carousel</p>
-                        <p>₹ 1</p>
-                        <p>₹ 6000</p>
-                        <p>50% off</p>
-                    </div>
-                </div>
+                 }
+
+
+
+
             </div>
             <button class="btn btn-primary leftLst"><</button>
             <button class="btn btn-primary rightLst">></button>
@@ -398,3 +316,4 @@
 
 
 
+    </div>
