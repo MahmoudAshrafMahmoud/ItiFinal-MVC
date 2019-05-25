@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BL.SharedModels;
-using DAL;
 using System.Web;
 
 namespace BL
@@ -119,5 +118,33 @@ namespace BL
             }
             return topSoldProducts;
         }
+
+        public List<ProductModel> lastAdded()
+        {
+            User_table userSession = (User_table)HttpContext.Current.Session["user"];
+
+
+
+            var query = (from p in context.Product_table
+                                                  orderby p.Add_Date descending
+                                                  select p).ToList(); 
+
+            var x = (from p in query
+                     join f in context.Following_table
+                     on p.Vendor_id equals f.Vendor_id
+                     where f.User_id == userSession.User_Id
+                     select new ProductModel
+                     {
+                         Product_Id = p.Product_Id,
+                         Product_Description = p.Product_Description,
+                         Product_Name = p.Product_Name,
+                         Image = p.Image,
+                         Product_Price = p.Product_Price,
+                         Vendor_id = p.Vendor_id
+
+                     }).ToList();
+            return x;
+        }
+
     }
 }

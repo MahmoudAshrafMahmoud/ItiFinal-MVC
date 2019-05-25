@@ -20,6 +20,7 @@ namespace Crafts.Controllers
 
                 List<ProductModel> topSeller = ul.topSellerSup();
                 ViewBag.topSeller = topSeller;
+                ViewBag.lastAdded = ul.lastAdded();
                 return View();
             }
             else
