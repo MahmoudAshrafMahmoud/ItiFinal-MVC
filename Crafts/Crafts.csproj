@@ -288,6 +288,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\User\Home.cshtml" />
+    <Content Include="Views\User\Be_Vendor.cshtml" />
+    <Content Include="Views\User\VendorRegister.cshtml" />
+    <Content Include="Views\Show_Orders.cshtml" />
+    <Content Include="Views\User\Show_Orders.cshtml" />
+    <Content Include="Views\User\ViewDtails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -297,9 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="fonts\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Vendor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">
