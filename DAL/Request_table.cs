@@ -24,6 +24,9 @@ namespace DAL
         public System.DateTime Request_Date { get; set; }
         public int User_Id { get; set; }
         public string reqState { get; set; }
+        public string Full_Name { get; set; }
+        public string Seller_info { get; set; }
+        public byte[] National_ID_Pic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Admin_Req_App_table> Admin_Req_App_table { get; set; }

@@ -96,5 +96,22 @@ namespace Crafts.Controllers
             return View();
         }
 
+
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(string name, string email, string subject, string message)
+        {
+
+            ul.addMessage( name, email, subject, message);
+            ul.sendEmail(email);
+            return View("Home");
+        }
+
     }
 }

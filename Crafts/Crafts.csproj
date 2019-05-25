@@ -334,6 +334,7 @@
     <Content Include="Views\VendorOrders.cshtml" />
     <Content Include="Views\Vendor\Search.cshtml" />
     <Content Include="Views\SelectedCategory.cshtml" />
+    <Content Include="Views\User\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
