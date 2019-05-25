@@ -39,5 +39,12 @@ namespace Admin.Controllers
             admin.AdminDescision(id, status);
             return RedirectToAction("DisplayVendorRegister");
         }
+
+        public ActionResult ProductsRequestsDisplay()
+        {
+            return View();
+
+        }
+
     }
 }

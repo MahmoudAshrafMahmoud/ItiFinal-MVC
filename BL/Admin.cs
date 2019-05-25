@@ -56,5 +56,10 @@ namespace BL
 
             context.SaveChanges();
         }
+
+        public void display()
+        {
+
+        }
     }
 }
