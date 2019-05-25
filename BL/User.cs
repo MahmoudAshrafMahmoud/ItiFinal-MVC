@@ -97,7 +97,7 @@ namespace BL
                 return ("You are already Vendor");
             }
 
-            else if (check_status.Count() == 0 || check_status.FirstOrDefault().ToLower() == "no")
+            else if (check_status.Count() == 0 || check_status.FirstOrDefault().ToLower() == "rejected")
             {
 
                 UserModel user = new UserModel();
@@ -134,5 +134,8 @@ namespace BL
             
 
         }
+
+
+
     }
 }

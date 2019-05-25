@@ -37,5 +37,15 @@ namespace BL
 
         }
 
+
+
+        public void AdminDescision(int id, string status)
+        {
+            Request_table req = new Request_table();
+            req = context.Request_table.Where(x => x.Request_Id == id).FirstOrDefault();
+            req.reqState = status;
+            context.SaveChanges();
+
+        }
     }
 }

@@ -29,5 +29,15 @@ namespace Admin.Controllers
             List<VendorRequest> ReqVendor = admin.VendorRequestView();
             return View(ReqVendor);
         }
+
+
+        public ActionResult VendorDescision(int id, string status)
+        {
+
+            BL.Admin admin = new BL.Admin();
+
+            admin.AdminDescision(id, status);
+            return RedirectToAction("DisplayVendorRegister");
+        }
     }
 }

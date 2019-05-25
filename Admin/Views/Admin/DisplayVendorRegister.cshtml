@@ -1,0 +1,78 @@
+﻿
+
+
+@model List<BL.SharedModels.VendorRequest>
+
+
+@{
+    ViewBag.Title = "DisplayVendorRedister";
+}
+
+<table class="table table-bordered">
+   
+
+    
+    <thead>
+
+        <tr>
+            <td>Request ID</td>
+            <td>Request Date</td>
+            <td>Full Name</td>
+            <td>National ID</td>
+            <td>Seller info</td>
+            <td>Vendor_id</td>
+            <td>Approve</td>
+            <td>Reject</td>
+        </tr>
+
+    </thead>
+    
+    <tbody>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+                
+            <td id="Req_id">
+                    
+                @item.req_id
+
+            </td>
+            <td>
+
+                @item.date
+
+            </td>
+            <td>
+
+                @item.Full_Name
+
+            </td>
+            <td>
+
+                @item.National_ID
+
+            </td>
+            <td>
+
+                @item.Seller_info
+
+            </td>
+            <td>
+
+                @item.user_id
+
+            </td>
+
+            <td>@Html.ActionLink("Accept", "VendorDescision", new { id=@item.req_id, status= "approved" })</td>
+            <td>@Html.ActionLink("Reject", "VendorDescision", new { id = @item.req_id ,  status = "rejected" })</td>
+              
+        </tr>
+  
+
+    }
+
+    </tbody>
+</table>
+         
+
