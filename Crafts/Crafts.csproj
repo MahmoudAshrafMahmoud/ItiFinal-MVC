@@ -316,15 +316,12 @@
     <Content Include="Views\Shared\_Main.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <Content Include="Views\Vendor\VendorOrders.cshtml" />
-    <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Shared\_shoppingCart.cshtml" />
     <Content Include="Views\Cart\cartDisplay.cshtml" />
     <Content Include="Views\Cart\cartDisplayEmpty.cshtml" />
     <Content Include="Views\Shared\_UpdateQuantityText.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
     <Content Include="Views\Category\showCategories.cshtml" />
-    <Content Include="Views\Vendor\VendorOrders.cshtml" />
-    <Content Include="Views\Category\CategoryProducts.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\User\Home.cshtml" />
@@ -338,6 +335,11 @@
     <Content Include="Views\Cart\Receipt.cshtml" />
     <Content Include="Views\Category\Products.cshtml" />
     <Content Include="Views\Category\SelectedCategory.cshtml" />
+    <Content Include="Views\Product\ProductView.cshtml" />
+    <Content Include="Views\User\Be_Vendor.cshtml" />
+    <Content Include="Views\User\DisplayUserPage.cshtml" />
+    <Content Include="Views\User\Show_Orders.cshtml" />
+    <Content Include="Views\User\ViewDtails.cshtml" />
     <Content Include="Views\User\Be_Vendor.cshtml" />
     <Content Include="Views\User\VendorRegister.cshtml" />
     <Content Include="Views\Show_Orders.cshtml" />
@@ -354,7 +356,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">

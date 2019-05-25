@@ -59,10 +59,10 @@ namespace Crafts.Controllers
         }
 
         //Vendor Register
-        [HttpPost]
-        public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
-        {
-            User_table USer = (User_table)Session["user"];
+        //[HttpPost]
+        //public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
+        //{
+        //    User_table USer = (User_table)Session["user"];
 
             int id= USer.User_Id ;
             BL.User user = new BL.User();
@@ -108,6 +108,23 @@ namespace Crafts.Controllers
         public ActionResult RegisterNewUser()
         {
             return View();
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(string name, string email, string subject, string message)
+        {
+
+            ul.addMessage( name, email, subject, message);
+            ul.sendEmail(email);
+            return View("Home");
         }
 
     }
