@@ -26,15 +26,17 @@ namespace Crafts.Controllers
         public ActionResult Addpost()
         {
             var cat = Vendor.allcatigories();
-
-            return View(cat);
+            ViewBag.cat = cat;
+            var product = Vendor.getproductdetails();
+            return View(product);
         }
         [HttpPost]
         public ActionResult Addpost(ProductModel newproduct, string cat_name)
         {
             var cat = Vendor.allcatigories();
-            Vendor.addnewproduct(newproduct, cat_name);
-            return View(cat);
+            ViewBag.cat = cat;
+           
+            return View();
         }
 
         //Vendor submit orders 
@@ -56,6 +58,7 @@ namespace Crafts.Controllers
             ViewBag.orders=myvendor.SearchOrder(search, id);
             return PartialView();
         }
+     
     }
 
 }

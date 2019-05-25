@@ -1,4 +1,4 @@
-﻿@model List<BL.SharedModels.CategoryModel>
+﻿@model List<BL.SharedModels.ProductModel>
 @{
     Layout = "~/Views/Shared/_Profile.cshtml";
 }
@@ -14,6 +14,7 @@
     <script src="~/Assests/js/jquery-3.2.1.min.js"></script>
     <script src="~/Assests/js/popper.js"></script>
     <script src="~/Assests/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <style>
         .dropbtn {
             background-color: #4CAF50;
@@ -55,21 +56,57 @@
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
+
+        .image-upload > input {
+            display: none;
+        }
+
+        .image-upload img {
+            width: 80px;
+            cursor: pointer;
+        }
+
+
     </style>
 </head>
 <body>
     <div> 
-        <div class=" row" >
-            <div class="col-3 border border-primary" style="min-height:800px">
-
-            </div>
-            <div class="col-9 border border-primary" style=" min-height:800px">
-                    <input id="city" type="text" class="form-control col-lg-4"  placeholder="Add new product">
+        <div class=" row count" >
+           
+            <div  style="padding-left:150px">
+                    <input id="city" style="margin:0px 100px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
             </div>
         </div>
-        <div id="new-post">
+          @foreach (var i in Model)
+          {
+            <div>
+                @{ var getimage = Convert.ToBase64String(i.Image);
+                    var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
+                }
+            </div>
 
-        </div>
+            
+
+                
+
+                   
+                    <img src="@Url.Content(picture)" style="width:100px ; height:100px" />
+                    <span>@i.Catigory_name </span>
+
+               
+
+               
+                    <h3 class="card-title">@i.Product_Name</h3>
+                    <p>@i.Product_Description</p>
+
+                    
+                       <span>@i.Product_Price</span>
+                  
+
+        
+
+           
+                    }
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -82,25 +119,30 @@
                 </div>
                 <div class="modal-body">
                     <form id="post-form" action="/Vendor/Addpost" method="post" enctype="multipart/form-data">
-                       <input type="file" name="insertedimg" />
-                        <br /><br />
+                        <div class="image-upload">
+                            <label for="file-input">
+                                <img src="~/Assests/img/upload.png" />
+                            </label>
+                            <input id="file-input" type="file" />
+                        </div>
+                        <br />
                         <input type="text" name="Product_Description" placeholder="description" class="form-control col-12" />
                         <br />
                         <input type="number" name="Product_Price" placeholder="price" class="form-control col-12" />
                         <br />
                         <input type="text" name="Product_Name" placeholder="product Name" class="form-control col-12" />
                         <br />
-                          <select class="dropdown dropdown-menu btn-outline-warning col-12 form-control"name="cat_name"  >
+                          <select class="dropdown dropdown-menu  col-12 form-control"name="cat_name"  >
                               <option class="dropdown-item"> Choose Catigory</option>
-                               @foreach (var item in Model)
+                               @foreach (var item in ViewBag.cat)
                                {
                                    <option class="dropdown-item">
-                                       @item.Cat_Name
+                                       @item.Cat_Name 
                                    </option>
                                }
                           </select>
-                        <br />
-                        <button type="submit"id="submit"  style="float:right" class="btn btn-outline-success">Post</button>
+                        <br /><br />
+                        <button type="submit"id="submit"  style="float:right" class="btn btn-outline-primary form-control">Post</button>
                     </form>
                 </div>
             </div>
@@ -160,6 +202,10 @@
         var postdescription = document.createElement("p");
         postdescription.innerText = newpost.description.value;
     </script>
-    
+    <script>
+        document.getElementById("openinsertedimg").click(function () {
+            document.getElementById("input").click();
+        })
+    </script>
 </body>
 </html>
