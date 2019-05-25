@@ -17,6 +17,10 @@ namespace Crafts.Controllers
         {
             if (Session["user"] != null)
             {
+
+                List<ProductModel> topSeller = ul.topSellerSup();
+                ViewBag.topSeller = topSeller;
+                ViewBag.lastAdded = ul.lastAdded();
                 return View();
             }
             else
@@ -28,9 +32,48 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult login()
         {
-
+            ViewBag.ID = id;
             return View();
         }
+
+        public ActionResult Show_Orders(int id)
+        {
+            BL.Order order = new BL.Order();
+
+            List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
+
+            return View(ViewOrders);
+
+        }
+
+        public ActionResult ViewDtails(int id)
+        {
+            BL.Order order = new BL.Order();
+
+            List<MyOrdersModel> ViewOrdersDetails = order.ShowMyOrdersDetails(id);
+            return PartialView(ViewOrdersDetails);
+        }
+
+        public ActionResult Be_Vendor(int id)
+        {
+            return View();
+        }
+
+        //Vendor Register
+        [HttpPost]
+        public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
+        {
+            User_table USer = (User_table)Session["user"];
+
+            int id= USer.User_Id ;
+            BL.User user = new BL.User();
+            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
+            return PartialView();
+        }
+
+
+
+
         [HttpPost]
         public ActionResult login(string User_Email, string Password)
         {
@@ -38,8 +81,15 @@ namespace Crafts.Controllers
             if (user != null)
             {
                 Session.Add("user", user);
-                return RedirectToAction("Home", "User");
-
+                Session.Add("userID", user.User_Id);
+                if (Session["checkOutRequest"] != null)
+                {
+                    return RedirectToAction("cartDisplay", "Cart");
+                }
+                else
+                {
+                    return RedirectToAction("Home", "User");
+                }
             }
             else
             {
@@ -52,7 +102,13 @@ namespace Crafts.Controllers
         public ActionResult logout()
         {
             Session.Clear();
-            return RedirectToAction("login", "User");
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult RegisterNewUser()
+        {
+            return View();
         }
 
     }

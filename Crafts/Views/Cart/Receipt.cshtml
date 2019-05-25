@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Receipt";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>Receipt</h2>
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+                    <a href="cart.html">Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="d-block mx-auto" >
+    <h2 class=" d-block mx-auto ml-2 col-12" id="demoFont"> We hope you enjoy shopping with us <i class=" text-danger far fa-heart"></i>
+ </h2>
+
+
+    <div class="d-block mx-auto order_box  col-4  ">
+        <h2>Your Receipt</h2>
+        <ul class="list">
+            <li>
+                <a href="#">
+                    Product
+                    <span>Total</span>
+                </a>
+            </li>
+            @foreach (var item in ViewBag.CartItems)
+            {
+                <li>
+                    <a href="#">
+                        @item.ProductData.Product_Name
+                        <span class="middle">x @item.ProductQty </span>
+                        <span class="last">
+                            @item.ProductTotalPrice
+                            L.E
+                        </span>
+                    </a>
+                </li>
+            }
+        </ul>
+        <ul class="list list_2">
+            <li>
+                <a href="#">
+                    Subtotal
+                    <span>@ViewBag.cart.OrderTotalPrice L.E</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Shipping
+                    <span> 0 L.E</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Total
+                    <span>@ViewBag.cart.OrderTotalPrice L.E</span>
+                </a>
+            </li>
+        </ul>
+
+        <a class="main_btn" href="#">View My Orders</a>
+    </div>
+</section>
+

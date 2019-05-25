@@ -30,7 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -51,6 +50,7 @@
     <Compile Include="SharedModels\CartListModel.cs" />
     <Compile Include="SharedModels\CartModel.cs" />
     <Compile Include="SharedModels\CategoryModel.cs" />
+    <Compile Include="SharedModels\MyOrdersModel.cs" />
     <Compile Include="SharedModels\OrderModel.cs" />
     <Compile Include="SharedModels\ProductModel.cs" />
     <Compile Include="SharedModels\UserModel.cs" />

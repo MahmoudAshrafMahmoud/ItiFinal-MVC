@@ -1,0 +1,42 @@
+﻿
+@model List<BL.SharedModels.MyOrdersModel>
+
+@{
+    ViewBag.Title = "ViewDtails";
+}
+
+<table  class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <td>Product Name</td>
+            <td>Quantity</td>
+            <td>Product Price</td>
+            <td>Status</td>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        dssd
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.ProductName</td>
+
+                <td>@item.Quantity</td>
+
+                <td>@item.Productprice</td>
+
+                <td>@item.Status</td>
+
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>

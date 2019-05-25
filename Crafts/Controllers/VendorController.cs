@@ -46,6 +46,18 @@ namespace Crafts.Controllers
             myvendor.AcceptOrder(id);
             return RedirectToAction("VendorOrders");
         }
+        public ActionResult RejectOrder(int id)
+        {
+            Vendor myvendor = new Vendor();
+            myvendor.RejectOrder(id);
+            return RedirectToAction("VendorOrders");
+        }
+        public PartialViewResult Search(string search,int id)
+        {
+            Vendor myvendor = new Vendor();
+            ViewBag.orders=myvendor.SearchOrder(search, id);
+            return PartialView();
+        }
      
     }
 

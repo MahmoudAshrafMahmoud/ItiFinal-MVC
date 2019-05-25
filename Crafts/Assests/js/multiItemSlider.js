@@ -39,7 +39,7 @@
 
 
             if (bodyWidth >= 1200) {
-                incno = itemsSplit[3];
+                incno = itemsSplit[2];
                 itemWidth = sampwidth / incno;
             }
             else if (bodyWidth >= 992) {
