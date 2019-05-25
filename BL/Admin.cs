@@ -48,6 +48,9 @@ namespace BL
 
         }
 
-        public List<Product_table> 
+        public void display()
+        {
+
+        }
     }
 }
