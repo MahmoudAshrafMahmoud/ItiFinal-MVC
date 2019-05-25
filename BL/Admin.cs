@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using BL.SharedModels;
+using System.Web;
 
 namespace BL
 {
@@ -47,6 +48,19 @@ namespace BL
             req.reqState = status;
             context.SaveChanges();
 
+        }
+        public bool AdminLogin(string mail,string password)
+        {
+            List<Admin_table>admins=context.Admin_table.Where(s => s.Admin_Email == mail && s.Password == password).Select(s => s).ToList();
+            if (admins.Count() > 0)
+            {
+                HttpContext.Current.Session["admin_ID"]= admins.Select(s=>s.Admin_Id).First();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
