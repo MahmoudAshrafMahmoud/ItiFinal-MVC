@@ -29,14 +29,9 @@ namespace BL
                                      state = req.reqState
                                  }
                                  ).ToList();
+    return VendorRequest;
 
-
-
-
-        //    return VendorRequest;
-
-
-        //}
+}
 
         
 
