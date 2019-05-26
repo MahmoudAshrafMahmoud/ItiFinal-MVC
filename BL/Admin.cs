@@ -36,35 +36,36 @@ namespace BL
             return VendorRequest;
 
 
-        //}
+       }
 
-        
 
-        public void AdminDescision(int id, string status)
-        {
-            Request_table req = new Request_table();
-            req = context.Request_table.Where(x => x.Request_Id == id).FirstOrDefault();
-            req.reqState = status;
-            int userid = req.User_Id;
 
-            if (req.reqState.ToLower() == "approved")
+            public void AdminDescision(int id, string status)
             {
-                User_table user = new User_table();
-                user = context.User_table.Where(x => x.User_Id == userid).FirstOrDefault();
-                user.Type_id = 2;
+                Request_table req = new Request_table();
+                req = context.Request_table.Where(x => x.Request_Id == id).FirstOrDefault();
+                req.reqState = status;
+                int userid = req.User_Id;
+
+                if (req.reqState.ToLower() == "approved")
+                {
+                    User_table user = new User_table();
+                    user = context.User_table.Where(x => x.User_Id == userid).FirstOrDefault();
+                    user.Type_id = 2;
+                }
+
+                Admin_Req_App_table AdminApprove = new Admin_Req_App_table();
+                AdminApprove.Request_Id = id;
+                AdminApprove.State = status;
+
+                Admin_table admin = (Admin_table)HttpContext.Current.Session["admin"];
+
+                //    return VendorRequest;
+
+                context.Admin_Req_App_table.Add(AdminApprove);
+
             }
-
-            Admin_Req_App_table AdminApprove = new Admin_Req_App_table();
-            AdminApprove.Request_Id = id;
-            AdminApprove.State = status;
-
-            Admin_table admin = (Admin_table)HttpContext.Current.Session["admin"];
-
-        //    return VendorRequest;
-
-            context.Admin_Req_App_table.Add(AdminApprove);
-
-        }
+     
 
         //public void display()
         //{
