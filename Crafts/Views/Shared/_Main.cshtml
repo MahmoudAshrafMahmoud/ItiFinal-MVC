@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @*<link rel="icon" href="~/Assests/img/favicon.png" type="image/png">*@
-    <title>Fashiop</title>
+    <title>Handmade Crafts</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Assests/css/bootstrap.css">
@@ -165,7 +165,7 @@
                             <div class="col-lg-7 pr-0" style="padding-right: 0px;">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link"  href="@Url.Action("Home","User")">Home</a>
+                                        <a class="nav-link"  href="@Url.Action("Index","Home")">Home</a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="@Url.Action("About","Home")">About</a>
@@ -183,14 +183,28 @@
                                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="login.html">My Orders</a>
-                                                <li class="nav-item">
+                                                    <a class="nav-link" href="@Url.Action("Show_Orders","User")">My Orders</a>
+                                                    </li>
+                                                @*<li class="nav-item">
                                                     <a class="nav-link" href="tracking.html">Tracking</a>
+                                                    </li>*@
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="@Url.Action("Logout","User")">Logout</a>
                                                 </li>
                                             </ul>
                                         </li>
+                                    <li class="nav-item submenu dropdown" id="VendorID">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Add Post</a>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("VendorOrders","Vendor")">Vendor Orders</a>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Search","Vendor")">Search</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li class="nav-item active " id="LoginID">
                                         <a class="nav-link" href="@Url.Action("Login","User")">Login</a>
                                     </li>
@@ -236,8 +250,12 @@
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
                                     </li>
-                                    <span id="shoppingCartID" class= "font-weight-bold pr-4 mt-3 nav-link" > @Session["count"]  <br />
-                                    @Session["TotalPrice"] L.E </span>
+                                    <a href="@Url.Action("cartDisplay","Cart")">
+                                        <span id="shoppingCartID" class="font-weight-bold pr-4 mt-3 nav-link">
+                                            @Session["count"]  <br />
+                                            @Session["TotalPrice"] L.E
+                                        </span>
+                                    </a>
 
                                     <hr>
                                 </ul>
@@ -382,15 +400,20 @@
             document.getElementById("LoginID").classList.remove("hide")
             document.getElementById("RegisterID").classList.remove("hide")
             document.getElementById("ProfileID").classList.add("hide")
+            document.getElementById("VendorID").classList.add("hide")
 
         }
         else {
             document.getElementById("LoginID").classList.add("hide")
             document.getElementById("RegisterID").classList.add("hide")
             document.getElementById("ProfileID").classList.remove("hide")
+            document.getElementById("VendorID").classList.remove("hide")
+
         }
 
     </script>
+
+
   
 
     <script src="~/Assests/js/multiItemSlider.js"></script>

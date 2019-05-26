@@ -1,42 +1,42 @@
 ﻿
 @model List<BL.SharedModels.MyOrdersModel>
 
-@{
-    ViewBag.Title = "ViewDtails";
-}
 
-<table  class="table table-bordered table-hover">
+   <h2  class="d-block mx-auto mb-4">
+       <a href="@Url.Action("Show_Orders","User")"> My Orders </a>  =>
+       <a>  Order Details  </a> 
+   </h2>
+    <table class="table table-bordered table-hover">
 
-    <thead>
-        <tr>
-            <td>Product Name</td>
-            <td>Quantity</td>
-            <td>Product Price</td>
-            <td>Status</td>
-        </tr>
-
-    </thead>
-
-    <tbody>
-        dssd
-
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-
-                <td>@item.ProductName</td>
-
-                <td>@item.Quantity</td>
-
-                <td>@item.Productprice</td>
-
-                <td>@item.Status</td>
-
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Product Price</th>
+                <th>Status</th>
             </tr>
-        }
 
-    </tbody>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.ProductName</td>
+
+                    <td>@item.Quantity</td>
+
+                    <td>@item.Productprice</td>
+
+                    <td>@item.Status</td>
+
+                </tr>
+            }
+
+        </tbody>
 
 
 
-</table>
+    </table>
