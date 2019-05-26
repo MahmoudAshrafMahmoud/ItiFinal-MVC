@@ -14,31 +14,23 @@ namespace BL
 
         CraftsEntities context = new CraftsEntities();
 
-        public List<VendorRequest> VendorRequestView()
-        {
-            var VendorRequest = (from req in context.Request_table
-                                 where req.reqState.ToLower() == "pending"
-                                 select new VendorRequest
-                                 {
-                                     req_id = req.Request_Id,
-                                     date = req.Request_Date,
-                                     Full_Name = req.Full_Name,
-                                     National_ID = req.National_ID_Pic,
-                                     Seller_info = req.Seller_info,
-                                     user_id = req.User_Id,
-                                     state = req.reqState
-                                 }
-                                 ).ToList();
+        //public List<VendorRequest> VendorRequestView()
+        //{
+        //    var VendorRequest = (from req in context.Request_table
+        //                         where req.reqState.ToLower() == "pending"
+        //                         select new VendorRequest
+        //                         {
+        //                             req_id=req.Request_Id,
+        //                             date=req.Request_Date,
+        //                             Full_Name=req.Full_Name,
+        //                             National_ID=req.National_ID_Pic,
+        //                             Seller_info=req.Seller_info,
+        //                             user_id=req.User_Id,
+        //                             state=req.reqState
+        //                         }
+        //                         ).ToList();
 
-
-
-
-            return VendorRequest;
-
-
-        }
-
-
+        
 
         public void AdminDescision(int id, string status)
         {
@@ -60,11 +52,10 @@ namespace BL
 
             Admin_table admin = (Admin_table)HttpContext.Current.Session["admin"];
 
-            AdminApprove.Admin_Id = admin.Admin_Id;
+        //    return VendorRequest;
 
             context.Admin_Req_App_table.Add(AdminApprove);
 
-            context.SaveChanges();
         }
 
         //public void display()
@@ -75,12 +66,12 @@ namespace BL
         public List<Product_table> DisplayPendingProducts()
         {
 
-            List<Product_table> PendingProducts = context.Product_table.Where(x => x.State.ToLower() == "pending").ToList();
+            List<Product_table> PendingProducts = context.Product_table.Where(x=>x.State.ToLower()=="pending").ToList();
 
             return PendingProducts;
         }
 
-        public void AdminApprove(int id, string status)
+        public void AdminApprove(int id,string status)
         {
             Product_table product = new Product_table();
             product = context.Product_table.Where(x => x.Product_Id == id).FirstOrDefault();
@@ -89,9 +80,16 @@ namespace BL
         }
 
 
-       
+        //Admin Show all orders
+        public List<Order_table> Orders()
+        {
+            return context.Order_table.ToList();
+        }
 
-        public bool AdminLogin(string mail, string password)
+
+           
+        
+        public bool AdminLogin(string mail,string password)
         {
             List<Admin_table> admins = context.Admin_table.Where(s => s.Admin_Email == mail && s.Password == password).Select(s => s).ToList();
             if (admins.Count() > 0)

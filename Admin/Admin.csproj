@@ -1868,6 +1868,8 @@
     <Content Include="Views\Admin\AdminApproveProducts.cshtml" />
     <Content Include="Views\Admin\AdminApprovalRequest.cshtml" />
     <Content Include="Views\Admin\userMessages.cshtml" />
+    <Content Include="Views\Admin\AdminShowOrders.cshtml" />
+    <Content Include="Views\Admin\AfterAdminLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

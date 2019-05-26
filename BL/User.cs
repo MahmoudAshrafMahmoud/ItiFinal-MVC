@@ -60,59 +60,59 @@ namespace BL
         }
 
         //user regist as vendor
-        //public string Vendor_Register(string FullName, int NationalID, string SellerInfo, int id)
-        //{
-        //    var check_type = from type in context.User_table
-        //                     where type.User_Id == id
-        //                     select type.Type_id;
+        public string Vendor_Register(string FullName, int NationalID, string SellerInfo, int id)
+        {
+            var check_type = from type in context.User_table
+                             where type.User_Id == id
+                             select type.Type_id;
 
-        //    var check_status = from status in context.Request_table
-        //                       where status.User_Id == id
-        //                       orderby status.reqState descending
-        //                       select status.reqState;
+            var check_status = from status in context.Request_table
+                               where status.User_Id == id
+                               orderby status.reqState descending
+                               select status.reqState;
 
-        //    if (check_type.FirstOrDefault() == 2)
-        //    {
-        //        return ("You are already Vendor");
-        //    }
+            if (check_type.FirstOrDefault() == 2)
+            {
+                return ("You are already Vendor");
+            }
 
-        //    else if (check_status.Count() == 0 || check_status.FirstOrDefault().ToLower() == "no")
-        //    {
+            else if (check_status.Count() == 0 || check_status.FirstOrDefault().ToLower() == "no")
+            {
 
-        //        UserModel user = new UserModel();
-        //        user.Bio = SellerInfo;
-        //        user.NationalId = NationalID;
-        //        user.FullName = FullName;
+                UserModel user = new UserModel();
+                user.Bio = SellerInfo;
+                user.NationalId = NationalID;
+                user.FullName = FullName;
 
-        //        Request_table req = new Request_table();
-        //        req.National_ID = user.NationalId;
-        //        req.Seller_info = user.Bio;
-        //        req.Request_Date = DateTime.Now;
-        //        req.Full_Name = user.FullName;
-        //        req.reqState = "pending";
-        //        req.User_Id = id;
+                Request_table req = new Request_table();
+                req.National_ID = user.NationalId;
+                req.Seller_info = user.Bio;
+                req.Request_Date = DateTime.Now;
+                req.Full_Name = user.FullName;
+                req.reqState = "pending";
+                req.User_Id = id;
 
-        //        context.Request_table.Add(req);
-        //        context.SaveChanges();
+                context.Request_table.Add(req);
+                context.SaveChanges();
 
-        //        return "Your Request completed sucessfully";
+                return "Your Request completed sucessfully";
 
-        //    }
+            }
 
-        //    else if (check_status.FirstOrDefault().ToLower() == "pending")
-        //    {
-        //        return "Your account hasn't yet been approved to be avendor. when it is, you will receive an email telling you , your account is approved ";
-        //    }
+            else if (check_status.FirstOrDefault().ToLower() == "pending")
+            {
+                return "Your account hasn't yet been approved to be avendor. when it is, you will receive an email telling you , your account is approved ";
+            }
 
-        //    else
-        //    {
-        //        return "Please Try Again";
-        //    }
-
-
+            else
+            {
+                return "Please Try Again";
+            }
 
 
-        //}
+
+
+        }
 
         public List<ProductModel> followedVendorsProducts(int userID)
         {

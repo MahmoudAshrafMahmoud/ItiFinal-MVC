@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BL;
 using BL.SharedModels;
 using DAL;
+using System.IO;
 
 namespace Crafts.Controllers
 {
@@ -45,7 +46,7 @@ namespace Crafts.Controllers
         public ActionResult Show_Orders()
         {
             BL.Order order = new BL.Order();
-            int id = (int)Session["userID"];
+            int id = (int)Session["User_Id"];
             List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
 
             return View(ViewOrders);
@@ -71,16 +72,12 @@ namespace Crafts.Controllers
         //{
         //    User_table USer = (User_table)Session["user"];
 
-        //    int id = USer.User_Id;
-        //    BL.User user = new BL.User();
-        //    ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
-        //    return PartialView();
-        //}
             //int id= USer.User_Id ;
             //BL.User user = new BL.User();
             //ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
             //return PartialView();
-        
+        //}
+
 
 
 
@@ -91,8 +88,17 @@ namespace Crafts.Controllers
             User_table user = ul.login(User_Email, Password);
             if (user != null)
             {
+                var base64 = Convert.ToBase64String(user.ProfilePicture);
+                var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
                 Session.Add("user", user);
-                Session.Add("userID", user.User_Id);
+                Session.Add("User_Id", user.User_Id);
+                Session.Add("UserFullname", user.FName + " " +user.LName);
+                Session.Add("User_Email", user.User_Email);
+                Session.Add("ProfilePicture", ImgSRC);
+                Session.Add("Rating", user.Rating);
+                Session.Add("Bio", user.Bio);
+                Session.Add("Gender", user.Gender);
+
                 if (Session["checkOutRequest"] != null)
                 {
                     return RedirectToAction("cartDisplay", "Cart");
@@ -119,10 +125,41 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult RegisterNewUser()
         {
+
+            BL.Category myCategory = new Category();
+            List<CategoryModel> selectedCategory = myCategory.AllCategories();
+            ViewBag.selectedCategory = selectedCategory;
+
             return View();
         }
 
 
+
+        [HttpPost]
+        public ActionResult RegisterNewUser(User_table newUser, HttpPostedFileBase fileSelected)
+
+        {
+            byte[] fileData = null;
+            var binaryReader = new BinaryReader(fileSelected.InputStream);
+            fileData = binaryReader.ReadBytes(fileSelected.ContentLength);
+            newUser.ProfilePicture = fileData;
+            
+
+            using (CraftsEntities myData = new CraftsEntities())
+
+            {
+                newUser.Rating = 0;
+                newUser.Type_id = 1;
+                myData.User_table.Add(newUser);
+                myData.SaveChanges();
+                Session["userID"] = newUser.User_Id;
+                ModelState.Clear();
+                newUser = null;
+            }
+
+                return View();
+        }
+        
 
         [HttpGet]
         public ActionResult Contact()
@@ -139,5 +176,17 @@ namespace Crafts.Controllers
             return View("Home");
         }
 
-    }
+        public ActionResult myprofile()
+        {
+            if (Session["User_Id"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "User");
+            }
+            }
+
+        }
 }

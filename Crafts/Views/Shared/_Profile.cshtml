@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="~/Assests/img/favicon.png" type="image/png">
-    <title>Fashiop</title>
+    <title>Handmade Crafts</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Assests/css/bootstrap.css">
     <link rel="stylesheet" href="~/Assests/vendors/linericon/style.css">
@@ -71,7 +71,8 @@
                                     </li>
 
                                     <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                           aria-expanded="false">Profile</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
                                                 <a class="nav-link" href="@Url.Action("Show_Orders","User")">My Orders</a>
@@ -82,8 +83,8 @@
                                             </li>
                                         </ul>
                                     </li>
-                              
-                                 
+
+
 
 
                                     <li class="nav-item">
@@ -156,25 +157,28 @@
     <section class="blog_area single-post-area p_120">
         <div class="container">
             <div class="row">
-               
+
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         @*<aside class="single_sidebar_widget search_widget">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Posts">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="lnr lnr-magnifier"></i>
-                        </button>
-                    </span>
-                </div>
-                 /input-group
-                <div class="br"></div>
-            </aside>*@
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search Posts">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <i class="lnr lnr-magnifier"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                 /input-group
+                                <div class="br"></div>
+                            </aside>*@
+
+
                         <aside class="single_sidebar_widget author_widget">
-                            <img class="mt-5 author_img rounded-circle" src="~/Assests/img/chef.jpg" width="150px" alt="">
-                            <h4>May Hassan</h4>
-                            <p>Homemade Food Maker</p>
+                            <img class="mt-5 author_img rounded-circle"
+                                 src="@Session["ProfilePicture"]" width="150px" alt="">
+                            <h4> @Session["UserFullname"] </h4>
+                            @*<p>@Session["UserFullname"]</p>*@
                             <div class="social_icon">
                                 <a href="#">
                                     <i class="fa fa-facebook"></i>
@@ -190,9 +194,7 @@
                                 </a>
                             </div>
                             <p>
-                                Boot camps have its supporters andit sdetractors. Some people do not understand why you should
-                                have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits
-                                detractors.
+                                @Session["Bio"]
                             </p>
                             <div class="br"></div>
                         </aside>
@@ -261,7 +263,6 @@
         </div>
     </section>
     <!--================Blog Area =================-->
-    
     <!--================ start footer Area  =================-->
     <footer class="footer-area section_gap">
         <div class="container">
