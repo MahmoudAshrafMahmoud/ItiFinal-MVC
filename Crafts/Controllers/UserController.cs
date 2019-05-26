@@ -29,16 +29,23 @@ namespace Crafts.Controllers
             }
         }
 
+        //[HttpGet]
+        //public ActionResult login()
+        //{
+        //    ViewBag.ID = id;
+        //    return View();
+        //}
         [HttpGet]
         public ActionResult login()
         {
+           
             return View();
         }
 
-        public ActionResult Show_Orders(int id)
+        public ActionResult Show_Orders()
         {
             BL.Order order = new BL.Order();
-
+            int id = (int)Session["userID"];
             List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
 
             return View(ViewOrders);
@@ -59,16 +66,21 @@ namespace Crafts.Controllers
         }
 
         //Vendor Register
-        //[HttpPost]
-        //public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
-        //{
-        //    User_table USer = (User_table)Session["user"];
+        [HttpPost]
+        public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
+        {
+            User_table USer = (User_table)Session["user"];
 
-        //    int id= USer.User_Id ;
-        //    BL.User user = new BL.User();
-        //    ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
-        //    return PartialView();
-        //}
+            int id = USer.User_Id;
+            BL.User user = new BL.User();
+            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
+            return PartialView();
+        }
+            //int id= USer.User_Id ;
+            //BL.User user = new BL.User();
+            //ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
+            //return PartialView();
+        
 
 
 

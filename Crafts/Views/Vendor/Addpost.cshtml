@@ -70,11 +70,17 @@
     </style>
 </head>
 <body>
+
+
+
+
+
+
     <div> 
-        <div class=" row count" >
+        <div >
            
             <div  style="padding-left:150px">
-                    <input id="city" style="margin:0px 100px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
+                    <input id="city" style="margin:40px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
             </div>
         </div>
           @foreach (var i in Model)
@@ -84,28 +90,16 @@
                     var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
                 }
             </div>
-
-            
-
-                
-
-                   
-                    <img src="@Url.Content(picture)" style="width:100px ; height:100px" />
-                    <span>@i.Catigory_name </span>
-
-               
-
-               
-                    <h3 class="card-title">@i.Product_Name</h3>
-                    <p>@i.Product_Description</p>
-
-                    
-                       <span>@i.Product_Price</span>
-                  
-
-        
-
-           
+                 <div class="col-lg-12 row rounded mx-auto d-block" style=" margin-bottom:25px ;min-height:300px">
+                     <img src="@Url.Content(picture)" class="img-fluid img-thumbnail  rounded float-right" style="width:200px ; height:200px" />
+                     <div class="col-lg-12 justify-content-center">
+                         <div class="col-12"> <span style="font-weight:bold">Catigory Name :</span> @i.Catigory_name </div>
+                         <div class="col-12"> <span style="font-weight:bold">Product Name :</span> @i.Product_Name</div>
+                         <div class="col-12"><span style="font-weight:bold">Product Description :</span> @i.Product_Description</div>
+                         <div class="col-12"> <span style="font-weight:bold">Product Price :</span> @i.Product_Price</div>
+                     </div>
+                 </div>
+                 
                     }
     </div>
     <!-- Modal -->
@@ -148,6 +142,9 @@
             </div>
         </div>
     </div>
+
+
+    
     <script>
         $('#city').focus(function () {
             //open bootsrap modal
@@ -209,3 +206,4 @@
     </script>
 </body>
 </html>
+
