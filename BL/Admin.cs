@@ -33,12 +33,12 @@ namespace BL
 
 
 
-        //    return VendorRequest;
+            return VendorRequest;
 
 
-        //}
+        }
 
-        
+
 
         public void AdminDescision(int id, string status)
         {
@@ -69,18 +69,18 @@ namespace BL
 
         //public void display()
         //{
-            
+
         //}
 
         public List<Product_table> DisplayPendingProducts()
         {
 
-            List<Product_table> PendingProducts = context.Product_table.Where(x=>x.State.ToLower()=="pending").ToList();
+            List<Product_table> PendingProducts = context.Product_table.Where(x => x.State.ToLower() == "pending").ToList();
 
             return PendingProducts;
         }
 
-        public void AdminApprove(int id,string status)
+        public void AdminApprove(int id, string status)
         {
             Product_table product = new Product_table();
             product = context.Product_table.Where(x => x.Product_Id == id).FirstOrDefault();
@@ -89,14 +89,14 @@ namespace BL
         }
 
 
-           
-        
-        public bool AdminLogin(string mail,string password)
+
+
+        public bool AdminLogin(string mail, string password)
         {
-            List<Admin_table>admins=context.Admin_table.Where(s => s.Admin_Email == mail && s.Password == password).Select(s => s).ToList();
+            List<Admin_table> admins = context.Admin_table.Where(s => s.Admin_Email == mail && s.Password == password).Select(s => s).ToList();
             if (admins.Count() > 0)
             {
-                HttpContext.Current.Session["admin_ID"]= admins.Select(s=>s.Admin_Id).First();
+                HttpContext.Current.Session["admin_ID"] = admins.Select(s => s.Admin_Id).First();
                 return true;
             }
             else
@@ -105,8 +105,9 @@ namespace BL
             }
         }
 
-     
-   
-            }
+
+
+    }
 }
+
     
