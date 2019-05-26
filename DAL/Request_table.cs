@@ -22,10 +22,10 @@ namespace DAL
     
         public int Request_Id { get; set; }
         public System.DateTime Request_Date { get; set; }
-        public int User_Id { get; set; }
-        public string reqState { get; set; }
         public string Full_Name { get; set; }
         public string Seller_info { get; set; }
+        public int User_Id { get; set; }
+        public string reqState { get; set; }
         public int National_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

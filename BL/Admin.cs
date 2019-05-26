@@ -89,6 +89,13 @@ namespace BL
         }
 
 
+        //Admin Show all orders
+        public List<Order_table> Orders()
+        {
+            return context.Order_table.ToList();
+        }
+
+
            
         
         public bool AdminLogin(string mail,string password)

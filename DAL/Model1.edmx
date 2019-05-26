@@ -39,6 +39,16 @@
           <Property Name="User_id" Type="int" Nullable="false" />
           <Property Name="Vendor_id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Message-table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="message" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Order_table">
           <Key>
             <PropertyRef Name="Order_Id" />
@@ -290,6 +300,7 @@
           <EntitySet Name="Admin_table" EntityType="Self.Admin_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category_table" EntityType="Self.Category_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Following_table" EntityType="Self.Following_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message-table" EntityType="Self.Message-table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_table" EntityType="Self.Order_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails_table" EntityType="Self.OrderDetails_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_table" EntityType="Self.Product_table" Schema="dbo" store:Type="Tables" />
@@ -528,9 +539,6 @@
           <Property Name="National_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Admin_Req_App_table" Relationship="CraftsModel.FK_Admin_Req_App_table_Request_table" FromRole="Request_table" ToRole="Admin_Req_App_table" />
           <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Request_table_User_table" FromRole="Request_table" ToRole="User_table" />
-          <Property Name="Full_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Seller_info" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="National_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Subscribtion_table">
           <Key>
