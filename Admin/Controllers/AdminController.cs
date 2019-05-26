@@ -11,7 +11,7 @@ namespace Admin.Controllers
 {
     public class AdminController : Controller
     {
-        
+
         // GET: Admin
         BL.Admin admin = new BL.Admin();
 
@@ -25,7 +25,7 @@ namespace Admin.Controllers
             Request_table reqobj = new Request_table();
             ViewBag.Request = reqobj;
 
-        
+
             List<VendorRequest> ReqVendor = admin.VendorRequestView();
             return View(ReqVendor);
         }
@@ -63,7 +63,7 @@ namespace Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AfterAdminLogin(string mail,string password)
+        public ActionResult AfterAdminLogin(string mail, string password)
         {
             BL.Admin myadmin = new BL.Admin();
             bool loginStatus = myadmin.AdminLogin(mail, password);
@@ -75,19 +75,18 @@ namespace Admin.Controllers
             {
                 return View("AfterAdminLogin");
             }
-            
+
         }
 
         public ActionResult AdminApproval(int id, string status)
         {
-            ViewBag.products = admin.ProductsRequestsDisplay();
-            return View();
-        }
             admin.AdminApprove(id, status);
             return RedirectToAction("AdminApproveProducts");
         }
+             
+            
+    }
 
    
 
     }
-}
