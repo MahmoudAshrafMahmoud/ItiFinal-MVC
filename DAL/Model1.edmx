@@ -360,6 +360,7 @@
           <EntitySet Name="Admin_table" EntityType="CraftsModel.Admin_table" />
           <EntitySet Name="Category_table" EntityType="CraftsModel.Category_table" />
           <EntitySet Name="Following_table" EntityType="CraftsModel.Following_table" />
+          <EntitySet Name="Message_table" EntityType="CraftsModel.Message_table" />
           <EntitySet Name="Order_table" EntityType="CraftsModel.Order_table" />
           <EntitySet Name="OrderDetails_table" EntityType="CraftsModel.OrderDetails_table" />
           <EntitySet Name="Product_table" EntityType="CraftsModel.Product_table" />
@@ -420,7 +421,6 @@
             <End Role="Type_table" EntitySet="Type_table" />
             <End Role="User_table" EntitySet="User_table" />
           </AssociationSet>
-          <EntitySet Name="Message_table" EntityType="CraftsModel.Message_table" />
         </EntityContainer>
         <EntityType Name="Admin_Req_App_table">
           <Key>
@@ -462,6 +462,16 @@
           <Property Name="Vendor_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Following_table_User_table2" FromRole="Following_table" ToRole="User_table" />
           <NavigationProperty Name="User_table1" Relationship="CraftsModel.FK_Following_table_User_table3" FromRole="Following_table" ToRole="User_table" />
+        </EntityType>
+        <EntityType Name="Message_table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Order_table">
           <Key>
@@ -511,8 +521,11 @@
           </Key>
           <Property Name="Request_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Request_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Full_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seller_info" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="User_Id" Type="Int32" Nullable="false" />
           <Property Name="reqState" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="National_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Admin_Req_App_table" Relationship="CraftsModel.FK_Admin_Req_App_table_Request_table" FromRole="Request_table" ToRole="Admin_Req_App_table" />
           <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Request_table_User_table" FromRole="Request_table" ToRole="User_table" />
           <Property Name="Full_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -728,17 +741,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Message_table">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="message" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -779,6 +782,17 @@
                 <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
                 <ScalarProperty Name="User_id" ColumnName="User_id" />
                 <ScalarProperty Name="follow_id" ColumnName="follow_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message_table">
+            <EntityTypeMapping TypeName="CraftsModel.Message_table">
+              <MappingFragment StoreEntitySet="Message-table">
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -824,10 +838,10 @@
             <EntityTypeMapping TypeName="CraftsModel.Request_table">
               <MappingFragment StoreEntitySet="Request_table">
                 <ScalarProperty Name="National_ID" ColumnName="National_ID" />
-                <ScalarProperty Name="Seller_info" ColumnName="Seller_info" />
-                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
                 <ScalarProperty Name="reqState" ColumnName="reqState" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Seller_info" ColumnName="Seller_info" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
                 <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
                 <ScalarProperty Name="Request_Id" ColumnName="Request_Id" />
               </MappingFragment>

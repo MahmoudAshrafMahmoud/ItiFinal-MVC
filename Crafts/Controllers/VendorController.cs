@@ -34,6 +34,7 @@ namespace Crafts.Controllers
         public ActionResult Addpost(ProductModel newproduct, string cat_name)
         {
             var cat = Vendor.allcatigories();
+            var product = Vendor.getproductdetails();
             ViewBag.cat = cat;
         return View();
         }
