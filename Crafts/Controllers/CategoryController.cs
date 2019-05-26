@@ -15,7 +15,7 @@ namespace Crafts.Controllers
         //{
         //    Product pro = new Product();
         //    ViewBag.products = pro.CategoryProducts(id);
-        //    return View();
+        //    returF:\ITI_fullstack\MVC Final Project\ItiFinal-MVC\Crafts\Controllers\CategoryController.csn View();
         //}
         public ActionResult SelectedCategory(int id)
         {

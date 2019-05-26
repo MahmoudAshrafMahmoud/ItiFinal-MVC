@@ -4,25 +4,12 @@
     Layout = "~/Views/Shared/_Main.cshtml";
 }
 
-
-
-
-
     <!--================Home Banner Area =================-->
-    <section class="banner_area">
         <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content text-center">
+                <div class="container banner_content text-center">
                     <h2>Shopping Cart</h2>
-                    <div class="page_link">
-                        <a href="index.html">Home</a>
-                        <a href="cart.html">Cart</a>
-                    </div>
-                </div>
             </div>
         </div>
-    </section>
-    <!--================End Home Banner Area =================-->
     <!--================Cart Area =================-->
     <section class="cart_area">
         <div class="container">
@@ -56,18 +43,21 @@
                                 <section id="pricediv">
                                     <td>
 
-
                                         <div class="product_count">
-                                            <input type="text" name="qty" id="T_@item.ProductData.Product_Id" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                                            <button onclick="var result = document.getElementById('T_@item.ProductData.Product_Id'); var T_@item.ProductData.Product_Id = result.value; if( !isNaN( T_@item.ProductData.Product_Id )) result.value++;return false;"
-                                                    class="increase items-count" type="button">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                            <button onclick="var result = document.getElementById('T_@item.ProductData.Product_Id'); var T_@item.ProductData.Product_Id = result.value; if( !isNaN( T_@item.ProductData.Product_Id ) &amp;&amp; T_@item.ProductData.Product_Id > 0 ) result.value--;return false;"
-                                                    class="reduced items-count" type="button">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
+                                            <label style="font-size: 1.3em;" type="text" name="qty" id="T_@item.ProductData.Product_Id"  title="Quantity:" class=" pt-1 d-inline col-6 input-text qty"> @item.ProductQty</label>
+                                            
                                         </div>
+                                        <div class="d-inline col-6">
+                                            <a class="fas fa-plus  d-inline col-6" href="@Url.Action("Increase", "Cart",
+                                             new { ID = @item.ProductData.Product_Id })">
+                                            </a><br />
+                                            <a style="margin-left: 54px;" class="fas fa-minus d-inline  col-6" href="@Url.Action("Decrease", "Cart",
+                                           new { ID = @item.ProductData.Product_Id })">
+                                            </a>
+                                        </div>
+
+
+
                                     </td>
                                     <td>
                                         <h5>@item.ProductData.Product_Price L.E</h5>
@@ -144,10 +134,13 @@
                                     </form>
                                         <div class="text-center">
                                             <div class="checkout_btn_inner">
-                                                <a class="gray_btn ml-4" href="#">Continue Shopping</a>
+                                                <a class="gray_btn ml-4" href="@Url.Action("ClearCart", "Cart")"> clear cart</a>
+
+                                                <a class="gray_btn ml-4" href="@Url.Action("Home", "User")">Continue Shopping</a>
                                                 <a href="" class="btn btn-primary btn-rounded ml-4 " data-toggle="modal" data-target="#modalRegisterForm">
                                                     Proceed to checkout
                                                 </a>
+                                                
                                             </div>
                                     </div>
 

@@ -11,8 +11,9 @@ namespace Admin.Controllers
 {
     public class AdminController : Controller
     {
-        
+
         // GET: Admin
+        BL.Admin admin = new BL.Admin();
 
         public ActionResult Index()
         {
@@ -29,22 +30,44 @@ namespace Admin.Controllers
         //    List<VendorRequest> ReqVendor = admin.VendorRequestView();
         //    return View(ReqVendor);
         //}
+            List<VendorRequest> ReqVendor = admin.VendorRequestView();
+            return View(ReqVendor);
+        }
 
+        //public ActionResult VendorCount()
+        //{
 
+        //    ViewBag.count = admin.VendorRequestView().Count();
+        //    return View();
+        //}
+
+        //admin accept or refuse vendors
         public ActionResult VendorDescision(int id, string status)
         {
-
-            BL.Admin admin = new BL.Admin();
-
             admin.AdminDescision(id, status);
             return RedirectToAction("DisplayVendorRegister");
+        }
+
+        //public ActionResult ProductsRequestsDisplay()
+        //{
+        //    return View();
+
+        //}
+
+
+        public ActionResult AdminApproveProducts()
+        {
+            BL.Admin admin = new BL.Admin();
+
+            List<Product_table> product = admin.DisplayPendingProducts();
+            return View(product);
         }
         public ActionResult AdminLogin()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult AfterAdminLogin(string mail,string password)
+        public ActionResult AfterAdminLogin(string mail, string password)
         {
             BL.Admin myadmin = new BL.Admin();
             bool loginStatus = myadmin.AdminLogin(mail, password);
@@ -56,14 +79,24 @@ namespace Admin.Controllers
             {
                 return View("AdminLogin");
             }
-            
+
         }
 
-        public ActionResult ProductsRequestsDisplay()
+        public ActionResult AdminApproval(int id, string status)
         {
-            return View();
-
+            admin.AdminApprove(id, status);
+            return RedirectToAction("AdminApproveProducts");
         }
+
+        public ActionResult AdminShowOrders()
+        {
+            List<Order_table> orders = admin.Orders();
+            return View();
+        }
+             
+            
+    }
+
+   
 
     }
-}

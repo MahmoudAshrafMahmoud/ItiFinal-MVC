@@ -29,6 +29,7 @@ namespace DAL
         public virtual DbSet<Admin_table> Admin_table { get; set; }
         public virtual DbSet<Category_table> Category_table { get; set; }
         public virtual DbSet<Following_table> Following_table { get; set; }
+        public virtual DbSet<Message_table> Message_table { get; set; }
         public virtual DbSet<Order_table> Order_table { get; set; }
         public virtual DbSet<OrderDetails_table> OrderDetails_table { get; set; }
         public virtual DbSet<Product_table> Product_table { get; set; }
@@ -37,6 +38,5 @@ namespace DAL
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Type_table> Type_table { get; set; }
         public virtual DbSet<User_table> User_table { get; set; }
-        public virtual DbSet<Message_table> Message_table { get; set; }
     }
 }

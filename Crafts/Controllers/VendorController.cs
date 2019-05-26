@@ -33,10 +33,11 @@ namespace Crafts.Controllers
         [HttpPost]
         public ActionResult Addpost(ProductModel newproduct, string cat_name)
         {
+            Vendor.addnewproduct(newproduct, cat_name);
             var cat = Vendor.allcatigories();
+            var product = Vendor.getproductdetails();
             ViewBag.cat = cat;
-           
-            return View();
+            return View(product);
         }
 
         //Vendor submit orders 
