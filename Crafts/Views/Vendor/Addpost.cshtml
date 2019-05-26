@@ -70,11 +70,17 @@
     </style>
 </head>
 <body>
+
+
+
+
+
+
     <div> 
         <div >
            
             <div  style="padding-left:150px">
-                    <input id="city" style="margin:0px 100px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
+                    <input id="city" style="margin:40px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
             </div>
         </div>
           @foreach (var i in Model)
@@ -85,7 +91,7 @@
                 }
             </div>
                  <div class="col-lg-12 row rounded mx-auto d-block" style=" margin-bottom:25px ;min-height:300px">
-                     <img src="@Url.Content(picture)" class="img-fluid img-thumbnail  rounded float-right" style="width:300px ; height:300px" />
+                     <img src="@Url.Content(picture)" class="img-fluid img-thumbnail  rounded float-right" style="width:200px ; height:200px" />
                      <div class="col-lg-12 justify-content-center">
                          <div class="col-12"> <span style="font-weight:bold">Catigory Name :</span> @i.Catigory_name </div>
                          <div class="col-12"> <span style="font-weight:bold">Product Name :</span> @i.Product_Name</div>
@@ -111,7 +117,7 @@
                             <label for="file-input">
                                 <img src="~/Assests/img/upload.png" />
                             </label>
-                            <input id="file-input" type="file" />
+                            <input id="file-input" type="file" name="insertedimg" />
                         </div>
                         <br />
                         <input type="text" name="Product_Description" placeholder="description" class="form-control col-12" />
@@ -136,6 +142,9 @@
             </div>
         </div>
     </div>
+
+
+    
     <script>
         $('#city').focus(function () {
             //open bootsrap modal
@@ -197,3 +206,4 @@
     </script>
 </body>
 </html>
+

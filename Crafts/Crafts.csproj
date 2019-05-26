@@ -133,6 +133,7 @@
     <Content Include="Assests\img\banner\banner.jpg" />
     <Content Include="Assests\img\banner\home-banner.jpg" />
     <Content Include="Assests\img\breadcrumb\checkout-bg.jpg" />
+    <Content Include="Assests\img\chef.jpg" />
     <Content Include="Assests\img\clients-logo\c-logo-1.png" />
     <Content Include="Assests\img\clients-logo\c-logo-2.png" />
     <Content Include="Assests\img\clients-logo\c-logo-3.png" />
@@ -203,6 +204,7 @@
     <Content Include="Assests\img\product\single-product\s-product-s-2.jpg" />
     <Content Include="Assests\img\product\single-product\s-product-s-3.jpg" />
     <Content Include="Assests\img\product\single-product\s-product-s-4.jpg" />
+    <Content Include="Assests\img\profile-female.png" />
     <Content Include="Assests\img\upload.png" />
     <Content Include="Assests\js\bootstrap.min.js" />
     <Content Include="Assests\js\contact.js" />
@@ -332,14 +334,15 @@
     <Content Include="Views\Product\ProductView.cshtml" />
     <Content Include="Views\User\Be_Vendor.cshtml" />
     <Content Include="Views\User\DisplayUserPage.cshtml" />
-    <Content Include="Views\User\Show_Orders.cshtml" />
     <Content Include="Views\User\ViewDtails.cshtml" />
     <Content Include="Views\User\Be_Vendor.cshtml" />
     <Content Include="Views\User\VendorRegister.cshtml" />
-    <Content Include="Views\Show_Orders.cshtml" />
-    <Content Include="Views\User\Show_Orders.cshtml" />
     <Content Include="Views\User\ViewDtails.cshtml" />
     <Content Include="Views\Vendor\Addpost.cshtml" />
+    <Content Include="Views\User\Contact.cshtml" />
+    <Content Include="Views\Shared\_Profile.cshtml" />
+    <Content Include="Views\User\Show_Orders.cshtml" />
+    <Content Include="Views\Shared\_ProfileOFOthers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -352,6 +355,12 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{f73e4966-5dc6-4539-bcb1-d2fd87abe205}</Project>
       <Name>BL</Name>
@@ -360,12 +369,6 @@
       <Project>{fe762df0-66ab-4eb3-8a6e-a76955c18fa0}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

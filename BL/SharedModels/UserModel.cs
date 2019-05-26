@@ -18,7 +18,6 @@ namespace BL.SharedModels
         public int type { get; set; }
         public bool state { set; get; }
         public byte[] Image { get; set; }
-
         public string FullName { get; set; }
 
         public int NationalId { get; set; }

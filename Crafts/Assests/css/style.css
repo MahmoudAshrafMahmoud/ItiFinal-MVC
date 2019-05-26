@@ -3340,7 +3340,7 @@ h6 {
     border: 1px solid #eeeeee;
     border-radius: 3px;
     padding-left: 10px; }
-  .product_count button {
+  .product_count a {
     display: block;
     border: none;
     background: transparent;
@@ -3351,7 +3351,7 @@ h6 {
     font-size: 14px;
     color: #cccccc;
     transition: all 300ms linear 0s; }
-    .product_count button:hover {
+    .product_count a:hover {
       color: #222222; }
   .product_count .increase {
     top: -4px; }

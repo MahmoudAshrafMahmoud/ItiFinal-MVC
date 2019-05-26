@@ -79,7 +79,8 @@ namespace BL
                     Cat_id = catid,
                     Image = fileData,
                     Add_Date = DateTime.Now,
-                    Vendor_id = usersession.User_Id
+                    Vendor_id = 1,
+                    State="pending"
                 };
                 context.Product_table.Add(pro);
                 context.SaveChanges();
@@ -132,9 +133,9 @@ namespace BL
             using (CraftsEntities context = new CraftsEntities())
             {
                 var pro = (from p in context.Product_table
-                           where p.Vendor_id == 1
+                           where p.Vendor_id == usersession.User_Id
                            join c in context.Category_table
-    on p.Cat_id equals c.Cat_Id
+                           on p.Cat_id equals c.Cat_Id
                            select new ProductModel
                            {
                                Image = p.Image,
