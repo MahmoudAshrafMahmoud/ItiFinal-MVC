@@ -39,16 +39,6 @@
           <Property Name="User_id" Type="int" Nullable="false" />
           <Property Name="Vendor_id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Message-table">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="message" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="subject" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="Order_table">
           <Key>
             <PropertyRef Name="Order_Id" />
@@ -94,7 +84,7 @@
           <Property Name="Seller_info" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="User_Id" Type="int" Nullable="false" />
           <Property Name="reqState" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="National_ID_Pic" Type="image" />
+          <Property Name="National_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Subscribtion-table">
           <Key>
@@ -300,7 +290,6 @@
           <EntitySet Name="Admin_table" EntityType="Self.Admin_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category_table" EntityType="Self.Category_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Following_table" EntityType="Self.Following_table" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Message-table" EntityType="Self.Message-table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_table" EntityType="Self.Order_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails_table" EntityType="Self.OrderDetails_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_table" EntityType="Self.Product_table" Schema="dbo" store:Type="Tables" />
@@ -528,7 +517,7 @@
           <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Request_table_User_table" FromRole="Request_table" ToRole="User_table" />
           <Property Name="Full_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Seller_info" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="National_ID_Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="National_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Subscribtion_table">
           <Key>
@@ -834,7 +823,7 @@
           <EntitySetMapping Name="Request_table">
             <EntityTypeMapping TypeName="CraftsModel.Request_table">
               <MappingFragment StoreEntitySet="Request_table">
-                <ScalarProperty Name="National_ID_Pic" ColumnName="National_ID_Pic" />
+                <ScalarProperty Name="National_ID" ColumnName="National_ID" />
                 <ScalarProperty Name="Seller_info" ColumnName="Seller_info" />
                 <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
                 <ScalarProperty Name="reqState" ColumnName="reqState" />
@@ -888,17 +877,6 @@
                 <ScalarProperty Name="LName" ColumnName="LName" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Message_table">
-            <EntityTypeMapping TypeName="CraftsModel.Message_table">
-              <MappingFragment StoreEntitySet="Message-table">
-                <ScalarProperty Name="subject" ColumnName="subject" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="message" ColumnName="message" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
