@@ -11,10 +11,11 @@ namespace Admin.Controllers
 {
     public class AdminController : Controller
     {
-        
+        BL.Admin admin = new BL.Admin();
+
         // GET: Admin
 
-        public ActionResult Index()
+        public ActionResult Home()
         {
             return View();
         }
@@ -24,26 +25,44 @@ namespace Admin.Controllers
             Request_table reqobj = new Request_table();
             ViewBag.Request = reqobj;
 
-
-            BL.Admin admin = new BL.Admin();
+        
             List<VendorRequest> ReqVendor = admin.VendorRequestView();
             return View(ReqVendor);
         }
 
+        //public ActionResult VendorCount()
+        //{
 
+        //    ViewBag.count = admin.VendorRequestView().Count();
+        //    return View();
+        //}
+
+        //admin accept or refuse vendors
         public ActionResult VendorDescision(int id, string status)
         {
-
-            BL.Admin admin = new BL.Admin();
-
             admin.AdminDescision(id, status);
             return RedirectToAction("DisplayVendorRegister");
         }
 
-        public ActionResult ProductsRequestsDisplay()
-        {
-            return View();
+        //public ActionResult ProductsRequestsDisplay()
+        //{
+        //    return View();
 
+        //}
+
+
+        public ActionResult AdminApproveProducts()
+        {
+            BL.Admin admin = new BL.Admin();
+
+            List<Product_table> product = admin.DisplayPendingProducts();
+            return View(product);
+        }
+
+        public ActionResult AdminApproval(int id, string status)
+        {
+            admin.AdminApprove(id, status);
+            return RedirectToAction("AdminApproveProducts");
         }
 
     }

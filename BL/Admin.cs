@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using BL.SharedModels;
+using System.Web;
 
 namespace BL
 {
@@ -37,7 +38,7 @@ namespace BL
 
         }
 
-
+        
 
         public void AdminDescision(int id, string status)
         {
@@ -53,13 +54,38 @@ namespace BL
                 user.Type_id = 2;
             }
 
+            Admin_Req_App_table AdminApprove = new Admin_Req_App_table();
+            AdminApprove.Request_Id = id;
+            AdminApprove.State = status;
+
+            Admin_table admin = (Admin_table)HttpContext.Current.Session["admin"];
+
+            AdminApprove.Admin_Id = admin.Admin_Id;
+
+            context.Admin_Req_App_table.Add(AdminApprove);
 
             context.SaveChanges();
         }
 
-        public void display()
+        //public void display()
+        //{
+            
+        //}
+
+        public List<Product_table> DisplayPendingProducts()
         {
 
+            List<Product_table> PendingProducts = context.Product_table.Where(x=>x.State.ToLower()=="pending").ToList();
+
+            return PendingProducts;
+        }
+
+        public void AdminApprove(int id,string status)
+        {
+            Product_table product = new Product_table();
+            product = context.Product_table.Where(x => x.Product_Id == id).FirstOrDefault();
+            product.State = status;
+            context.SaveChanges();
         }
     }
 }
