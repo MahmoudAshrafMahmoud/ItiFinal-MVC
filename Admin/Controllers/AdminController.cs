@@ -15,7 +15,7 @@ namespace Admin.Controllers
 
         // GET: Admin
 
-        public ActionResult Home()
+        public ActionResult Index()
         {
             return View();
         }
@@ -64,6 +64,8 @@ namespace Admin.Controllers
             admin.AdminApprove(id, status);
             return RedirectToAction("AdminApproveProducts");
         }
+
+   
 
     }
 }

@@ -1865,6 +1865,7 @@
     <Content Include="Views\Admin\VendorCount.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AdminApproveProducts.cshtml" />
+    <Content Include="Views\Admin\AdminApprovalRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
