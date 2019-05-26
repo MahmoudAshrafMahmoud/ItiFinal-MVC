@@ -1,0 +1,97 @@
+﻿@model List<DAL.Product_table>
+
+@{
+    ViewBag.Title = "AdminApproveProducts";
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+   
+
+    
+    <thead>
+
+    <tr>
+        <td>Product ID</td>
+        <td>Product Name</td>
+        <td>Product Description</td>
+        <td>Product Price</td>
+        <td>State</td>
+        <td>Vendor_id</td>
+        <td>Approve</td>
+        <td>Reject</td>
+    </tr>
+
+    </thead>
+    
+    <tbody>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+                
+            <td id="Req_id">
+                    
+                @item.Product_Id
+
+            </td>
+            <td>
+
+                @item.Product_Name
+
+            </td>
+            <td>
+
+                @item.Product_Description
+
+            </td>
+            <td>
+
+                @item.Product_Price
+
+            </td>
+            <td>
+
+                @item.Cat_id
+
+            </td>
+            <td>
+
+                @item.Vendor_id
+
+            </td>
+
+            <td>@Html.ActionLink("Accept", "AdminApproval", new { id=@item.Product_Id, status= "approved" })</td>
+            <td>@Html.ActionLink("Reject", "AdminApproval", new { id = @item.Product_Id ,  status = "rejected" })</td>
+
+            @*<td><input type="radio" name="status" value="approved" id="@item.Product_Id" onclick="Test()"/>Approved</td>
+            <td><input type="radio" name="status" value="reject" id="@item.Product_Id" onclick="Test()"/>rejected</td>*@  
+            
+
+
+            </tr>
+
+        
+
+    }
+
+    </tbody>
+</table>
+
+
+@*@Html.ActionLink("OK", "AdminApproval", new { id =1 ,s=Model[].State})
+<script>
+    function Test() {
+        var a = document.getElementsByName("status");
+        var b = document.getElementById;
+        for (var i = 1; i <= @Model.Count(); i++) {
+
+            if (a[i].valueOf() == "approved") {
+            @Model[1].State="approved";
+
+
+            }
+        }
+    }
+    
+</script>*@
