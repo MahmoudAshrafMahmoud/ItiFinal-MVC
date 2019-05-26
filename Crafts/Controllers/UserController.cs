@@ -35,6 +35,11 @@ namespace Crafts.Controllers
         //    ViewBag.ID = id;
         //    return View();
         //}
+        [HttpGet]
+        public ActionResult login()
+        {
+            return View();
+        }
 
         public ActionResult Show_Orders(int id)
         {

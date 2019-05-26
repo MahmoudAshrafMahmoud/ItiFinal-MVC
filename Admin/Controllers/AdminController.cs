@@ -58,5 +58,12 @@ namespace Admin.Controllers
             }
             
         }
+
+        public ActionResult ProductsRequestsDisplay()
+        {
+            return View();
+
+        }
+
     }
 }
