@@ -45,6 +45,10 @@ namespace Admin.Controllers
             return View();
 
         }
+        public ActionResult userMessages()
+        {
+            return View();
+        }
 
     }
 }
