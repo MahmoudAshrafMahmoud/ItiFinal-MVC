@@ -176,5 +176,17 @@ namespace Crafts.Controllers
             return View("Home");
         }
 
-    }
+        public ActionResult myprofile()
+        {
+            if (Session["User_Id"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "User");
+            }
+            }
+
+        }
 }
