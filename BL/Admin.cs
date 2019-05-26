@@ -57,11 +57,11 @@ namespace BL
 
             context.Admin_Req_App_table.Add(AdminApprove);
 
-        //}
+        }
 
         //public void display()
         //{
-            
+
         //}
 
         public List<Product_table> DisplayPendingProducts()
