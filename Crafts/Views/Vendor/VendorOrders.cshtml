@@ -50,11 +50,14 @@
 
 
 @*@Session["userID"]*@
-<% using @(Ajax.BeginForm("Search", "vendor", new {id =1 }, new AjaxOptions { UpdateTargetId = "mysection" })) { %>
-   @Html.TextBox("search", null, new { @class = "form-control" }) 
-<input type="submit" value="Search" />
-<% } %>
 
+ @using (Ajax.BeginForm("Search", "vendor", new { id = 1 }, new AjaxOptions { UpdateTargetId = "mysection" }))
+{ 
+<input name="search" placeholder="Search by product name" class="form-control" style="display: inline;width: 30%;" />
+<input type="submit" class="btn btn-primary" value="Search" style="padding: 5px 30px;" />
+ } 
+    
+    
 
 
 <!--================Order Details Area =================-->
@@ -223,7 +226,7 @@
                     </table>
                 </div>
             </div>
-            @Ajax.ActionLink("Submit Order", "SubmitOrder", new { id = item.OrderDetail_Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "mysection", OnComplete = "asd" },new { @class = "btn btn-info" })
+            @Ajax.ActionLink("Submit Order", "SubmitOrder", new { id = item.OrderDetail_Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "mysection", OnComplete = "asd" },new { @class = "btn btn-success" })
             @Ajax.ActionLink("Reject Order", "RejectOrder", new { id = item.OrderDetail_Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "mysection", OnComplete = "asd" }, new { @class = "btn btn-danger" })
         }
        

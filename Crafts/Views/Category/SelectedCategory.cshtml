@@ -4,6 +4,21 @@
     Layout = "~/Views/Shared/_Main.cshtml";
 }
 
+<script type="text/javascript">
+
+    function changestate(event) {
+        event.target.classList.toggle("btn btn-danger");
+        if (event.target.innerText == "UnSubscribe") {
+            event.target.innerText = "Subscribe";
+        }
+        else {
+            event.target.innerText = "Subscribe";
+        }
+        
+    }
+
+    </script>
+
 <!--================Category Product Area =================-->
 <section class="cat_product_area section_gap">
     <div class="container-fluid">
@@ -54,6 +69,15 @@
                         </nav>
                     </div>
                 </div>
+                @*replace user_id=1 with Session["user"]*@
+               @using (Ajax.BeginForm("Subscribe", new { user_id = 1, cat_id = ViewBag.cat_id }, new AjaxOptions {UpdateTargetId="id",InsertionMode=InsertionMode.Replace ,HttpMethod = "POST" }))
+                   {
+
+                <input type="submit" value="Subscribe Category" class="btn btn-success" /> <input type="submit" value="UnSubscribe Category" class="btn btn-danger" />
+               }
+
+                <div id="id"></div>
+
                 <div class="latest_product_inner row">
 
                     @foreach (var item in ViewBag.products)
@@ -88,7 +112,7 @@
                             </div>
                         </div>
 
-                    }
+                        }
 
 
 
@@ -97,7 +121,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="left_sidebar_area">
-                    <aside class="left_widgets cat_widgets">
+                    @*<aside class="left_widgets cat_widgets">
                         <div class="l_w_title">
                             <h3>Browse Categories</h3>
                         </div>
@@ -227,7 +251,7 @@
                             </div>
                         </div>
                     </aside>
-                </div>
+                </div>*@
             </div>
         </div>
 
@@ -266,6 +290,10 @@
 </section>
 <!--================End Category Product Area =================-->
 
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
 
 
 @section scripts{

@@ -2,13 +2,6 @@
 
 @foreach (var item in ViewBag.Categories){
 <li >
-
-    @*@Html.ActionLink((string)item.Cat_Name, "SelectedCategory", "Category", new { id = @item.Cat_Id })
-</li>*@
-}
-<li>
-
-
     @Html.ActionLink((string)item.Cat_Name, "SelectedCategory", "Category", new { id = item.Cat_Id }, new { @class = "nav-link" })
 </li>
 }

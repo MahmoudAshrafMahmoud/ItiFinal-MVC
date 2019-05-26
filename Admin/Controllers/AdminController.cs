@@ -30,6 +30,9 @@ namespace Admin.Controllers
         //    List<VendorRequest> ReqVendor = admin.VendorRequestView();
         //    return View(ReqVendor);
         //}
+            List<VendorRequest> ReqVendor = admin.VendorRequestView();
+            return View(ReqVendor);
+        }
 
         //public ActionResult VendorCount()
         //{
@@ -70,11 +73,11 @@ namespace Admin.Controllers
             bool loginStatus = myadmin.AdminLogin(mail, password);
             if (loginStatus == true)
             {
-                return View("AdminLogin");
+                return View("AfterAdminLogin"); 
             }
             else
             {
-                return View("AfterAdminLogin");
+                return View("AdminLogin");
             }
 
         }
