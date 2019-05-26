@@ -39,6 +39,25 @@ namespace Admin.Controllers
             admin.AdminDescision(id, status);
             return RedirectToAction("DisplayVendorRegister");
         }
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AfterAdminLogin(string mail,string password)
+        {
+            BL.Admin myadmin = new BL.Admin();
+            bool loginStatus = myadmin.AdminLogin(mail, password);
+            if (loginStatus == true)
+            {
+                return View("AdminLogin");
+            }
+            else
+            {
+                return View("AfterAdminLogin");
+            }
+            
+        }
 
         public ActionResult ProductsRequestsDisplay()
         {
