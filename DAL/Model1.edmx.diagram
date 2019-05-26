@@ -30,6 +30,7 @@
         <AssociationConnector Association="CraftsModel.FK_Request_table_User_table" />
         <AssociationConnector Association="CraftsModel.FK_Subscribtion_table_User_table" />
         <AssociationConnector Association="CraftsModel.FK_User_table_Type_table" />
+        <EntityTypeShape EntityType="CraftsModel.Message_table" Width="1.5" PointX="7.375" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

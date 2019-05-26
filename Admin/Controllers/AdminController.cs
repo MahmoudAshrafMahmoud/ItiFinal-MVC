@@ -11,9 +11,9 @@ namespace Admin.Controllers
 {
     public class AdminController : Controller
     {
-        BL.Admin admin = new BL.Admin();
-
+        
         // GET: Admin
+        BL.Admin admin = new BL.Admin();
 
         public ActionResult Index()
         {
@@ -58,9 +58,31 @@ namespace Admin.Controllers
             List<Product_table> product = admin.DisplayPendingProducts();
             return View(product);
         }
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AfterAdminLogin(string mail,string password)
+        {
+            BL.Admin myadmin = new BL.Admin();
+            bool loginStatus = myadmin.AdminLogin(mail, password);
+            if (loginStatus == true)
+            {
+                return View("AdminLogin");
+            }
+            else
+            {
+                return View("AfterAdminLogin");
+            }
+            
+        }
 
         public ActionResult AdminApproval(int id, string status)
         {
+            ViewBag.products = admin.ProductsRequestsDisplay();
+            return View();
+        }
             admin.AdminApprove(id, status);
             return RedirectToAction("AdminApproveProducts");
         }

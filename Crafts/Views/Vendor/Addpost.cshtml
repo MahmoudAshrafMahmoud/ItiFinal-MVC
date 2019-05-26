@@ -70,11 +70,115 @@
     </style>
 </head>
 <body>
+
+
+
+    @section profileData{
+        <div class="blog_right_sidebar">
+            @*<aside class="single_sidebar_widget search_widget">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Posts">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <i class="lnr lnr-magnifier"></i>
+                            </button>
+                        </span>
+                    </div>
+                     /input-group
+                    <div class="br"></div>
+                </aside>*@
+            <aside class="single_sidebar_widget author_widget">
+                <img class="mt-5 author_img rounded-circle" src="~/Assests/img/chef.jpg" width="150px" alt="">
+                <h4>May Hassan</h4>
+                <p>Homemade Food Maker</p>
+                <div class="social_icon">
+                    <a href="#">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-github"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-behance"></i>
+                    </a>
+                </div>
+                <p>
+                    Boot camps have its supporters andit sdetractors. Some people do not understand why you should
+                    have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits
+                    detractors.
+                </p>
+                <div class="br"></div>
+            </aside>
+            <aside class="single_sidebar_widget ads_widget">
+                <a href="#">
+                    <img class="img-fluid" src="~/Assests/img/blog/add.jpg" alt="">
+                </a>
+                <div class="br"></div>
+            </aside>
+            <aside class="single_sidebar_widget post_category_widget">
+                <h4 class="widget_title">Post Catgories</h4>
+                <ul class="list cat-list">
+
+                    <li>
+                        <a href="#" class="d-flex justify-content-between">
+                            <p>Fashion</p>
+                            <p>59</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex justify-content-between">
+                            <p>Art</p>
+                            <p>29</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex justify-content-between">
+                            <p>Food</p>
+                            <p>15</p>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="br"></div>
+            </aside>
+
+            <aside class="single-sidebar-widget tag_cloud_widget">
+                <h4 class="widget_title">Subscribed Categories</h4>
+                <ul class="list">
+
+                    <li>
+                        <a href="#">Fashion</a>
+                    </li>
+                    <li>
+                        <a href="#">Food</a>
+                    </li>
+                    <li>
+                        <a href="#">Technology</a>
+                    </li>
+                    <li>
+                        <a href="#">Lifestyle</a>
+                    </li>
+                    <li>
+                        <a href="#">Art</a>
+                    </li>
+
+
+                </ul>
+            </aside>
+        </div>
+    }
+
+
+
+
     <div> 
-        <div class=" row count" >
+        <div >
            
             <div  style="padding-left:150px">
-                    <input id="city" style="margin:0px 100px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
+                    <input id="city" style="margin:40px;text-align:center" type="text" class="form-control"  placeholder="Add new product">
             </div>
         </div>
           @foreach (var i in Model)
@@ -84,28 +188,16 @@
                     var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
                 }
             </div>
-
-            
-
-                
-
-                   
-                    <img src="@Url.Content(picture)" style="width:100px ; height:100px" />
-                    <span>@i.Catigory_name </span>
-
-               
-
-               
-                    <h3 class="card-title">@i.Product_Name</h3>
-                    <p>@i.Product_Description</p>
-
-                    
-                       <span>@i.Product_Price</span>
-                  
-
-        
-
-           
+                 <div class="col-lg-12 row rounded mx-auto d-block" style=" margin-bottom:25px ;min-height:300px">
+                     <img src="@Url.Content(picture)" class="img-fluid img-thumbnail  rounded float-right" style="width:200px ; height:200px" />
+                     <div class="col-lg-12 justify-content-center">
+                         <div class="col-12"> <span style="font-weight:bold">Catigory Name :</span> @i.Catigory_name </div>
+                         <div class="col-12"> <span style="font-weight:bold">Product Name :</span> @i.Product_Name</div>
+                         <div class="col-12"><span style="font-weight:bold">Product Description :</span> @i.Product_Description</div>
+                         <div class="col-12"> <span style="font-weight:bold">Product Price :</span> @i.Product_Price</div>
+                     </div>
+                 </div>
+                 
                     }
     </div>
     <!-- Modal -->
@@ -148,6 +240,9 @@
             </div>
         </div>
     </div>
+
+
+    
     <script>
         $('#city').focus(function () {
             //open bootsrap modal
@@ -209,3 +304,4 @@
     </script>
 </body>
 </html>
+

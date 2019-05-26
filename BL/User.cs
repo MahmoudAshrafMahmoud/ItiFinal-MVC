@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BL.SharedModels;
 using System.Web;
+using System.Net.Mail;
 
 namespace BL
 {
@@ -199,6 +200,49 @@ namespace BL
 
                      }).ToList();
             return x;
+        }
+
+
+
+        public void sendEmail(string Email)
+        {
+            string  MyMail = "projectsalary4444@gmail.com", pwd = "Psalaryproject4444";
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress(MyMail);
+                mail.To.Add(Email);
+                mail.Subject = "Test Mail";
+                mail.IsBodyHtml = true;
+                string htmlString = @"<html>" +
+                                                "<head>" +
+                                               " </head>" +
+                                               " <body>" +
+                                                     "we received your message sucessfully and will reply back  As Son As Possible if needed"+
+                                                "</body>" +
+                                                "</html>";
+
+
+                mail.Body = htmlString;
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new
+                System.Net.NetworkCredential(MyMail, pwd);
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch { }
+        }
+
+        public void addMessage(string name, string email, string subject, string message)
+        {
+            Message_table mt = new Message_table();
+            mt.name = name;
+            mt.email = email;
+            mt.subject = subject;
+            mt.message = message;
+            context.Message_table.Add(mt);
+
         }
 
     }

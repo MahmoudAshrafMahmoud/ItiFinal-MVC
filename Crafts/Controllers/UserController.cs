@@ -29,6 +29,12 @@ namespace Crafts.Controllers
             }
         }
 
+        //[HttpGet]
+        //public ActionResult login()
+        //{
+        //    ViewBag.ID = id;
+        //    return View();
+        //}
         [HttpGet]
         public ActionResult login()
         {
@@ -36,10 +42,10 @@ namespace Crafts.Controllers
             return View();
         }
 
-        public ActionResult Show_Orders(int id)
+        public ActionResult Show_Orders()
         {
             BL.Order order = new BL.Order();
-
+            int id = (int)Session["userID"];
             List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
 
             return View(ViewOrders);
@@ -70,6 +76,11 @@ namespace Crafts.Controllers
             ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
             return PartialView();
         }
+            //int id= USer.User_Id ;
+            //BL.User user = new BL.User();
+            //ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
+            //return PartialView();
+        
 
 
 
@@ -109,6 +120,23 @@ namespace Crafts.Controllers
         public ActionResult RegisterNewUser()
         {
             return View();
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(string name, string email, string subject, string message)
+        {
+
+            ul.addMessage( name, email, subject, message);
+            ul.sendEmail(email);
+            return View("Home");
         }
 
     }

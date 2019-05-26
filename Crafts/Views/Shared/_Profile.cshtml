@@ -5,19 +5,19 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="../Assests/img/favicon.png" type="image/png">
+    <link rel="icon" href="~/Assests/img/favicon.png" type="image/png">
     <title>Fashiop</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../Assests/css/bootstrap.css">
-    <link rel="stylesheet" href="../Assests/vendors/linericon/style.css">
-    <link rel="stylesheet" href="../Assests/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../Assests/vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="../Assests/vendors/lightbox/simpleLightbox.css">
-    <link rel="stylesheet" href="../Assests/vendors/nice-select/css/nice-select.css">
-    <link rel="stylesheet" href="../Assests/vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="~/Assests/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Assests/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/Assests/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Assests/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Assests/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/Assests/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/Assests/vendors/animate-css/animate.css">
     <!-- main css -->
-    <link rel="stylesheet" href="../Assests/css/style.css">
-    <link rel="stylesheet" href="../Assests/css/responsive.css">
+    <link rel="stylesheet" href="~/Assests/css/style.css">
+    <link rel="stylesheet" href="~/Assests/css/responsive.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <a class="navbar-brand logo_h" href="index.html">
-                        <img src="../Assests/img/logo.png" alt="">
+                        <img src="~/Assests/img/logo.png" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -43,10 +43,10 @@
                             <div class="col-lg-7 pr-0">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home</a>
+                                        <a class="nav-link" href="@Url.Action("Home","User")">Home</a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">About</a>
+                                        <a class="nav-link" href="@Url.Action("About","Home")">About</a>
                                     </li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
@@ -58,21 +58,36 @@
                                     </li>
 
                                     <li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Add Post</a>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("VendorOrders","Vendor")">Vendor Orders</a>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Search","Vendor")">Search</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="login.html">My Orders</a>
+                                                <a class="nav-link" href="@Url.Action("Show_Orders","User")">My Orders</a>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="tracking.html">Register as Vendor</a>
+                                                <a class="nav-link" href="@Url.Action("Be_Vendor","User")">Register as Vendor</a>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="elements.html">Logout</a>
+                                                <a class="nav-link" href="@Url.Action("Logout","User")">Logout</a>
                                             </li>
                                         </ul>
                                     </li>
                               
+                                 
+
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
+                                        <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -103,12 +118,17 @@
                                     </li>
 
                                     <hr>
-
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
+                                        <a href="@Url.Action("cartDisplay","Cart")" class="icons">
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
                                     </li>
+                                    <a href="@Url.Action("cartDisplay","Cart")">
+                                        <span id="shoppingCartID" class="font-weight-bold pr-4 mt-3 nav-link">
+                                            @Session["count"]  <br />
+                                            @Session["TotalPrice"] L.E
+                                        </span>
+                                    </a>
 
                                     <hr>
                                 </ul>
@@ -138,181 +158,7 @@
             <div class="row">
                
                 <div class="col-lg-4">
-                    <div class="blog_right_sidebar">
-                        <aside class="single_sidebar_widget search_widget">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search Posts">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="lnr lnr-magnifier"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                            <div class="br"></div>
-                        </aside>
-                        <aside class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" src="../Assests/img/blog/author.png" alt="">
-                            <h4>Charlie Barber</h4>
-                            <p>Senior blog writer</p>
-                            <div class="social_icon">
-                                <a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-github"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-behance"></i>
-                                </a>
-                            </div>
-                            <p>
-                                Boot camps have its supporters andit sdetractors. Some people do not understand why you should
-                                have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits
-                                detractors.
-                            </p>
-                            <div class="br"></div>
-                        </aside>
-                        <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Popular Posts</h3>
-                            <div class="media post_item">
-                                <img src="../Assests/img/blog/popular-post/post1.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html">
-                                        <h3>Space The Final Frontier</h3>
-                                    </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="../Assests/img/blog/popular-post/post2.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html">
-                                        <h3>The Amazing Hubble</h3>
-                                    </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="../Assests/img/blog/popular-post/post3.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html">
-                                        <h3>Astronomy Or Astrology</h3>
-                                    </a>
-                                    <p>03 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="../Assests/img/blog/popular-post/post4.jpg" alt="post">
-                                <div class="media-body">
-                                    <a href="blog-details.html">
-                                        <h3>Asteroids telescope</h3>
-                                    </a>
-                                    <p>01 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="br"></div>
-                        </aside>
-                        <aside class="single_sidebar_widget ads_widget">
-                            <a href="#">
-                                <img class="img-fluid" src="../Assests/img/blog/add.jpg" alt="">
-                            </a>
-                            <div class="br"></div>
-                        </aside>
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Post Catgories</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Technology</p>
-                                        <p>37</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Lifestyle</p>
-                                        <p>24</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Fashion</p>
-                                        <p>59</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Art</p>
-                                        <p>29</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Food</p>
-                                        <p>15</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Architecture</p>
-                                        <p>09</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Adventure</p>
-                                        <p>44</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="br"></div>
-                        </aside>
-
-                        <aside class="single-sidebar-widget tag_cloud_widget">
-                            <h4 class="widget_title">Tag Clouds</h4>
-                            <ul class="list">
-                                <li>
-                                    <a href="#">Technology</a>
-                                </li>
-                                <li>
-                                    <a href="#">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Architecture</a>
-                                </li>
-                                <li>
-                                    <a href="#">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Food</a>
-                                </li>
-                                <li>
-                                    <a href="#">Technology</a>
-                                </li>
-                                <li>
-                                    <a href="#">Lifestyle</a>
-                                </li>
-                                <li>
-                                    <a href="#">Art</a>
-                                </li>
-                                <li>
-                                    <a href="#">Adventure</a>
-                                </li>
-                                <li>
-                                    <a href="#">Food</a>
-                                </li>
-                                <li>
-                                    <a href="#">Lifestyle</a>
-                                </li>
-                                <li>
-                                    <a href="#">Adventure</a>
-                                </li>
-                            </ul>
-                        </aside>
-                    </div>
+                    @RenderSection("profileData",required:false)
                 </div>
                 <div class="col-lg-8 posts-list">
                     @RenderBody()
@@ -341,28 +187,28 @@
                         <h6 class="footer_title">Instagram Feed</h6>
                         <ul class="list instafeed d-flex flex-wrap">
                             <li>
-                                <img src="../Assests/img/instagram/Image-01.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-01.jpg" alt="">
                             </li>
                             <li>
-                                <img src="../Assests/img/instagram/Image-02.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-02.jpg" alt="">
                             </li>
                             <li>
-                                <img src="../Assests/img/instagram/Image-03.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-03.jpg" alt="">
                             </li>
                             <li>
-                                <img src="../Assests/img/instagram/Image-04.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-04.jpg" alt="">
                             </li>
                             <li>
-                                <img src="../Assests/img/instagram/Image-05.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-05.jpg" alt="">
                             </li>
                             <li>
-                                <img src="../Assests/img/instagram/Image-06.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-06.jpg" alt="">
                             </li>
                             <li>
-                                <img src="../Assests/img/instagram/Image-07.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-07.jpg" alt="">
                             </li>
                             <li>
-                                <img src="../Assests/img/instagram/Image-08.jpg" alt="">
+                                <img src="~/Assests/img/instagram/Image-08.jpg" alt="">
                             </li>
                         </ul>
                     </div>
@@ -401,18 +247,21 @@
     <!--================ End footer Area  =================-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="../Assests/js/jquery-3.2.1.min.js"></script>
-    <script src="../Assests/js/popper.js"></script>
-    <script src="../Assests/js/bootstrap.min.js"></script>
-    <script src="../Assests/js/stellar.js"></script>
-    <script src="../Assests/vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="../Assests/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="../Assests/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="../Assests/vendors/isotope/isotope-min.js"></script>
-    <script src="../Assests/vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="../Assests/js/jquery.ajaxchimp.min.js"></script>
-    <script src="../Assests/js/mail-script.js"></script>
-    <script src="../Assests/js/theme.js"></script>
+    <script src="~/Assests/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Assests/js/popper.js"></script>
+    <script src="~/Assests/js/bootstrap.min.js"></script>
+    <script src="~/Assests/js/stellar.js"></script>
+    <script src="~/Assests/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="~/Assests/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/Assests/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Assests/vendors/isotope/isotope-min.js"></script>
+    <script src="~/Assests/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Assests/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Assests/js/mail-script.js"></script>
+    <script src="~/Assests/js/theme.js"></script>
+    @RenderSection("scripts", required: false)
+
+
 </body>
 
 </html>
