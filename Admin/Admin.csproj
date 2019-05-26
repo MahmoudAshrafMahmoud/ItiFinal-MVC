@@ -1862,12 +1862,12 @@
     <Content Include="Views\Admin\DisplayVendorRegister.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\ProductsRequestsDisplay.cshtml" />
-    <Content Include="Views\Admin\userMessages.cshtml" />
     <Content Include="Views\Admin\_VendorCount.cshtml" />
     <Content Include="Views\Admin\VendorCount.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AdminApproveProducts.cshtml" />
     <Content Include="Views\Admin\AdminApprovalRequest.cshtml" />
+    <Content Include="Views\Admin\userMessages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
