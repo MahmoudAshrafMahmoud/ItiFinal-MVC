@@ -14,7 +14,7 @@ namespace BL.SharedModels
 
         public string Full_Name { set; get; }
 
-        public int National_ID { set; get; }
+        public  int National_ID { set; get; }
 
         public string Seller_info { set; get; }
 

@@ -20,13 +20,13 @@ namespace BL
                                  where req.reqState.ToLower() == "pending"
                                  select new VendorRequest
                                  {
-                                     req_id = req.Request_Id,
-                                     date = req.Request_Date,
-                                     Full_Name = req.Full_Name,
-                                     National_ID = req.National_ID,
-                                     Seller_info = req.Seller_info,
-                                     user_id = req.User_Id,
-                                     state = req.reqState
+                                     req_id=req.Request_Id,
+                                     date=req.Request_Date,
+                                     Full_Name=req.Full_Name,
+                                     National_ID=req.National_ID,
+                                     Seller_info=req.Seller_info,
+                                     user_id=req.User_Id,
+                                     state=req.reqState
                                  }
                                  ).ToList();
     return VendorRequest;
@@ -81,6 +81,13 @@ namespace BL
             product = context.Product_table.Where(x => x.Product_Id == id).FirstOrDefault();
             product.State = status;
             context.SaveChanges();
+        }
+
+
+        //Admin Show all orders
+        public List<Order_table> Orders()
+        {
+            return context.Order_table.ToList();
         }
 
 

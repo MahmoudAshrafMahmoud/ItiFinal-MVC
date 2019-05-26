@@ -83,6 +83,12 @@ namespace Admin.Controllers
             admin.AdminApprove(id, status);
             return RedirectToAction("AdminApproveProducts");
         }
+
+        public ActionResult AdminShowOrders()
+        {
+            List<Order_table> orders = admin.Orders();
+            return View();
+        }
              
             
     }

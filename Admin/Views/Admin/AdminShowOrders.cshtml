@@ -1,0 +1,70 @@
+﻿@model List<DAL.Order_table>
+
+@{
+    ViewBag.Title = "AdminShowOrders";
+}
+
+
+<table class="table table-bordered">
+   
+
+    
+    <thead>
+
+    <tr>
+        <td>Order ID</td>
+        <td>Order Date</td>
+        <td>Order Address</td>
+        <td>Order Phone</td>
+        <td>Price</td>
+        <td>User ID</td>
+    </tr>
+
+    </thead>
+    
+    <tbody>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+                
+            <td id="Req_id">
+                    
+                @item.Order_Id
+
+            </td>
+            <td>
+
+                @item.Order_Date
+
+            </td>
+            <td>
+
+                @item.Order_Address
+
+            </td>
+            <td>
+
+                @item.Order_Phone
+
+            </td>
+            <td>
+
+                @item.Expected_Price
+
+            </td>
+            <td>
+
+                @item.User_Id
+
+            </td>
+
+
+        </tr>
+
+        
+
+    }
+
+    </tbody>
+</table>
