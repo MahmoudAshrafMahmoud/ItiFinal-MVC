@@ -1863,6 +1863,7 @@
     <Content Include="Views\Admin\DisplayVendorRegister.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\ProductsRequestsDisplay.cshtml" />
+    <Content Include="Views\Admin\AfterAdminLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
