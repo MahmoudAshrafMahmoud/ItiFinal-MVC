@@ -20,12 +20,16 @@ namespace Admin.Controllers
             return View();
         }
 
-        public ActionResult DisplayVendorRegister()
-        {
-            Request_table reqobj = new Request_table();
-            ViewBag.Request = reqobj;
+        //public ActionResult DisplayVendorRegister()
+        //{
+        //    Request_table reqobj = new Request_table();
+        //    ViewBag.Request = reqobj;
 
 
+        //    BL.Admin admin = new BL.Admin();
+        //    List<VendorRequest> ReqVendor = admin.VendorRequestView();
+        //    return View(ReqVendor);
+        //}
             List<VendorRequest> ReqVendor = admin.VendorRequestView();
             return View(ReqVendor);
         }
@@ -69,19 +73,42 @@ namespace Admin.Controllers
             bool loginStatus = myadmin.AdminLogin(mail, password);
             if (loginStatus == true)
             {
-                return View("AdminLogin");
+                return View("AfterAdminLogin"); 
             }
             else
             {
-                return View("AfterAdminLogin");
+                return View("AdminLogin");
             }
 
+        }
+        public ActionResult userMessages()
+        {
+
+            List<Message_table> messages = admin.userMessages();
+            
+            return View(messages);
         }
 
         public ActionResult AdminApproval(int id, string status)
         {
             admin.AdminApprove(id, status);
             return RedirectToAction("AdminApproveProducts");
+        }
+
+        
+        public ActionResult deleteMessage(int id)
+        {
+
+            admin.deleteMessage(id);
+
+            return View("userMessages");
+        }
+
+
+        public ActionResult AdminShowOrders()
+        {
+            List<Order_table> orders = admin.Orders();
+            return View();
         }
              
             

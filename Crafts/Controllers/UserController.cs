@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BL;
 using BL.SharedModels;
 using DAL;
+using System.IO;
 
 namespace Crafts.Controllers
 {
@@ -45,7 +46,7 @@ namespace Crafts.Controllers
         public ActionResult Show_Orders()
         {
             BL.Order order = new BL.Order();
-            int id = (int)Session["userID"];
+            int id = (int)Session["User_Id"];
             List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
 
             return View(ViewOrders);
@@ -66,21 +67,17 @@ namespace Crafts.Controllers
         }
 
         //Vendor Register
-        [HttpPost]
-        public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
-        {
-            User_table USer = (User_table)Session["user"];
-           
-            int id = USer.User_Id;
-            BL.User user = new BL.User();
-            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
-            return PartialView();
-        }
+        //[HttpPost]
+        //public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
+        //{
+        //    User_table USer = (User_table)Session["user"];
+
             //int id= USer.User_Id ;
             //BL.User user = new BL.User();
             //ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
             //return PartialView();
-        
+        //}
+
 
 
 
@@ -128,10 +125,41 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult RegisterNewUser()
         {
+
+            BL.Category myCategory = new Category();
+            List<CategoryModel> selectedCategory = myCategory.AllCategories();
+            ViewBag.selectedCategory = selectedCategory;
+
             return View();
         }
 
 
+
+        [HttpPost]
+        public ActionResult RegisterNewUser(User_table newUser, HttpPostedFileBase fileSelected)
+
+        {
+            byte[] fileData = null;
+            var binaryReader = new BinaryReader(fileSelected.InputStream);
+            fileData = binaryReader.ReadBytes(fileSelected.ContentLength);
+            newUser.ProfilePicture = fileData;
+            
+
+            using (CraftsEntities myData = new CraftsEntities())
+
+            {
+                newUser.Rating = 0;
+                newUser.Type_id = 1;
+                myData.User_table.Add(newUser);
+                myData.SaveChanges();
+                Session["userID"] = newUser.User_Id;
+                ModelState.Clear();
+                newUser = null;
+            }
+
+                return View();
+        }
+        
 
         [HttpGet]
         public ActionResult Contact()
@@ -148,5 +176,17 @@ namespace Crafts.Controllers
             return View("Home");
         }
 
-    }
+        public ActionResult myprofile()
+        {
+            if (Session["User_Id"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "User");
+            }
+            }
+
+        }
 }

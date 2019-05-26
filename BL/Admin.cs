@@ -36,9 +36,9 @@ namespace BL
             return VendorRequest;
 
 
-        }
+        //}
 
-
+        
 
         public void AdminDescision(int id, string status)
         {
@@ -60,11 +60,10 @@ namespace BL
 
             Admin_table admin = (Admin_table)HttpContext.Current.Session["admin"];
 
-            AdminApprove.Admin_Id = admin.Admin_Id;
+        //    return VendorRequest;
 
             context.Admin_Req_App_table.Add(AdminApprove);
 
-            context.SaveChanges();
         }
 
         //public void display()
@@ -89,9 +88,16 @@ namespace BL
         }
 
 
+        //Admin Show all orders
+        public List<Order_table> Orders()
+        {
+            return context.Order_table.ToList();
+        }
 
 
-        public bool AdminLogin(string mail, string password)
+           
+        
+        public bool AdminLogin(string mail,string password)
         {
             List<Admin_table> admins = context.Admin_table.Where(s => s.Admin_Email == mail && s.Password == password).Select(s => s).ToList();
             if (admins.Count() > 0)
@@ -107,7 +113,20 @@ namespace BL
 
 
 
+        public List<Message_table> userMessages()
+        {
+  
+            var messages = (from ms in context.Message_table
+                     select ms).ToList();
+            return messages;
+        }
+
+
+
+        public void deleteMessage(int id)
+        {
+            context.Message_table.Remove(context.Message_table.Find(id));
+            context.SaveChanges();
+        }
     }
 }
-
-    

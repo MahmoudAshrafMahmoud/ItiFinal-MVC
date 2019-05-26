@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "userMessages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<DAL.Message_table>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Data Table Example
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    <div class="col-sm-12" style="margin-bottom:100px">
+                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead>
+                                <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 149px;">Name</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="E-mail: activate to sort column ascending" style="width: 233px;">Position</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="subject: activate to sort column ascending" style="width: 107px;">subject</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="3" aria-label="Message: activate to sort column ascending" style="width: 47px;">Message</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending" style="width: 104px;">Details</th><th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Delete: activate to sort column ascending" aria-sort="descending" style="width: 83px;">Delete</th></tr>
+                            </thead>
+                            @*<tfoot>
+                                <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">E-mail</th><th rowspan="1" colspan="1">Subject</th><th rowspan="1" colspan="3">Message</th><th rowspan="1" colspan="1">Details</th><th rowspan="1" colspan="1">Delete</th></tr>
+                            </tfoot>*@
+                            <tbody>
+                                @if (Model != null)
+                                 {
+                                   foreach (DAL.Message_table i in Model)
+                                   {
+                                    <tr role="row" class="odd">
+                                        @*name*@
+                                        <td rowspan="1" colspan="1" class="">@i.name</td>
+                                        @*E-mail*@
+                                        <td rowspan="1" colspan="1">@i.email</td>
+                                        @*Subject*@
+                                        <td rowspan="1" colspan="1">@i.subject</td>
+                                        @*Message*@
+                                        <td rowspan="1" colspan="3">@i.message</td>
+                                        @*Details*@
+                                        <td>@Html.ActionLink("Details", "messageDetails", "Admin", new { id = i.id }, new { @class = "btn btn-primary", rowspan = "1", colspan = "1" })</td>
+                                        @*Delete*@
+                                        <td> @Html.ActionLink("Delete", "deleteMessage", "Admin", new { id = i.id }, new { @class = "btn btn-danger", rowspan = "1", colspan = "1" }) </td>
+                                    </tr>
+                                 }
+                              }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>            
+             </div>
+        </div>
+    </div>
+</div>
+
