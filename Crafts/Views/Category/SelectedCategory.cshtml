@@ -66,9 +66,19 @@
                                         <a href="#">
                                             <i class="lnr lnr-heart"></i>
                                         </a>
-                                        <a href="#">
-                                            <i class="lnr lnr-cart"></i>
-                                        </a>
+                                  
+                                        @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "shoppingCartID",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   },
+                                   new { @class = "fas fa-cart-plus" })
+
+
+
+
                                     </div>
                                 </div>
                                 <a href="#">
@@ -255,5 +265,13 @@
     </div>
 </section>
 <!--================End Category Product Area =================-->
+
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
+
+
 
 

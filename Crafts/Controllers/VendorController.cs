@@ -35,8 +35,7 @@ namespace Crafts.Controllers
         {
             var cat = Vendor.allcatigories();
             ViewBag.cat = cat;
-           
-            return View();
+        return View();
         }
 
         //Vendor submit orders 

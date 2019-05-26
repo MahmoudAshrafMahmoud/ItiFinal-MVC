@@ -48,17 +48,18 @@ namespace Crafts.Controllers
             }
 
         }
-        public PartialViewResult Increase(int ID)
+        public ActionResult Increase(int ID)
         {
             CartLogic.increase(ID);
-            return PartialView("_UpdateQuantityText");
+            //return PartialView("_UpdateQuantityText");
+            return RedirectToAction("cartDisplay");
 
         }
-        public PartialViewResult Decrease(int ID)
+        public ActionResult Decrease(int ID)
         {
             CartLogic.decrease(ID);
-            return PartialView("_UpdateQuantityText");
-
+            //return PartialView("_UpdateQuantityText");
+            return RedirectToAction("cartDisplay");
         }
         public ActionResult checkout(int phone, string address)
         {
@@ -75,9 +76,13 @@ namespace Crafts.Controllers
             }
         }
 
-        public void confirm()
+
+
+        public ActionResult clearCart()
         {
-           
+            CartLogic.clearCart();
+            return RedirectToAction("cartDisplay");
+
         }
 
 

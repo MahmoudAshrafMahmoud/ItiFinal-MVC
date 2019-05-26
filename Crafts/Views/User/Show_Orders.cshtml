@@ -1,27 +1,26 @@
 ﻿
 @{
     ViewBag.Title = "Show_Orders";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Profile.cshtml";
 }
+
 
 @model List<BL.SharedModels.MyOrdersModel>
 
 
-@{
-    ViewBag.Title = "Show_Orders";
-}
 
 <div id="div1">
-
-    <table class="table table-bordered table-hover" >
+     <h2 class="d-block mx-auto mb-5" > My Orders </h2>
+    <table class="table table-bordered table-hover text-center">
 
         <thead>
             <tr>
-                <td>Order Number</td>
-                <td>Date</td>
-                <td>Ship To</td>
-                <td>Phone</td>
-                <td>Order Total</td>
+                <th>Order No.</th>
+                <th>Date</th>
+                <th>Ship To</th>
+                <th>Phone</th>
+                <th>Order Total</th>
+                <th>Order Details</th>
 
             </tr>
         </thead>
@@ -36,7 +35,10 @@
                     <td>@item.Address</td>
                     <td>@item.Phone</td>
                     <td>@item.Total</td>
-                    <td>@Ajax.ActionLink("View Details", "ViewDtails", new { id = @item.OrderId }, new AjaxOptions { UpdateTargetId = "div1" })</td>
+                    <td>@Ajax.ActionLink("View", "ViewDtails",
+                       new { id = @item.OrderId }, 
+                       new AjaxOptions { UpdateTargetId = "div1" , HttpMethod="GET" })
+                    </td>
 
                 </tr>
             }
@@ -47,6 +49,15 @@
 
 
 </div>
+
+
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
+
+
 
 
 
