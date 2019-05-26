@@ -70,11 +70,11 @@ namespace Crafts.Controllers
         //{
         //    User_table USer = (User_table)Session["user"];
 
-        //    int id= USer.User_Id ;
-        //    BL.User user = new BL.User();
-        //    ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
-        //    return PartialView();
-        //}
+            int id= USer.User_Id ;
+            BL.User user = new BL.User();
+            //ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
+            return PartialView();
+        }
 
 
 
@@ -114,6 +114,23 @@ namespace Crafts.Controllers
         public ActionResult RegisterNewUser()
         {
             return View();
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(string name, string email, string subject, string message)
+        {
+
+            ul.addMessage( name, email, subject, message);
+            ul.sendEmail(email);
+            return View("Home");
         }
 
     }
