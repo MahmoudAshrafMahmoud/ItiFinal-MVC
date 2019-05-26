@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="~/Assests/img/favicon.png" type="image/png">
-    <title>Fashiop</title>
+    <title>Handmade Crafts</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Assests/css/bootstrap.css">
     <link rel="stylesheet" href="~/Assests/vendors/linericon/style.css">
@@ -171,94 +171,95 @@
                  /input-group
                 <div class="br"></div>
             </aside>*@
-                        <aside class="single_sidebar_widget author_widget">
-                            <img class="mt-5 author_img rounded-circle" src="~/Assests/img/chef.jpg" width="150px" alt="">
-                            <h4>May Hassan</h4>
-                            <p>Homemade Food Maker</p>
-                            <div class="social_icon">
-                                <a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-github"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-behance"></i>
-                                </a>
+                      
+                                 
+                                    <aside class="single_sidebar_widget author_widget">
+                                        <img class="mt-5 author_img rounded-circle"
+                                             src="@Session["ProfilePicture"]" width="150px" alt="">
+                                        <h4> @Session["UserFullname"] </h4>
+                                        @*<p>@Session["UserFullname"]</p>*@
+                                        <div class="social_icon">
+                                            <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa fa-github"></i>
+                                            </a>
+                                            <a href="#">
+                                                <i class="fa fa-behance"></i>
+                                            </a>
+                                        </div>
+                                        <p>
+                                            @Session["Bio"]
+                                        </p>
+                                        <div class="br"></div>
+                                    </aside>
+                                    <aside class="single_sidebar_widget ads_widget">
+                                        <a href="#">
+                                            <img class="img-fluid" src="~/Assests/img/blog/add.jpg" alt="">
+                                        </a>
+                                        <div class="br"></div>
+                                    </aside>
+                                    <aside class="single_sidebar_widget post_category_widget">
+                                        <h4 class="widget_title">Post Catgories</h4>
+                                        <ul class="list cat-list">
+
+                                            <li>
+                                                <a href="#" class="d-flex justify-content-between">
+                                                    <p>Fashion</p>
+                                                    <p>59</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-flex justify-content-between">
+                                                    <p>Art</p>
+                                                    <p>29</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-flex justify-content-between">
+                                                    <p>Food</p>
+                                                    <p>15</p>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                        <div class="br"></div>
+                                    </aside>
+
+                                    <aside class="single-sidebar-widget tag_cloud_widget">
+                                        <h4 class="widget_title">Subscribed Categories</h4>
+                                        <ul class="list">
+
+                                            <li>
+                                                <a href="#">Fashion</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Food</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Technology</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Lifestyle</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Art</a>
+                                            </li>
+
+
+                                        </ul>
+                                    </aside>
+                                </div>
                             </div>
-                            <p>
-                                Boot camps have its supporters andit sdetractors. Some people do not understand why you should
-                                have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits
-                                detractors.
-                            </p>
-                            <div class="br"></div>
-                        </aside>
-                        <aside class="single_sidebar_widget ads_widget">
-                            <a href="#">
-                                <img class="img-fluid" src="~/Assests/img/blog/add.jpg" alt="">
-                            </a>
-                            <div class="br"></div>
-                        </aside>
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Post Catgories</h4>
-                            <ul class="list cat-list">
-
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Fashion</p>
-                                        <p>59</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Art</p>
-                                        <p>29</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <p>Food</p>
-                                        <p>15</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                            <div class="br"></div>
-                        </aside>
-
-                        <aside class="single-sidebar-widget tag_cloud_widget">
-                            <h4 class="widget_title">Subscribed Categories</h4>
-                            <ul class="list">
-
-                                <li>
-                                    <a href="#">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">Food</a>
-                                </li>
-                                <li>
-                                    <a href="#">Technology</a>
-                                </li>
-                                <li>
-                                    <a href="#">Lifestyle</a>
-                                </li>
-                                <li>
-                                    <a href="#">Art</a>
-                                </li>
-
-
-                            </ul>
-                        </aside>
+                            <div class="col-lg-8 posts-list">
+                                @RenderBody()
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-8 posts-list">
-                    @RenderBody()
-                </div>
-            </div>
-        </div>
     </section>
     <!--================Blog Area =================-->
     

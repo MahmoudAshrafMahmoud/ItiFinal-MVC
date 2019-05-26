@@ -70,7 +70,7 @@ namespace Crafts.Controllers
         public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
         {
             User_table USer = (User_table)Session["user"];
-
+           
             int id = USer.User_Id;
             BL.User user = new BL.User();
             ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
@@ -91,8 +91,17 @@ namespace Crafts.Controllers
             User_table user = ul.login(User_Email, Password);
             if (user != null)
             {
+                var base64 = Convert.ToBase64String(user.ProfilePicture);
+                var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
                 Session.Add("user", user);
-                Session.Add("userID", user.User_Id);
+                Session.Add("User_Id", user.User_Id);
+                Session.Add("UserFullname", user.FName + " " +user.LName);
+                Session.Add("User_Email", user.User_Email);
+                Session.Add("ProfilePicture", ImgSRC);
+                Session.Add("Rating", user.Rating);
+                Session.Add("Bio", user.Bio);
+                Session.Add("Gender", user.Gender);
+
                 if (Session["checkOutRequest"] != null)
                 {
                     return RedirectToAction("cartDisplay", "Cart");

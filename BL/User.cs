@@ -85,7 +85,7 @@ namespace BL
                 user.FullName = FullName;
 
                 Request_table req = new Request_table();
-                req.National_ID = user.NationalId;
+                //req.National_ID = user.NationalId;
                 req.Seller_info = user.Bio;
                 req.Request_Date = DateTime.Now;
                 req.Full_Name = user.FullName;
