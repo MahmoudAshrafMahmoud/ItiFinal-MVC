@@ -30,9 +30,9 @@ namespace Admin.Controllers
         //    List<VendorRequest> ReqVendor = admin.VendorRequestView();
         //    return View(ReqVendor);
         //}
-            List<VendorRequest> ReqVendor = admin.VendorRequestView();
-            return View(ReqVendor);
-        }
+        //    List<VendorRequest> ReqVendor = admin.VendorRequestView();
+         //   return View(ReqVendor);
+        //}
 
         //public ActionResult VendorCount()
         //{
