@@ -24,5 +24,9 @@ namespace BL.SharedModels
 
         public string Bio { get; set; }
 
+        public int userid { set; get; }
+
+        public string gender { set; get; }
+
     }
 }

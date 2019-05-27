@@ -21,9 +21,9 @@ namespace Crafts.Controllers
         {
             if (Session["user"] != null)
             {
-                
-               ViewBag.selectedVendor = VendorLogic.getTopTrendVendors();
-               ViewBag.selectedPro = productLogic.getTopSellingProduct();           
+
+                ViewBag.selectedVendor = VendorLogic.getTopTrendVendors();
+                ViewBag.selectedPro = productLogic.getTopSellingProduct();
                 List<ProductModel> topSeller = ul.topSellerSup();
                 ViewBag.topSeller = topSeller;
                 ViewBag.lastAdded = ul.lastAdded();
@@ -37,7 +37,7 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult login()
         {
-           
+
             return View();
         }
 
@@ -86,7 +86,7 @@ namespace Crafts.Controllers
                 var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
                 Session.Add("user", user);
                 Session.Add("User_Id", user.User_Id);
-                Session.Add("UserFullname", user.FName + " " +user.LName);
+                Session.Add("UserFullname", user.FName + " " + user.LName);
                 Session.Add("User_Email", user.User_Email);
                 Session.Add("ProfilePicture", ImgSRC);
                 Session.Add("Rating", user.Rating);
@@ -137,7 +137,7 @@ namespace Crafts.Controllers
             var binaryReader = new BinaryReader(fileSelected.InputStream);
             fileData = binaryReader.ReadBytes(fileSelected.ContentLength);
             newUser.ProfilePicture = fileData;
-            
+
 
             using (CraftsEntities myData = new CraftsEntities())
 
@@ -151,9 +151,9 @@ namespace Crafts.Controllers
                 newUser = null;
             }
 
-                return View();
+            return View();
         }
-        
+
 
         [HttpGet]
         public ActionResult Contact()
@@ -165,7 +165,7 @@ namespace Crafts.Controllers
         public ActionResult Contact(string name, string email, string subject, string message)
         {
 
-            ul.addMessage( name, email, subject, message);
+            ul.addMessage(name, email, subject, message);
             ul.sendEmail(email);
             return RedirectToAction("Index", "Home");
         }
@@ -189,9 +189,9 @@ namespace Crafts.Controllers
         }
 
 
-        
 
-    
+
+
         public ActionResult myprofile()
         {
             if (Session["User_Id"] != null)
@@ -202,11 +202,11 @@ namespace Crafts.Controllers
             {
                 return RedirectToAction("login", "User");
             }
-         }
+        }
 
         public ActionResult mycategories()
         {
-             ViewBag.mycats =  ul.mySubCat((int)Session["User_Id"]);
+            ViewBag.mycats = ul.mySubCat((int)Session["User_Id"]);
             return View();
         }
 
@@ -215,7 +215,6 @@ namespace Crafts.Controllers
             ViewBag.subs = ul.myFollowedVendor((int)Session["User_Id"]);
             return View();
         }
-         }
 
         public ActionResult RecommendedVendors(int id)
 
@@ -223,9 +222,8 @@ namespace Crafts.Controllers
             List<int> Vendors = ul.PersonsHasSameCategory(id);
             return View();
         }
-
+    }
 
         }
 
 
-}
