@@ -20,19 +20,19 @@ namespace Admin.Controllers
             return View();
         }
 
-        //public ActionResult DisplayVendorRegister()
-        //{
-        //    Request_table reqobj = new Request_table();
-        //    ViewBag.Request = reqobj;
+        public ActionResult DisplayVendorRegister()
+        {
+            Request_table reqobj = new Request_table();
+            ViewBag.Request = reqobj;
 
 
-        //    BL.Admin admin = new BL.Admin();
-        //    List<VendorRequest> ReqVendor = admin.VendorRequestView();
-        //    return View(ReqVendor);
-        //}
+            BL.Admin admin = new BL.Admin();
             List<VendorRequest> ReqVendor = admin.VendorRequestView();
             return View(ReqVendor);
         }
+
+    
+        
 
         //public ActionResult VendorCount()
         //{
