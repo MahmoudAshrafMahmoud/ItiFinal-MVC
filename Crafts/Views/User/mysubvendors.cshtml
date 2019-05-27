@@ -1,0 +1,20 @@
+﻿<aside class="single_sidebar_widget post_category_widget">
+    <h4 class="widget_title">Followings vendor</h4>
+    <ul class="list cat-list">
+
+      
+
+        @foreach (var item in ViewBag.subs)
+        {
+            <li>
+                <a  class="d-flex justify-content-between"
+           href="@Url.Action("SelectedUser", "User",new {id= @item.User_Id})"> 
+                <p>@item.FName @item.LName</p></a>
+
+            </li>
+        }
+
+    </ul>
+    <div class="br"></div>
+</aside>
+

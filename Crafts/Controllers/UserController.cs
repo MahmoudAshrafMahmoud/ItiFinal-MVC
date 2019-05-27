@@ -13,12 +13,17 @@ namespace Crafts.Controllers
     public class UserController : Controller
     {
         User ul = new User();
+        BL.Vendor VendorLogic = new BL.Vendor();
+        BL.Product productLogic = new BL.Product();
+
         // GET: User
         public ActionResult Home()
         {
             if (Session["user"] != null)
             {
-
+                
+               ViewBag.selectedVendor = VendorLogic.getTopTrendVendors();
+               ViewBag.selectedPro = productLogic.getTopSellingProduct();           
                 List<ProductModel> topSeller = ul.topSellerSup();
                 ViewBag.topSeller = topSeller;
                 ViewBag.lastAdded = ul.lastAdded();
@@ -26,16 +31,9 @@ namespace Crafts.Controllers
             }
             else
             {
-                return RedirectToAction("login", "User");
+                return RedirectToAction("Index", "Home");
             }
         }
-
-        //[HttpGet]
-        //public ActionResult login()
-        //{
-        //    ViewBag.ID = id;
-        //    return View();
-        //}
         [HttpGet]
         public ActionResult login()
         {
@@ -76,9 +74,6 @@ namespace Crafts.Controllers
             ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, 1);
             return PartialView();
         }
-
-
-
 
 
         [HttpPost]
@@ -172,21 +167,26 @@ namespace Crafts.Controllers
 
             ul.addMessage( name, email, subject, message);
             ul.sendEmail(email);
-            return View("Home");
+            return RedirectToAction("Index", "Home");
         }
 
+        Vendor vendorlogic = new Vendor();
 
         //Selected User
         public ActionResult SelectedUser(int id)
         {
             BL.User user = new BL.User();
             User_table selecteduser = user.GetSelectedUser(id);
-
+            ViewBag.user_id = selecteduser.User_Id;
             Product product = new Product();
             ViewBag.VendorProducts = product.GetProductsOfvendor(id);
-
-
             ViewBag.BestSellingVendorProducts = product.BestSellingForVendor(id);
+
+            if (Session["user"] != null)
+            {
+                ViewBag.substate = vendorlogic.checkfollow((int)Session["User_Id"], id);
+
+            }
 
             return View(selecteduser);
 
@@ -196,7 +196,7 @@ namespace Crafts.Controllers
 
         
 
-    }
+    
         public ActionResult myprofile()
         {
             if (Session["User_Id"] != null)
@@ -207,7 +207,21 @@ namespace Crafts.Controllers
             {
                 return RedirectToAction("login", "User");
             }
-            }
+         }
 
+        public ActionResult mycategories()
+        {
+             ViewBag.mycats =  ul.mySubCat((int)Session["User_Id"]);
+            return View();
         }
+
+        public ActionResult mysubvendors()
+        {
+            ViewBag.subs = ul.myFollowedVendor((int)Session["User_Id"]);
+            return View();
+        }
+
+    }
+
+  
 }

@@ -71,7 +71,7 @@ namespace BL
 
               .OrderByDescending(                 // then sort by the summed values DESC
                g => g.Sum(e => e.Quantity))
-               .Take(5)                            // then take the top X values
+               .Take(10)                            // then take the top X values
               .Select(                            // e.g. List.TopX(3) would return...
               r => new { ProID = r.Key, Sum = r.Sum(e => e.Quantity) }).ToList();
 
@@ -91,11 +91,12 @@ namespace BL
 
 
             List<ProductModel> pro = (from p in context.Product_table
-                                      where p.Vendor_id == Vendorid && p.State.ToLower()=="approved"
+                                      where p.Vendor_id == Vendorid && p.State.ToLower() == "approved"
                                       select new ProductModel
                                       {
                                           Product_Price = p.Product_Price,
                                           Product_Name = p.Product_Name,
+                                          Product_Id = p.Product_Id,
                                           Image = p.Image,
                                           
                                       }

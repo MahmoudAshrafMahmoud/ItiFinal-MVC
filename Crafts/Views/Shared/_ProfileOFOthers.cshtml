@@ -6,9 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="~/Assests/img/favicon.png" type="image/png">
-    <title>Fashiop</title>
+    <title>Handmade Crafts</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Assests/css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
     <link rel="stylesheet" href="~/Assests/vendors/linericon/style.css">
     <link rel="stylesheet" href="~/Assests/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Assests/vendors/owl-carousel/owl.carousel.min.css">
@@ -18,6 +20,8 @@
     <!-- main css -->
     <link rel="stylesheet" href="~/Assests/css/style.css">
     <link rel="stylesheet" href="~/Assests/css/responsive.css">
+    <link rel="stylesheet" href="~/Assests/css/multiItemSlider.css">
+
 </head>
 
 <body>
@@ -34,30 +38,32 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+
                     </button>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <div class="row w-100">
-                            <div class="col-lg-7 pr-0">
+                            <div class="col-lg-7 pr-0" style="padding-right: 0px;">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="@Url.Action("Home","User")">Home</a>
+                                        <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="@Url.Action("About","Home")">About</a>
                                     </li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu text">
 
                                             @{Html.RenderAction("showCategories", "Category");}
 
                                         </ul>
                                     </li>
 
-                                    <li class="nav-item submenu dropdown">
+
+
+
+                                    <li class="nav-item submenu dropdown" id="VendorID">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
@@ -69,25 +75,15 @@
                                             </li>
                                         </ul>
                                     </li>
-
-                                    <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Show_Orders","User")">My Orders</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Be_Vendor","User")">Register as Vendor</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Logout","User")">Logout</a>
-                                            </li>
-                                        </ul>
+                                    <li class="nav-item active " id="LoginID">
+                                        <a class="nav-link" href="@Url.Action("Login","User")">Login</a>
+                                    </li>
+                                    <li class="nav-item active notuser" id="RegisterID">
+                                        <a class="nav-link" href="@Url.Action("Register","User")">Register</a>
                                     </li>
 
-
-
-
                                     <li class="nav-item">
-                                        <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
+                                        <a class="nav-link" href="@Url.Action("contact","User")">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -95,29 +91,24 @@
                             <div class="col-lg-5">
                                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                     <hr>
-                                    <li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
 
-                                    <hr>
 
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
+                                        <a href="@Url.Action("myprofile","User")" class="icons">
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                         </a>
                                     </li>
 
                                     <hr>
 
-                                    <li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
+                                    @*<li class="nav-item">
+                                            <a href="#" class="icons">
+                                                <i class="far fa-heart" aria-hidden="true"></i>
+                                            </a>
+                                        </li>*@
 
                                     <hr>
+
                                     <li class="nav-item">
                                         <a href="@Url.Action("cartDisplay","Cart")" class="icons">
                                             <i class="fas fa-shopping-cart"></i>
@@ -130,6 +121,12 @@
                                         </span>
                                     </a>
 
+                                    <li class="nav-item" id="ProfileID">
+                                        <a href="@Url.Action("Logout","User")" class="icons">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </a>
+                                    </li>
+
                                     <hr>
                                 </ul>
                             </div>
@@ -139,6 +136,8 @@
             </nav>
         </div>
     </header>
+
+
     <!--================Header Menu Area =================-->
     <!--================Home Banner Area =================-->
     <section class="banner_area">
@@ -258,6 +257,25 @@
     <script src="~/Assests/js/theme.js"></script>
     @RenderSection("scripts", required: false)
 
+    <script type="text/javascript">
+
+        if ('@Session["User_Id"]' == "") {
+            document.getElementById("LoginID").classList.remove("hide")
+            document.getElementById("RegisterID").classList.remove("hide")
+            document.getElementById("ProfileID").classList.add("hide")
+            document.getElementById("VendorID").classList.add("hide")
+
+        }
+        else {
+
+            document.getElementById("LoginID").classList.add("hide")
+            document.getElementById("RegisterID").classList.add("hide")
+            document.getElementById("ProfileID").classList.remove("hide")
+            document.getElementById("VendorID").classList.remove("hide")
+
+        }
+
+    </script>
 
 </body>
 
