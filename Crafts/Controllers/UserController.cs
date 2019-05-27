@@ -170,18 +170,23 @@ namespace Crafts.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        Vendor vendorlogic = new Vendor();
 
         //Selected User
         public ActionResult SelectedUser(int id)
         {
             BL.User user = new BL.User();
             User_table selecteduser = user.GetSelectedUser(id);
-
+            ViewBag.user_id = selecteduser.User_Id;
             Product product = new Product();
             ViewBag.VendorProducts = product.GetProductsOfvendor(id);
-
-
             ViewBag.BestSellingVendorProducts = product.BestSellingForVendor(id);
+
+            if (Session["user"] != null)
+            {
+                ViewBag.substate = vendorlogic.checkfollow((int)Session["User_Id"], id);
+
+            }
 
             return View(selecteduser);
 

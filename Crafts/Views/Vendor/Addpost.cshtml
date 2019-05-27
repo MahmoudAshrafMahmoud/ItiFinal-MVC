@@ -97,8 +97,15 @@
                      <img src="@Url.Content(picture)" class="img-fluid img-thumbnail  rounded float-right" style="width:200px ; height:200px" />
                      <div class="col-lg-12 " style="padding-top:35px ">
                          <div class="col-12"> <span style="font-weight:bold">Catigory Name :</span> @i.Catigory_name </div>
-                         <div class="col-12"> <span style="font-weight:bold">Product Name :</span> @i.Product_Name</div>
-                         <div class="col-12"><span style="font-weight:bold">Product Description :</span> @i.Product_Description</div>
+                         <div class="col-12">
+                             <span style="font-weight:bold">Product Name :</span>
+
+                             <a class="Active" href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
+
+                                 @i.Product_Name
+                             </a>
+
+                         </div>                         <div class="col-12"><span style="font-weight:bold">Product Description :</span> @i.Product_Description</div>
                          <div class="col-12"> <span style="font-weight:bold">Product Price :</span> @i.Product_Price</div>
                      </div>
                   
@@ -119,8 +126,15 @@
                 <img src="@Url.Content(picture)" class="img-fluid img-thumbnail  rounded float-right" style="width:200px ; height:200px" />
                 <div class="col-lg-12 " style="padding-top:35px ">
                     <div class="col-12"> <span style="font-weight:bold">Catigory Name :</span> @i.Catigory_name </div>
-                    <div class="col-12"> <span style="font-weight:bold">Product Name :</span> @i.Product_Name</div>
-                    <div class="col-12"><span style="font-weight:bold">Product Description :</span> @i.Product_Description</div>
+                    <div class="col-12">
+                        <span style="font-weight:bold">Product Name :</span>
+
+                        <a class="Active" href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
+
+                            @i.Product_Name
+                        </a>
+
+                    </div>                    <div class="col-12"><span style="font-weight:bold">Product Description :</span> @i.Product_Description</div>
                     <div class="col-12"> <span style="font-weight:bold">Product Price :</span> @i.Product_Price</div>
                 </div>
 
@@ -141,7 +155,14 @@
                 <img src="@Url.Content(picture)" class="img-fluid img-thumbnail  rounded float-right" style="width:200px ; height:200px" />
                 <div class="col-lg-12 " style="padding-top:35px ">
                     <div class="col-12"> <span style="font-weight:bold">Catigory Name :</span> @i.Catigory_name </div>
-                    <div class="col-12"> <span style="font-weight:bold">Product Name :</span> @i.Product_Name</div>
+                    <div class="col-12"> <span style="font-weight:bold">Product Name :</span>
+
+                        <a  class="Active" href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
+
+                            @i.Product_Name
+                            </a>
+
+</div>
                     <div class="col-12"><span style="font-weight:bold">Product Description :</span> @i.Product_Description</div>
                     <div class="col-12"> <span style="font-weight:bold">Product Price :</span> @i.Product_Price</div>
                 </div>

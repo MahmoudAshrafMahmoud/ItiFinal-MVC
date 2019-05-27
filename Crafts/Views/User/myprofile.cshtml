@@ -24,13 +24,9 @@
         </div>
         <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
             @{Html.RenderAction("Show_Orders", "user");}
-
-
           </div>
         <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-            @{Html.RenderAction("Be_Vendor", "user", new { id = @Session["User_Id"] });}
-
-      
+            @{Html.RenderAction("Be_Vendor", "user", new { id = @Session["User_Id"] });}      
         </div>
     </div>
 </div>

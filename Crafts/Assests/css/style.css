@@ -72,12 +72,17 @@ Table of Content:
 .hide{
 display:none;
 }
-body {
-  line-height: 24px;
-  font-size: 14px;
-  font-family: "Roboto", sans-serif;
-  font-weight: normal;
-  color: #777777; }
+
+.font-size30 {
+    font-size:30px;
+    margin-top:20px
+}body {
+    line-height: 24px;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: #777777;
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", sans-serif;
@@ -3041,7 +3046,7 @@ h6 {
     line-height: 60px; }
 
 .cat_widgets .list li {
-  margin-bottom: 13px; }
+  margin-bottom: 0px; }
   .cat_widgets .list li a {
     font-size: 14px;
     font-family: "Roboto", sans-serif;
@@ -3309,7 +3314,7 @@ h6 {
     padding-top: 20px;
     border-top: 1px dotted #d5d5d5;
     margin-top: 20px;
-    margin-bottom: 70px; }
+    /*margin-bottom: 70px;*/ }
   .s_product_text .card_area .main_btn {
     line-height: 38px;
     padding: 0px 38px;

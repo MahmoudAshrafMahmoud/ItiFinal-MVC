@@ -355,6 +355,7 @@
     <Content Include="Views\User\mycategories.cshtml" />
     <Content Include="Views\User\mysubvendors.cshtml" />
     <Content Include="Views\User\SelectedUser.cshtml" />
+    <Content Include="Views\Category\errorview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

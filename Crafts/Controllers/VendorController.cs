@@ -63,7 +63,29 @@ namespace Crafts.Controllers
             ViewBag.orders=myvendor.SearchOrder(search, id);
             return PartialView();
         }
-     
+
+        Vendor vendorlogic = new Vendor();
+
+
+        [HttpPost]
+        public PartialViewResult follow(int vendor_id)
+        {
+            if (Session["user"] != null)
+            {
+
+                bool result = vendorlogic.followvendor((int)Session["User_Id"], vendor_id);
+                return PartialView();
+            }
+            return PartialView("errorview");
+        }
+
+        [HttpPost]
+        public PartialViewResult unfollow(int vendor_id)
+        {
+            bool result = vendorlogic.unfollowvendor((int)Session["User_Id"], vendor_id);
+            return PartialView();
+        }
+
     }
 
 }
