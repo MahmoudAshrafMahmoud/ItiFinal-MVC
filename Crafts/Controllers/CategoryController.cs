@@ -10,7 +10,7 @@ namespace Crafts.Controllers
     public class CategoryController : Controller
     {
         // GET: Category Products
-        //We will replace id input parameter (this default one) with any id 
+        //We will replace id input parameter (this default one) with any id  
         //public ActionResult CatProducts(int id = 1)
         //{
         //    Product pro = new Product();

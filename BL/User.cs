@@ -121,7 +121,7 @@ namespace BL
                                 on u.User_Id equals f.User_id
                                 join p in context.Product_table
                                 on f.Vendor_id equals p.Vendor_id
-                                where u.User_Id == userID
+                                where u.User_Id == userID && p.State == "yes"
                                 select new ProductModel
                                 {
                                     Product_Id = p.Product_Id,
@@ -158,7 +158,7 @@ namespace BL
                 var x = (from p in context.Product_table
                          join s in context.Subscribtion_table
                          on p.Cat_id equals s.Cat_Id
-                         where p.Product_Id == pid && s.User_Id == userSession.User_Id
+                         where p.Product_Id == pid && s.User_Id == userSession.User_Id && p.State =="yes"
                          select new ProductModel
                          {
                              Product_Id = p.Product_Id,
@@ -188,7 +188,7 @@ namespace BL
             var x = (from p in query
                      join f in context.Following_table
                      on p.Vendor_id equals f.Vendor_id
-                     where f.User_id == userSession.User_Id
+                     where f.User_id == userSession.User_Id && p.State == "yes"
                      select new ProductModel
                      {
                          Product_Id = p.Product_Id,
@@ -242,7 +242,7 @@ namespace BL
             mt.subject = subject;
             mt.message = message;
             context.Message_table.Add(mt);
-
+            context.SaveChanges();
         }
 
         //public List<Category_table> mySubCat(int ID)

@@ -25,19 +25,23 @@ namespace Crafts.Controllers
         [HttpGet]
         public ActionResult Addpost()
         {
+          int userid= int.Parse(Session["User_Id"].ToString());
             var cat = Vendor.allcatigories();
             ViewBag.cat = cat;
-            var product = Vendor.getproductdetails();
-            return View(product);
+            var Approvedproduct = Vendor.ApprovedProducts( userid);
+            var Pendingproduct = Vendor.pendingProducts(userid);
+            ViewBag.Pendingproduct = Pendingproduct;
+            var Rejectedproduct = Vendor.rejectedProducts(userid);
+            ViewBag.Rejectedproduct = Rejectedproduct;
+            return View(Approvedproduct);
         }
+
         [HttpPost]
-        public ActionResult Addpost(ProductModel newproduct, string cat_name)
+        public ActionResult AddProduct(ProductModel newproduct, string cat_name)
         {
-            Vendor.addnewproduct(newproduct, cat_name);
-            var cat = Vendor.allcatigories();
-            var product = Vendor.getproductdetails();
-            ViewBag.cat = cat;
-            return View(product);
+            int userid = int.Parse(Session["User_Id"].ToString());
+            Vendor.addnewproduct(newproduct, cat_name, userid);
+            return RedirectToAction("Addpost");
         }
 
         //Vendor submit orders 

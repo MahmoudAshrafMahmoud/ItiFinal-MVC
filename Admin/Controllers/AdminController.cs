@@ -77,12 +77,29 @@ namespace Admin.Controllers
             }
 
         }
+        public ActionResult userMessages()
+        {
+
+            List<Message_table> messages = admin.userMessages();
+            
+            return View(messages);
+        }
 
         public ActionResult AdminApproval(int id, string status)
         {
             admin.AdminApprove(id, status);
             return RedirectToAction("AdminApproveProducts");
         }
+
+        
+        public ActionResult deleteMessage(int id)
+        {
+
+            admin.deleteMessage(id);
+
+            return View("userMessages");
+        }
+
 
         public ActionResult AdminShowOrders()
         {
