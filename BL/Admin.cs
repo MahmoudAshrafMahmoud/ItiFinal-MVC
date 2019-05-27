@@ -59,9 +59,8 @@ namespace BL
                 //    return VendorRequest;
 
                 context.Admin_Req_App_table.Add(AdminApprove);
-
-       }
-
+     
+        
             }
      
 

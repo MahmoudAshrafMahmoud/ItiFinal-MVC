@@ -249,7 +249,7 @@ namespace BL
         //{
         //    return context.Category_table.Where(
         //}
-    }
+
 
 
         //Get User or Vendor Which is clicked on his profile
