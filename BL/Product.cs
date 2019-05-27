@@ -86,5 +86,50 @@ namespace BL
             return selectProducts;
         }
 
+        public List<ProductModel> GetProductsOfvendor(int Vendorid)
+        {
+
+
+            List<ProductModel> pro = (from p in context.Product_table
+                                      where p.Vendor_id == Vendorid && p.State.ToLower()=="approved"
+                                      select new ProductModel
+                                      {
+                                          Product_Price = p.Product_Price,
+                                          Product_Name = p.Product_Name,
+                                          Image = p.Image,
+                                          
+                                      }
+                                       ).ToList();
+
+            return pro;
+        }
+
+
+        //Best Selling Products for a vendor
+        List<Product_table> selecttopProducts = new List<Product_table>();
+        public List<Product_table> BestSellingForVendor(int VendorID)
+        {
+
+            var result = context.OrderDetails_table.GroupBy(e => e.Pro_Id) // group the list by country
+
+              .OrderByDescending(                 // then sort by the summed values DESC
+               g => g.Sum(e => e.Quantity))
+              .Select(                            // e.g. List.TopX(3) would return...
+              r => new { ProID = r.Key, Sum = r.Sum(e => e.Quantity) }).ToList();
+
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                int x = result[i].ProID;
+                Product_table pro = context.Product_table.FirstOrDefault(s => s.Product_Id == x && s.Vendor_id == VendorID);
+                if(pro!=null)
+                selecttopProducts.Add(pro);
+            }
+
+
+            return selecttopProducts;
+
+        }
+
     }
 }

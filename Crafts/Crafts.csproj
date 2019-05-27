@@ -339,7 +339,6 @@
     <Content Include="Views\Category\Products.cshtml" />
     <Content Include="Views\Category\SelectedCategory.cshtml" />
     <Content Include="Views\Product\ProductView.cshtml" />
-    <Content Include="Views\User\Be_Vendor.cshtml" />
     <Content Include="Views\User\DisplayUserPage.cshtml" />
     <Content Include="Views\User\ViewDtails.cshtml" />
     <Content Include="Views\User\Be_Vendor.cshtml" />
@@ -356,6 +355,7 @@
     <Content Include="Views\Category\UnSubscribe.cshtml" />
     <Content Include="Views\User\mycategories.cshtml" />
     <Content Include="Views\User\mysubvendors.cshtml" />
+    <Content Include="Views\User\SelectedUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
