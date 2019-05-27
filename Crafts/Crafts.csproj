@@ -275,8 +275,15 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -311,7 +318,7 @@
     <Content Include="Views\Category\showCategories.cshtml" />
     <Content Include="Views\Shared\_Main.cshtml" />
     <Content Include="Views\Cart\ShowProductToTest.cshtml" />
-    <Content Include="Views\Vendor\VendorOrders.cshtml" />
+    <Content Include="Views\User\Vendor\VendorOrders.cshtml" />
     <Content Include="Views\Shared\_shoppingCart.cshtml" />
     <Content Include="Views\Cart\cartDisplay.cshtml" />
     <Content Include="Views\Cart\cartDisplayEmpty.cshtml" />
@@ -326,7 +333,7 @@
     <Content Include="Views\Category\SelectedCategory.cshtml" />
     <Content Include="Views\User\RegisterNewUser.cshtml" />
     <Content Include="Views\VendorOrders.cshtml" />
-    <Content Include="Views\Vendor\Search.cshtml" />
+    <Content Include="Views\User\Vendor\Search.cshtml" />
     <Content Include="Views\SelectedCategory.cshtml" />
     <Content Include="Views\Cart\Receipt.cshtml" />
     <Content Include="Views\Category\Products.cshtml" />
@@ -338,7 +345,7 @@
     <Content Include="Views\User\Be_Vendor.cshtml" />
     <Content Include="Views\User\VendorRegister.cshtml" />
     <Content Include="Views\User\ViewDtails.cshtml" />
-    <Content Include="Views\Vendor\Addpost.cshtml" />
+    <Content Include="Views\User\Vendor\Addpost.cshtml" />
     <Content Include="Views\User\Contact.cshtml" />
     <Content Include="Views\Shared\_Profile.cshtml" />
     <Content Include="Views\User\Show_Orders.cshtml" />
@@ -347,6 +354,8 @@
     <Content Include="Views\User\myprofile.cshtml" />
     <Content Include="Views\Category\Subscribe.cshtml" />
     <Content Include="Views\Category\UnSubscribe.cshtml" />
+    <Content Include="Views\User\mycategories.cshtml" />
+    <Content Include="Views\User\mysubvendors.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -390,7 +399,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58437</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58437/</IISUrl>
+          <IISUrl>http://localhost:58445/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

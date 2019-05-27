@@ -13,12 +13,17 @@ namespace Crafts.Controllers
     public class UserController : Controller
     {
         User ul = new User();
+        BL.Vendor VendorLogic = new BL.Vendor();
+        BL.Product productLogic = new BL.Product();
+
         // GET: User
         public ActionResult Home()
         {
             if (Session["user"] != null)
             {
-
+                
+               ViewBag.selectedVendor = VendorLogic.getTopTrendVendors();
+               ViewBag.selectedPro = productLogic.getTopSellingProduct();           
                 List<ProductModel> topSeller = ul.topSellerSup();
                 ViewBag.topSeller = topSeller;
                 ViewBag.lastAdded = ul.lastAdded();
@@ -185,7 +190,21 @@ namespace Crafts.Controllers
             {
                 return RedirectToAction("login", "User");
             }
-            }
+         }
 
+        public ActionResult mycategories()
+        {
+             ViewBag.mycats =  ul.mySubCat((int)Session["User_Id"]);
+            return View();
         }
+
+        public ActionResult mysubvendors()
+        {
+            ViewBag.subs = ul.myFollowedVendor((int)Session["User_Id"]);
+            return View();
+        }
+
+    }
+
+  
 }

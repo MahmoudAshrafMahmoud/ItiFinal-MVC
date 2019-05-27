@@ -65,6 +65,10 @@ Table of Content:
     font-variant: normal;
     text-transform: none;
 }
+
+.proimage {
+    height: 137px !important;
+}
 .hide{
 display:none;
 }

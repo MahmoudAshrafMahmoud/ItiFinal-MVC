@@ -1,0 +1,12 @@
+﻿<aside class="single-sidebar-widget tag_cloud_widget">
+    <h4 class="widget_title">Subscribed Categories</h4>
+    <ul class="list">
+
+        @foreach (var item in ViewBag.mycats) { 
+        <li>
+            <a href="#">@item.Cat_Name</a>
+        </li>
+        }
+
+    </ul>
+</aside>
