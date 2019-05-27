@@ -63,7 +63,7 @@ namespace BL
             return true;
         }
 
-        public static void addnewproduct (ProductModel newproduct , string cat_name)
+        public static void addnewproduct (ProductModel newproduct , string cat_name , int userid)
         {
             byte[] fileData = null;
             var binaryReader = new BinaryReader(newproduct.insertedimg.InputStream);
@@ -79,7 +79,7 @@ namespace BL
                     Cat_id = catid,
                     Image = fileData,
                     Add_Date = DateTime.Now,
-                    Vendor_id = 1,
+                    Vendor_id = userid,
                     State="pending"
                 };
                 context.Product_table.Add(pro);
@@ -127,13 +127,13 @@ namespace BL
 
             return selectVendor;
         }
-        //function to get product details due to vendor id 
-        public static List<ProductModel> getproductdetails()
+        //function to get Aprroved product  due to vendor id 
+        public static List<ProductModel> ApprovedProducts(int userid)
         {
             using (CraftsEntities context = new CraftsEntities())
             {
                 var pro = (from p in context.Product_table
-                           where p.Vendor_id == usersession.User_Id
+                           where p.Vendor_id == userid && p.State== "approved"
                            join c in context.Category_table
                            on p.Cat_id equals c.Cat_Id
                            select new ProductModel
@@ -175,5 +175,50 @@ namespace BL
             return query;
             
         }
+
+        //function to get pending product  due to vendor id 
+        public static List<ProductModel> pendingProducts(int userid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                var pro = (from p in context.Product_table
+                           where p.Vendor_id == userid && p.State == "pending"
+                           join c in context.Category_table
+                           on p.Cat_id equals c.Cat_Id
+                           select new ProductModel
+                           {
+                               Image = p.Image,
+                               Product_Description = p.Product_Description,
+                               Product_Price = p.Product_Price,
+                               Catigory_name = c.Cat_Name,
+                               Product_Name = p.Product_Name
+                           }).ToList();
+                return pro;
+
+            }
+        }
+
+        //function to get rejected product  due to vendor id 
+        public static List<ProductModel> rejectedProducts(int userid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                var pro = (from p in context.Product_table
+                           where p.Vendor_id == userid && p.State == "rejected"
+                           join c in context.Category_table
+                           on p.Cat_id equals c.Cat_Id
+                           select new ProductModel
+                           {
+                               Image = p.Image,
+                               Product_Description = p.Product_Description,
+                               Product_Price = p.Product_Price,
+                               Catigory_name = c.Cat_Name,
+                               Product_Name = p.Product_Name
+                           }).ToList();
+                return pro;
+
+            }
+        }
+
     }
 }

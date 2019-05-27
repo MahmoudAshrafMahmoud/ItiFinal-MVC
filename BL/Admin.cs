@@ -20,23 +20,18 @@ namespace BL
                                  where req.reqState.ToLower() == "pending"
                                  select new VendorRequest
                                  {
-                                     req_id=req.Request_Id,
-                                     date=req.Request_Date,
-                                     Full_Name=req.Full_Name,
-                                     National_ID=req.National_ID,
-                                     Seller_info=req.Seller_info,
-                                     user_id=req.User_Id,
-                                     state=req.reqState
+                                     req_id = req.Request_Id,
+                                     date = req.Request_Date,
+                                     Full_Name = req.Full_Name,
+                                     National_ID = req.National_ID,
+                                     Seller_info = req.Seller_info,
+                                     user_id = req.User_Id,
+                                     state = req.reqState
                                  }
                                  ).ToList();
-   
-
-
-
+    return VendorRequest;
 
             return VendorRequest;
-
-
         }
 
 
@@ -61,27 +56,26 @@ namespace BL
 
             Admin_table admin = (Admin_table)HttpContext.Current.Session["admin"];
 
-            AdminApprove.Admin_Id = admin.Admin_Id;
+        //    return VendorRequest;
 
             context.Admin_Req_App_table.Add(AdminApprove);
 
-            context.SaveChanges();
-        }
+       }
 
         //public void display()
         //{
-            
+
         //}
 
         public List<Product_table> DisplayPendingProducts()
         {
 
-            List<Product_table> PendingProducts = context.Product_table.Where(x=>x.State.ToLower()=="pending").ToList();
+            List<Product_table> PendingProducts = context.Product_table.Where(x => x.State.ToLower() == "pending").ToList();
 
             return PendingProducts;
         }
 
-        public void AdminApprove(int id,string status)
+        public void AdminApprove(int id, string status)
         {
             Product_table product = new Product_table();
             product = context.Product_table.Where(x => x.Product_Id == id).FirstOrDefault();
@@ -101,10 +95,10 @@ namespace BL
         
         public bool AdminLogin(string mail,string password)
         {
-            List<Admin_table>admins=context.Admin_table.Where(s => s.Admin_Email == mail && s.Password == password).Select(s => s).ToList();
+            List<Admin_table> admins = context.Admin_table.Where(s => s.Admin_Email == mail && s.Password == password).Select(s => s).ToList();
             if (admins.Count() > 0)
             {
-                HttpContext.Current.Session["admin_ID"]= admins.Select(s=>s.Admin_Id).First();
+                HttpContext.Current.Session["admin_ID"] = admins.Select(s => s.Admin_Id).First();
                 return true;
             }
             else
@@ -113,8 +107,22 @@ namespace BL
             }
         }
 
-     
-   
-            }
+
+
+        public List<Message_table> userMessages()
+        {
+  
+            var messages = (from ms in context.Message_table
+                     select ms).ToList();
+            return messages;
+        }
+
+
+
+        public void deleteMessage(int id)
+        {
+            context.Message_table.Remove(context.Message_table.Find(id));
+            context.SaveChanges();
+        }
+    }
 }
-    

@@ -85,7 +85,7 @@ namespace BL
                 user.FullName = FullName;
 
                 Request_table req = new Request_table();
-                req.National_ID= user.NationalId;
+                req.National_ID = user.NationalId;
                 req.Seller_info = user.Bio;
                 req.Request_Date = DateTime.Now;
                 req.Full_Name = user.FullName;
@@ -121,7 +121,7 @@ namespace BL
                                 on u.User_Id equals f.User_id
                                 join p in context.Product_table
                                 on f.Vendor_id equals p.Vendor_id
-                                where u.User_Id == userID
+                                where u.User_Id == userID && p.State == "yes"
                                 select new ProductModel
                                 {
                                     Product_Id = p.Product_Id,
@@ -130,7 +130,7 @@ namespace BL
                                     Product_Price = p.Product_Price,
                                     Image = p.Image,
                                     Vendor_id = p.Vendor_id
-                                    
+
                                 }).ToList();
             return productsList;
         }
@@ -158,7 +158,7 @@ namespace BL
                 var x = (from p in context.Product_table
                          join s in context.Subscribtion_table
                          on p.Cat_id equals s.Cat_Id
-                         where p.Product_Id == pid && s.User_Id == userSession.User_Id
+                         where p.Product_Id == pid && s.User_Id == userSession.User_Id && p.State =="yes"
                          select new ProductModel
                          {
                              Product_Id = p.Product_Id,
@@ -182,13 +182,13 @@ namespace BL
 
 
             var query = (from p in context.Product_table
-                                                  orderby p.Add_Date descending
-                                                  select p).ToList(); 
+                         orderby p.Add_Date descending
+                         select p).ToList();
 
             var x = (from p in query
                      join f in context.Following_table
                      on p.Vendor_id equals f.Vendor_id
-                     where f.User_id == userSession.User_Id
+                     where f.User_id == userSession.User_Id && p.State == "yes"
                      select new ProductModel
                      {
                          Product_Id = p.Product_Id,
@@ -206,7 +206,7 @@ namespace BL
 
         public void sendEmail(string Email)
         {
-            string  MyMail = "projectsalary4444@gmail.com", pwd = "Psalaryproject4444";
+            string MyMail = "projectsalary4444@gmail.com", pwd = "Psalaryproject4444";
             try
             {
                 MailMessage mail = new MailMessage();
@@ -219,7 +219,7 @@ namespace BL
                                                 "<head>" +
                                                " </head>" +
                                                " <body>" +
-                                                     "we received your message sucessfully and will reply back  As Son As Possible if needed"+
+                                                     "we received your message sucessfully and will reply back  As Son As Possible if needed" +
                                                 "</body>" +
                                                 "</html>";
 
@@ -242,8 +242,14 @@ namespace BL
             mt.subject = subject;
             mt.message = message;
             context.Message_table.Add(mt);
-
+            context.SaveChanges();
         }
+
+        //public List<Category_table> mySubCat(int ID)
+        //{
+        //    return context.Category_table.Where(
+        //}
+    }
 
 
         //Get User or Vendor Which is clicked on his profile
