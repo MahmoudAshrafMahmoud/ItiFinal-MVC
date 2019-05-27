@@ -343,6 +343,7 @@
     <Content Include="Views\Shared\_Profile.cshtml" />
     <Content Include="Views\User\Show_Orders.cshtml" />
     <Content Include="Views\Shared\_ProfileOFOthers.cshtml" />
+    <Content Include="Views\User\SelectedUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

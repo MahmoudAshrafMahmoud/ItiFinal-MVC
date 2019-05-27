@@ -71,9 +71,9 @@ namespace Crafts.Controllers
         {
             User_table USer = (User_table)Session["user"];
            
-            int id = USer.User_Id;
+            //int id = USer.User_Id;
             BL.User user = new BL.User();
-            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
+            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, 1);
             return PartialView();
         }
             //int id= USer.User_Id ;
@@ -147,6 +147,27 @@ namespace Crafts.Controllers
             ul.sendEmail(email);
             return View("Home");
         }
+
+
+        //Selected User
+        public ActionResult SelectedUser(int id)
+        {
+            BL.User user = new BL.User();
+            User_table selecteduser = user.GetSelectedUser(id);
+
+            Product product = new Product();
+            ViewBag.VendorProducts = product.GetProductsOfvendor(id);
+
+
+            ViewBag.BestSellingVendorProducts = product.BestSellingForVendor(id);
+
+            return View(selecteduser);
+
+
+        }
+
+
+        
 
     }
 }
