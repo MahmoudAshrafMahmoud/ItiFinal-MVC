@@ -29,14 +29,10 @@ namespace BL
                                      state = req.reqState
                                  }
                                  ).ToList();
-
-
-
+    return VendorRequest;
 
             return VendorRequest;
-
-
-       }
+        }
 
 
 
@@ -63,6 +59,8 @@ namespace BL
                 //    return VendorRequest;
 
                 context.Admin_Req_App_table.Add(AdminApprove);
+
+       }
 
             }
      

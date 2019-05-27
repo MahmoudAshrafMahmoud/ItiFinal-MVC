@@ -130,7 +130,7 @@ namespace BL
                                     Product_Price = p.Product_Price,
                                     Image = p.Image,
                                     Vendor_id = p.Vendor_id
-                                    
+
                                 }).ToList();
             return productsList;
         }
@@ -182,8 +182,8 @@ namespace BL
 
 
             var query = (from p in context.Product_table
-                                                  orderby p.Add_Date descending
-                                                  select p).ToList(); 
+                         orderby p.Add_Date descending
+                         select p).ToList();
 
             var x = (from p in query
                      join f in context.Following_table
@@ -206,7 +206,7 @@ namespace BL
 
         public void sendEmail(string Email)
         {
-            string  MyMail = "projectsalary4444@gmail.com", pwd = "Psalaryproject4444";
+            string MyMail = "projectsalary4444@gmail.com", pwd = "Psalaryproject4444";
             try
             {
                 MailMessage mail = new MailMessage();
@@ -219,7 +219,7 @@ namespace BL
                                                 "<head>" +
                                                " </head>" +
                                                " <body>" +
-                                                     "we received your message sucessfully and will reply back  As Son As Possible if needed"+
+                                                     "we received your message sucessfully and will reply back  As Son As Possible if needed" +
                                                 "</body>" +
                                                 "</html>";
 
@@ -244,6 +244,39 @@ namespace BL
             context.Message_table.Add(mt);
             context.SaveChanges();
         }
+
+        //public List<Category_table> mySubCat(int ID)
+        //{
+        //    return context.Category_table.Where(
+        //}
+    }
+
+
+        //Get User or Vendor Which is clicked on his profile
+
+        public User_table GetSelectedUser(int id)
+        {
+            User_table SelectedUser = context.User_table.Where(x => x.User_Id == id && x.Type_id==2).FirstOrDefault();
+            return SelectedUser;
+        }
+
+
+        //public User_table PersonsHasSameCategory(int Vendor_id)
+        //{
+        //    List<Product_table> selectVendors = new List<Product_table>();
+
+        //    var Cateogries = context.Product_table.Where(x => x.Vendor_id == Vendor_id).GroupBy(e => e.Cat_id).Select(                            // e.g. List.TopX(3) would return...
+        //      r => new { Cat_id = r.Key }).ToList();
+
+        //    for (int i = 0; i < Cateogries.Count; i++)
+        //    {
+        //        int z = Cateogries[i].Cat_id;
+        //        selectVendors.Add(context.Product_table.Where(x => x.Cat_id == z).GroupBy(e => e.Vendor_id).Select(                            // e.g. List.TopX(3) would return...
+        //      r => new { Ven = r.Key }).ToList();
+        //    }
+
+        //}
+
 
     }
 }
