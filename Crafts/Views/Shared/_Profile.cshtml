@@ -82,8 +82,8 @@
                                             </li>
                                         </ul>
                                     </li>
-                              
-                                 
+
+
 
 
                                     <li class="nav-item">
@@ -156,113 +156,112 @@
     <section class="blog_area single-post-area p_120">
         <div class="container">
             <div class="row">
-               
+
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         @*<aside class="single_sidebar_widget search_widget">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Posts">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="lnr lnr-magnifier"></i>
-                        </button>
-                    </span>
-                </div>
-                 /input-group
-                <div class="br"></div>
-            </aside>*@
-                      
-                                 
-                                    <aside class="single_sidebar_widget author_widget">
-                                        <img class="mt-5 author_img rounded-circle"
-                                             src="@Session["ProfilePicture"]" width="150px" alt="">
-                                        <h4> @Session["UserFullname"] </h4>
-                                        @*<p>@Session["UserFullname"]</p>*@
-                                        <div class="social_icon">
-                                            <a href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa fa-github"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa fa-behance"></i>
-                                            </a>
-                                        </div>
-                                        <p>
-                                            @Session["Bio"]
-                                        </p>
-                                        <div class="br"></div>
-                                    </aside>
-                                    <aside class="single_sidebar_widget ads_widget">
-                                        <a href="#">
-                                            <img class="img-fluid" src="~/Assests/img/blog/add.jpg" alt="">
-                                        </a>
-                                        <div class="br"></div>
-                                    </aside>
-                                    <aside class="single_sidebar_widget post_category_widget">
-                                        <h4 class="widget_title">Post Catgories</h4>
-                                        <ul class="list cat-list">
-
-                                            <li>
-                                                <a href="#" class="d-flex justify-content-between">
-                                                    <p>Fashion</p>
-                                                    <p>59</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="d-flex justify-content-between">
-                                                    <p>Art</p>
-                                                    <p>29</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="d-flex justify-content-between">
-                                                    <p>Food</p>
-                                                    <p>15</p>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                        <div class="br"></div>
-                                    </aside>
-
-                                    <aside class="single-sidebar-widget tag_cloud_widget">
-                                        <h4 class="widget_title">Subscribed Categories</h4>
-                                        <ul class="list">
-
-                                            <li>
-                                                <a href="#">Fashion</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Food</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Technology</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Lifestyle</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Art</a>
-                                            </li>
-
-
-                                        </ul>
-                                    </aside>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search Posts">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <i class="lnr lnr-magnifier"></i>
+                                        </button>
+                                    </span>
                                 </div>
+                                 /input-group
+                                <div class="br"></div>
+                            </aside>*@
+
+
+                        <aside class="single_sidebar_widget author_widget">
+                            <img class="mt-5 author_img rounded-circle"
+                                 src="@Session["ProfilePicture"]" width="150px" alt="">
+                            <h4> @Session["UserFullname"] </h4>
+                            @*<p>@Session["UserFullname"]</p>*@
+                            <div class="social_icon">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-behance"></i>
+                                </a>
                             </div>
-                            <div class="col-lg-8 posts-list">
-                                @RenderBody()
-                            </div>
-                        </div>
+                            <p>
+                                @Session["Bio"]
+                            </p>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget ads_widget">
+                            <a href="#">
+                                <img class="img-fluid" src="~/Assests/img/blog/add.jpg" alt="">
+                            </a>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget post_category_widget">
+                            <h4 class="widget_title">Post Catgories</h4>
+                            <ul class="list cat-list">
+
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Fashion</p>
+                                        <p>59</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Art</p>
+                                        <p>29</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Food</p>
+                                        <p>15</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <div class="br"></div>
+                        </aside>
+
+                        <aside class="single-sidebar-widget tag_cloud_widget">
+                            <h4 class="widget_title">Subscribed Categories</h4>
+                            <ul class="list">
+
+                                <li>
+                                    <a href="#">Fashion</a>
+                                </li>
+                                <li>
+                                    <a href="#">Food</a>
+                                </li>
+                                <li>
+                                    <a href="#">Technology</a>
+                                </li>
+                                <li>
+                                    <a href="#">Lifestyle</a>
+                                </li>
+                                <li>
+                                    <a href="#">Art</a>
+                                </li>
+
+
+                            </ul>
+                        </aside>
                     </div>
+                </div>
+                <div class="col-lg-8 posts-list">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
     </section>
     <!--================Blog Area =================-->
-    
     <!--================ start footer Area  =================-->
     <footer class="footer-area section_gap">
         <div class="container">

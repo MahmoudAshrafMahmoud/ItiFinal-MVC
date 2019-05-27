@@ -37,7 +37,6 @@ namespace Crafts.Controllers
             var cat = Vendor.allcatigories();
             var product = Vendor.getproductdetails();
             ViewBag.cat = cat;
-            var product = Vendor.getproductdetails();
             return View(product);
         }
 
