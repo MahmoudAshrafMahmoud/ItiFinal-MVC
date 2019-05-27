@@ -249,7 +249,7 @@ namespace BL
         //{
         //    return context.Category_table.Where(
         //}
-    }
+    
 
 
         //Get User or Vendor Which is clicked on his profile
@@ -261,22 +261,85 @@ namespace BL
         }
 
 
-        //public User_table PersonsHasSameCategory(int Vendor_id)
-        //{
-        //    List<Product_table> selectVendors = new List<Product_table>();
 
-        //    var Cateogries = context.Product_table.Where(x => x.Vendor_id == Vendor_id).GroupBy(e => e.Cat_id).Select(                            // e.g. List.TopX(3) would return...
-        //      r => new { Cat_id = r.Key }).ToList();
+        int x = 0,z=0;
+        List<int> AllVendors = new List<int>();
 
-        //    for (int i = 0; i < Cateogries.Count; i++)
-        //    {
-        //        int z = Cateogries[i].Cat_id;
-        //        selectVendors.Add(context.Product_table.Where(x => x.Cat_id == z).GroupBy(e => e.Vendor_id).Select(                            // e.g. List.TopX(3) would return...
-        //      r => new { Ven = r.Key }).ToList();
-        //    }
+        public List<int> PersonsHasSameCategory(int Vendorid)
+        {
+            
 
-        //}
+            var query = (from pro in context.Product_table
+                         where pro.Vendor_id == Vendorid
+                         select pro.Cat_id
+                       ).Distinct().ToList();
+
+            for (int i = 0; i < query.Count(); i++)
+            {
+                int selectCategory = query[i];
+
+                var vendors = (from vendor in context.Product_table
+                               where vendor.Cat_id == selectCategory
+                               select vendor.Vendor_id
+                             ).Distinct().ToList();
+
+                foreach (var item in vendors)
+                {
+                    AllVendors.Add(item);
+                }
+                
+               
+            }
+
+            List<int> SelectedVendors = new List<int>();
+            for (int i = 0;i<AllVendors.Count();i++)
+
+            {
+                z = 0;
+                if (AllVendors[i] == Vendorid)
+                {
+                    continue;
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        SelectedVendors.Add(AllVendors[0]);
+                    }
+                    else
+                    {
+                        for (int j = 0; j < i && z==0; j++)
+                        {
+                            if (AllVendors[i] == AllVendors[j])
+                            {
+                                continue;
+                            }
+
+                            else
+                            {
+                                SelectedVendors.Add(AllVendors[i]);
+                                z = 1;
+                            }
+                        }
+                    }
+                }
+
+                    
+                }
+            
 
 
+            return SelectedVendors;
+
+
+           
+
+
+
+        }
+            
+            
+
+
+        }
     }
-}

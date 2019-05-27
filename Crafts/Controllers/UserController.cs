@@ -71,7 +71,7 @@ namespace Crafts.Controllers
         {
             User_table USer = (User_table)Session["user"];
 
-            int id = USer.User_Id;
+            //int id = USer.User_Id;
             BL.User user = new BL.User();
             ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, 1);
             return PartialView();
@@ -196,7 +196,7 @@ namespace Crafts.Controllers
 
         
 
-    }
+    
         public ActionResult myprofile()
         {
             if (Session["User_Id"] != null)
@@ -207,7 +207,17 @@ namespace Crafts.Controllers
             {
                 return RedirectToAction("login", "User");
             }
-            }
+         }
+
+        public ActionResult RecommendedVendors(int id)
+
+        {
+            List<int> Vendors = ul.PersonsHasSameCategory(id);
+            return View();
+        }
+
 
         }
+
+
 }
