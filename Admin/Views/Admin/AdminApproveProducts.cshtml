@@ -79,12 +79,27 @@
 </table>
 
 
-@*@Html.ActionLink("OK", "AdminApproval", new { id =1 ,s=Model[].State})
+@*@Html.ActionLink("OK", "AdminApproval", new { id = 1, s = Model[].State });
 <script>
+    function parseDAta() {
+        var jsonString = "{}";
+
+        $.ajax({
+            url: '/book/book',
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: jsonString,
+            success: function (result) {
+                console.log('Data received: ');
+                console.log(result);
+            }
+        });
+    }
     function Test() {
         var a = document.getElementsByName("status");
         var b = document.getElementById;
-        for (var i = 1; i <= @Model.Count(); i++) {
+        for (let i = 1; i <= @Model.Count(); i++) {
 
             if (a[i].valueOf() == "approved") {
             @Model[1].State="approved";

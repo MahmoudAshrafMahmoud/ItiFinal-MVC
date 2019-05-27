@@ -347,6 +347,7 @@
     <Content Include="Views\User\myprofile.cshtml" />
     <Content Include="Views\Category\Subscribe.cshtml" />
     <Content Include="Views\Category\UnSubscribe.cshtml" />
+    <Content Include="Views\User\SelectedUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

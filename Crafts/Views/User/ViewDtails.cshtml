@@ -1,11 +1,13 @@
 ﻿
 @model List<BL.SharedModels.MyOrdersModel>
 
+<div id="div1" class="mb-5 pb-5">
 
-   <h2  class="d-block mx-auto mb-4">
-       <a href="@Url.Action("Show_Orders","User")"> My Orders </a>  =>
-       <a>  Order Details  </a> 
-   </h2>
+    <h4 class="d-block mx-auto mb-4 mt-3 ">
+        @Ajax.ActionLink("Back to my orders List", "Show_Orders", "User",
+                       new AjaxOptions { UpdateTargetId = "div1", HttpMethod = "GET" })
+
+    </h4>
     <table class="table table-bordered table-hover">
 
         <thead>
@@ -40,3 +42,4 @@
 
 
     </table>
+</div>
