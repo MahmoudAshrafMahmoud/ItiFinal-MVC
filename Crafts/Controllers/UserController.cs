@@ -31,16 +31,9 @@ namespace Crafts.Controllers
             }
             else
             {
-                return RedirectToAction("login", "User");
+                return RedirectToAction("Index", "Home");
             }
         }
-
-        //[HttpGet]
-        //public ActionResult login()
-        //{
-        //    ViewBag.ID = id;
-        //    return View();
-        //}
         [HttpGet]
         public ActionResult login()
         {
@@ -81,9 +74,6 @@ namespace Crafts.Controllers
             ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, 1);
             return PartialView();
         }
-
-
-
 
 
         [HttpPost]
@@ -177,7 +167,7 @@ namespace Crafts.Controllers
 
             ul.addMessage( name, email, subject, message);
             ul.sendEmail(email);
-            return View("Home");
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -201,7 +191,7 @@ namespace Crafts.Controllers
 
         
 
-    }
+    
         public ActionResult myprofile()
         {
             if (Session["User_Id"] != null)

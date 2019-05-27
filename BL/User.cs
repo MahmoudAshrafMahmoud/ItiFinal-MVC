@@ -270,7 +270,7 @@ namespace BL
             }
             return FollwedUsers;
         }
-    }
+    
 
 
         //Get User or Vendor Which is clicked on his profile

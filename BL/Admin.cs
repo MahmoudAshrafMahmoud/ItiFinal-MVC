@@ -29,9 +29,9 @@ namespace BL
                                      state = req.reqState
                                  }
                                  ).ToList();
-    return VendorRequest;
+                  return VendorRequest;
 
-            return VendorRequest;
+            
         }
 
 
@@ -62,7 +62,7 @@ namespace BL
 
        }
 
-            }
+           
      
 
         //public void display()

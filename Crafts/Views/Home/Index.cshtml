@@ -79,7 +79,7 @@
                     <div class="col col1">
                         <div class="f_p_item">
                             <div class="f_p_img">
-                                <img   class="img-fluid proimage" src="@ImgSRC" alt="@ViewBag.Product_Description">
+                                <img   class="img-fluid proimage" src="@ImgSRC" alt="">
                                 <div class="p_icon">
                                     <a href="#">
                                         <i class="far fa-heart"></i>
@@ -141,7 +141,7 @@
                                     
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="@Url.Action("SelectedUser", "User",new {id= @item.User_Id})">
                                 <h4>@item.User_Name</h4>
                             </a>
                             

@@ -8,7 +8,7 @@
         {
             <li>
                 <a  class="d-flex justify-content-between"
-             href="#"> 
+           href="@Url.Action("SelectedUser", "User",new {id= @item.User_Id})"> 
                 <p>@item.FName @item.LName</p></a>
 
             </li>
@@ -18,4 +18,3 @@
     <div class="br"></div>
 </aside>
 
-@*@Url.Action("SelectedCategory", "Category", new { id = @item.User_id })*@

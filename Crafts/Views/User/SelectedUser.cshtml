@@ -12,7 +12,12 @@
     <div class="blog_right_sidebar">
 
         <aside class="single_sidebar_widget author_widget">
-            <img class="mt-5 author_img rounded-circle" src="@Session["ProfilePicture"]" width="150px" alt="">
+            @{
+                var base642 = Convert.ToBase64String(@Model.ProfilePicture);
+                var ImgSRC2 = string.Format("data:image/gif;base64,{0}", base642);
+            }
+            <img class="mt-5 author_img rounded-circle" src="@ImgSRC2" width="150px" alt="">
+
             <h4>@Model.User_Name</h4>
             <div class="social_icon">
                 <a href="#">
@@ -34,121 +39,99 @@
             <div class="br"></div>
         </aside>
         <aside class="single_sidebar_widget ads_widget">
-            <a href="#">
-                <img class="img-fluid" src="~/Assests/img/blog/add.jpg" alt="">
+            <a class="ml-5  btn  btn-primary" href="#"> Follow @Model.FName
             </a>
             <div class="br"></div>
         </aside>
-        <aside class="single_sidebar_widget post_category_widget">
-            <h4 class="widget_title">Post Catgories</h4>
-            <ul class="list cat-list">
-
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Fashion</p>
-                        <p>59</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Art</p>
-                        <p>29</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Food</p>
-                        <p>15</p>
-                    </a>
-                </li>
-
-            </ul>
-            <div class="br"></div>
-        </aside>
-
-        <aside class="single-sidebar-widget tag_cloud_widget">
-            <h4 class="widget_title">Subscribed Categories</h4>
-            <ul class="list">
-
-                <li>
-                    <a href="#">Fashion</a>
-                </li>
-                <li>
-                    <a href="#">Food</a>
-                </li>
-                <li>
-                    <a href="#">Technology</a>
-                </li>
-                <li>
-                    <a href="#">Lifestyle</a>
-                </li>
-                <li>
-                    <a href="#">Art</a>
-                </li>
-
-
-            </ul>
-        </aside>
+      
     </div>
 </div>
 
-<div class="col-lg-6">
+<div class="col-lg-9">
 
-   
+    <div class="row">
+        <div class="main_title">
+            <h3>Vendor Best Seller</h3>
+        </div>
+    </div>
     <div class="row">
 
         @foreach (var item in ViewBag.BestSellingVendorProducts)
         {
+            var base64 = Convert.ToBase64String(@item.Image);
+            var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
             <div class="col col1">
                 <div class="f_p_item">
                     <div class="f_p_img">
-                        @*<div class="img-fluid">@item.Image</div>*@
+                        <img class="img-fluid proimage" src="@ImgSRC" alt="">
                         <div class="p_icon">
                             <a href="#">
                                 <i class="far fa-heart"></i>
                             </a>
 
-                            <a class="fas fa-cart-plus" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#shoppingCartID" href="/Cart/Add/36"> </a>
+                            @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "shoppingCartID",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   },
+                                   new { @class = "fas fa-cart-plus" })
 
 
                         </div>
                     </div>
-                    <a href="#">
-                        <h4>@item.Product_Name</h4>
-                    </a>
-                    <p>@item.Product_Description</p>
-                    <h5>@item.Product_Price LE</h5>
+                    <div class="prodec">
+                        <a href="#">
+                            <h4>@item.Product_Name</h4>
+                        </a>
+                    </div>
 
+                    <h5>@item.Product_Price LE</h5>
                 </div>
             </div>
         }
 
     </div>
-
+    <div class="row">
+        <div class="main_title">
+            <h3>Products</h3>
+        </div>
+    </div>
     <div class="row">
 
         @foreach (var item in ViewBag.VendorProducts)
-        {
+            {
+                var base64 = Convert.ToBase64String(@item.Image);
+                var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
             <div class="col col1">
                 <div class="f_p_item">
                     <div class="f_p_img">
-                        @*<div class="img-fluid">@item.Image</div>*@
+                        <img class="img-fluid proimage" src="@ImgSRC" alt="">
                         <div class="p_icon">
                             <a href="#">
                                 <i class="far fa-heart"></i>
                             </a>
 
-                            <a class="fas fa-cart-plus" data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#shoppingCartID" href="/Cart/Add/36"> </a>
+                            @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "shoppingCartID",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   },
+                                   new { @class = "fas fa-cart-plus" })
 
 
                         </div>
                     </div>
-                    <a href="#">
-                        <h4>@item.Product_Name</h4>
-                    </a>
-                    <p>@item.Product_Description</p>
-                    <h5>@item.Product_Price LE</h5>
+                    <div class="prodec">
+                        <a href="#">
+                            <h4>@item.Product_Name</h4>
+                        </a>
+                    </div>
 
+                    <h5>@item.Product_Price LE</h5>
                 </div>
             </div>
         }
@@ -156,7 +139,6 @@
     </div>
 
 
-   
 </div>
 
 
@@ -243,3 +225,8 @@
         </aside>
     </div>
 </div>*@
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
+

@@ -349,7 +349,6 @@
     <Content Include="Views\Shared\_Profile.cshtml" />
     <Content Include="Views\User\Show_Orders.cshtml" />
     <Content Include="Views\Shared\_ProfileOFOthers.cshtml" />
-    <Content Include="Views\User\useProfile.cshtml" />
     <Content Include="Views\User\myprofile.cshtml" />
     <Content Include="Views\Category\Subscribe.cshtml" />
     <Content Include="Views\Category\UnSubscribe.cshtml" />
