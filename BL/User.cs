@@ -85,7 +85,7 @@ namespace BL
                 user.FullName = FullName;
 
                 Request_table req = new Request_table();
-                req.National_ID= user.NationalId;
+                req.National_ID = user.NationalId;
                 req.Seller_info = user.Bio;
                 req.Request_Date = DateTime.Now;
                 req.Full_Name = user.FullName;
@@ -130,7 +130,7 @@ namespace BL
                                     Product_Price = p.Product_Price,
                                     Image = p.Image,
                                     Vendor_id = p.Vendor_id
-                                    
+
                                 }).ToList();
             return productsList;
         }
@@ -182,8 +182,8 @@ namespace BL
 
 
             var query = (from p in context.Product_table
-                                                  orderby p.Add_Date descending
-                                                  select p).ToList(); 
+                         orderby p.Add_Date descending
+                         select p).ToList();
 
             var x = (from p in query
                      join f in context.Following_table
@@ -206,7 +206,7 @@ namespace BL
 
         public void sendEmail(string Email)
         {
-            string  MyMail = "projectsalary4444@gmail.com", pwd = "Psalaryproject4444";
+            string MyMail = "projectsalary4444@gmail.com", pwd = "Psalaryproject4444";
             try
             {
                 MailMessage mail = new MailMessage();
@@ -219,7 +219,7 @@ namespace BL
                                                 "<head>" +
                                                " </head>" +
                                                " <body>" +
-                                                     "we received your message sucessfully and will reply back  As Son As Possible if needed"+
+                                                     "we received your message sucessfully and will reply back  As Son As Possible if needed" +
                                                 "</body>" +
                                                 "</html>";
 
@@ -245,5 +245,11 @@ namespace BL
 
         }
 
+        //public List<Category_table> mySubCat(int ID)
+        //{
+        //    return context.Category_table.Where(
+        //}
     }
+
+    
 }

@@ -66,17 +66,16 @@ namespace Crafts.Controllers
             return View();
         }
 
-        //Vendor Register
-        //[HttpPost]
-        //public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
-        //{
-        //    User_table USer = (User_table)Session["user"];
+        [HttpPost]
+        public ActionResult VendorRegister(string FullName, int NationalId, string Bio)
+        {
+            User_table USer = (User_table)Session["user"];
 
-            //int id= USer.User_Id ;
-            //BL.User user = new BL.User();
-            //ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio,id);
-            //return PartialView();
-        //}
+            int id = USer.User_Id;
+            BL.User user = new BL.User();
+            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
+            return PartialView();
+        }
 
 
 
