@@ -71,7 +71,7 @@ namespace BL
 
               .OrderByDescending(                 // then sort by the summed values DESC
                g => g.Sum(e => e.Quantity))
-               .Take(5)                            // then take the top X values
+               .Take(10)                            // then take the top X values
               .Select(                            // e.g. List.TopX(3) would return...
               r => new { ProID = r.Key, Sum = r.Sum(e => e.Quantity) }).ToList();
 

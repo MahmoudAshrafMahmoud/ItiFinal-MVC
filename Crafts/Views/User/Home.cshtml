@@ -64,27 +64,31 @@
 
 
 
+      
 
-
-<!--top seller slider-->
-<div class="container">
-    <div class="row">
-        <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
-            <div class="MultiCarousel-inner">
-                @foreach (BL.SharedModels.ProductModel item in ViewBag.topSeller)
+    <!--top seller slider-->
+    <div class="container mt-5 pt-5">
+        <div class="main_title">
+            <h2>Recommended Products For you</h2>
+            <p>Selected based on your subscription!</p>
+        </div>
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    @foreach (BL.SharedModels.ProductModel item in ViewBag.topSeller)
                 {
                     var base64 = Convert.ToBase64String(@item.Image);
                     var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
-                    <div class="col col1 item">
-                        <div class="f_p_item ">
-                            <div class="f_p_img ">
-                                <img class="img-fluid" src="@ImgSRC" alt="@ViewBag.Product_Description">
-                                <div class="p_icon">
-                                    <a href="#">
-                                        <i class="far fa-heart"></i>
-                                    </a>
-                              
-                                    @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                <div class="col col1 item">
+                    <div class="f_p_item ">
+                        <div class="f_p_img ">
+                            <img class="img-fluid proimage" src="@ImgSRC" alt="@ViewBag.Product_Description">
+                            <div class="p_icon">
+                                <a href="#">
+                                    <i class="far fa-heart"></i>
+                                </a>
+
+                                @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
                                    new AjaxOptions
                                    {
                                        UpdateTargetId = "shoppingCartID",
@@ -92,37 +96,41 @@
                                        HttpMethod = "GET"
                                    },
                                    new { @class = "fas fa-cart-plus" })
-                                </div>
                             </div>
-                            <div class="prodec">
-                                <a href="#">
-                                    <h4>@item.Product_Name</h4>
-                                </a>
-                            </div>
-
-                            <h5>@item.Product_Price LE</h5>
                         </div>
+                        <div class="prodec">
+                            <a href="#">
+                                <h4>@item.Product_Name</h4>
+                            </a>
+                        </div>
+
+                        <h5>@item.Product_Price LE</h5>
                     </div>
+                </div>
                 }
+                </div>
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
             </div>
-            <button class="btn btn-primary leftLst"><</button>
-            <button class="btn btn-primary rightLst">></button>
         </div>
-    </div>
-    <!--top seller slider  End-->
-    <!--Last Added slider-->
-    <div class="container">
-        <div class="row">
-            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
-                <div class="MultiCarousel-inner">
-                    @foreach (BL.SharedModels.ProductModel item in ViewBag.lastAdded)
-                    {
-                        var base64 = Convert.ToBase64String(@item.Image);
-                        var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
+        <!--top seller slider  End-->
+        <!--Last Added slider-->
+        <div class="container mt-3 pt-3">
+            <div class="main_title">
+                <h2>Latest Added Products</h2>
+                <p>With us ..You're always up-to-date!</p>
+            </div>
+            <div class="row">
+                <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
+                    <div class="MultiCarousel-inner">
+                        @foreach (BL.SharedModels.ProductModel item in ViewBag.lastAdded)
+                        {
+                            var base64 = Convert.ToBase64String(@item.Image);
+                            var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
                         <div class="col col1 item">
                             <div class="f_p_item ">
                                 <div class="f_p_img ">
-                                    <img class="img-fluid" src="@ImgSRC" alt="@ViewBag.Product_Description">
+                                    <img class="img-fluid proimage" src="@ImgSRC" alt="@ViewBag.Product_Description">
                                     <div class="p_icon">
                                         <a href="#">
                                             <i class="far fa-heart"></i>
@@ -148,17 +156,119 @@
                                 <h5>@item.Product_Price LE</h5>
                             </div>
                         </div>
-                    }
+                        }
+                    </div>
+                    <button class="btn btn-primary leftLst"><</button>
+                    <button class="btn btn-primary rightLst">></button>
                 </div>
-                <button class="btn btn-primary leftLst"><</button>
-                <button class="btn btn-primary rightLst">></button>
+            </div>
+            <!--Last Added slider  End-->
+
+        </div>
+    </div>
+
+
+    @*Best Seller*@
+    <section class="feature_product_area section_gap container">
+        <div class="main_box">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="main_title">
+                        <h2>BEST SELLER</h2>
+                        <p>See What are our clients prefer and recommend for you!</p>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in ViewBag.selectedPro)
+                {
+                    var base64 = Convert.ToBase64String(@item.Image);
+                    var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
+                <div class="col col1">
+                    <div class="f_p_item">
+                        <div class="f_p_img">
+                            <img class="img-fluid proimage" src="@ImgSRC" alt="@ViewBag.Product_Description">
+                            <div class="p_icon">
+                                <a href="#">
+                                    <i class="far fa-heart"></i>
+                                </a>
+
+                                @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                   new AjaxOptions
+                                   {
+                                       UpdateTargetId = "shoppingCartID",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   },
+                                   new { @class = "fas fa-cart-plus" })
+
+
+                            </div>
+                        </div>
+                        <div class="prodec">
+                            <a href="#">
+                                <h4>@item.Product_Name</h4>
+                            </a>
+                        </div>
+
+                        <h5>@item.Product_Price LE</h5>
+                    </div>
+                </div>
+                }
+
+                </div>
+
             </div>
         </div>
-        <!--Last Added slider  End-->
+    </section>
 
-    </div>
-</div>
+    @*Top Vendors*@
+    <section class="feature_product_area container">
+        <div class="main_box">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="main_title">
+                        <h2>Top Trend Vendors</h2>
+                        <p>Vendors you may need to Follow!</p>
+                    </div>
+                </div>
 
-@section scripts{
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
-}
+                <div class="row">
+                    @foreach (var item in ViewBag.selectedVendor)
+                    {
+                        var base64 = Convert.ToBase64String(@item.ProfilePicture);
+                        var ImgSRC2 = string.Format("data:image/gif;base64,{0}", base64);
+                        <div class="col col1">
+                            <div class="f_p_item">
+                                <div class="f_p_img">
+                                    <img class="img-fluid" src="@ImgSRC2" alt="">
+                                    <div class="p_icon">
+                                        @*to Follow*@
+                                        <a href="#">
+                                            <i class="far fa-star"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <a href="@Url.Action("SelectedUser", "User",new {id= @item.User_Id})">
+                                    <h4>@item.User_Name</h4>
+                                </a>
+
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    @section scripts{
+        @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    }
