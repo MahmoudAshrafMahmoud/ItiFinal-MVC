@@ -7,12 +7,15 @@
         @foreach (var item in ViewBag.subs)
         {
             <li>
-                <a href="#" class="d-flex justify-content-between">
-                    <p>@item.FName @item.LName</p>
-                </a>
+                <a  class="d-flex justify-content-between"
+             href="#"> 
+                <p>@item.FName @item.LName</p></a>
+
             </li>
         }
 
     </ul>
     <div class="br"></div>
 </aside>
+
+@*@Url.Action("SelectedCategory", "Category", new { id = @item.User_id })*@

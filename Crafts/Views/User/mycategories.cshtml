@@ -4,7 +4,9 @@
 
         @foreach (var item in ViewBag.mycats) { 
         <li>
-            <a href="#">@item.Cat_Name</a>
+
+            <a href="@Url.Action("SelectedCategory", "Category",new {id= @item.Cat_Id})"> @item.Cat_Name</a>
+
         </li>
         }
 

@@ -345,20 +345,9 @@
                                         </ul>
                                     </li>
 
-                                   <li class="nav-item submenu dropdown" id="ProfileID">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="@Url.Action("Show_Orders","User")">My Orders</a>
-                                                    </li>
-                                                @*<li class="nav-item">
-                                                    <a class="nav-link" href="tracking.html">Tracking</a>
-                                                    </li>*@
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="@Url.Action("Logout","User")">Logout</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                 
+
+
                                     <li class="nav-item submenu dropdown" id="VendorID">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
                                         <ul class="dropdown-menu">
@@ -396,18 +385,18 @@
                                     <hr>
 
                                     <li class="nav-item">
-                                        <a href="#" class="icons">
+                                        <a href="@Url.Action("myprofile","User")" class="icons">
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                         </a>
                                     </li>
 
                                     <hr>
 
-                                    <li class="nav-item">
+                                    @*<li class="nav-item">
                                         <a href="#" class="icons">
                                             <i class="far fa-heart" aria-hidden="true"></i>
                                         </a>
-                                    </li>
+                                    </li>*@
 
                                     <hr>
 
@@ -422,6 +411,12 @@
                                             @Session["TotalPrice"] L.E
                                         </span>
                                     </a>
+
+                                    <li class="nav-item" id="ProfileID">
+                                        <a href="@Url.Action("Logout","User")" class="icons">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </a>
+                                    </li>
 
                                     <hr>
                                 </ul>

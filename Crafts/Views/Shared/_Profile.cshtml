@@ -70,23 +70,6 @@
                                         </ul>
                                     </li>
 
-                                    <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                           aria-expanded="false">Profile</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Show_Orders","User")">My Orders</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Be_Vendor","User")">Register as Vendor</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Logout","User")">Logout</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-
-
-
                                     <li class="nav-item">
                                         <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
                                     </li>
@@ -104,19 +87,19 @@
 
                                     <hr>
 
-                                    <li class="nav-item">
-                                        <a href="#" class="icons">
+                                    <li class="nav-item" >
+                                        <a href="@Url.Action("myprofile","User")" class="icons">
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                         </a>
                                     </li>
 
                                     <hr>
 
-                                    <li class="nav-item">
+                                    @*<li class="nav-item">
                                         <a href="#" class="icons">
                                             <i class="fa fa-heart-o" aria-hidden="true"></i>
                                         </a>
-                                    </li>
+                                    </li>*@
 
                                     <hr>
                                     <li class="nav-item">
@@ -130,6 +113,12 @@
                                             @Session["TotalPrice"] L.E
                                         </span>
                                     </a>
+
+                                    <li class="nav-item" id="ProfileID">
+                                        <a href="@Url.Action("Logout","User")" class="icons">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </a>
+                                    </li>
 
                                     <hr>
                                 </ul>
@@ -176,7 +165,7 @@
 
                         <aside class="single_sidebar_widget author_widget">
                             <img class="mt-5 author_img rounded-circle"
-                                 src="@Session["ProfilePicture"]" width="150px" alt="">
+                                 src="@Session["ProfilePicture"]" width="150px;" alt="">
                             <h4> @Session["UserFullname"] </h4>
                             @*<p>@Session["UserFullname"]</p>*@
                             <div class="social_icon">
