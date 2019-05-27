@@ -124,8 +124,13 @@ namespace BL
 
         public void deleteMessage(int id)
         {
-            context.Message_table.Remove(context.Message_table.Find(id));
+            try
+            {
+                context.Message_table.Remove(context.Message_table.Find(id));
+            
             context.SaveChanges();
+            }
+            catch { }
         }
     }
 }
