@@ -123,12 +123,19 @@ namespace Admin.Controllers
 
             int messageCount = admin.MessageCount();
             ViewBag.messageCount = messageCount;
+
+
+            int requestCount = admin.vedorRequestsCount();
+            ViewBag.requestCount = requestCount;
+
             int pendingOrdersCount = admin.OrdersStatus("pending");
             ViewBag.pendingOrdersCount = pendingOrdersCount;
             int deleveredOrderCount = admin.OrdersStatus("delevered");
             ViewBag.deleveredOrderCount = deleveredOrderCount;
             int rejectedOrderCount = admin.OrdersStatus("rejected");
             ViewBag.rejectedOrderCount = rejectedOrderCount;
+
+
             int approvedProductCount = admin.prodCount("approved");
             ViewBag.productCount = approvedProductCount;
             int pendingProductCount = admin.prodCount("pending");
