@@ -122,13 +122,37 @@ namespace BL
                                Product_Name = product.Product_Name,
                                Product_Price = product.Product_Price,
                                CatName = Category.Cat_Name,
-                               VendorName = vendor.User_Name
+                               VendorName = vendor.User_Name,
+                               state=product.State
                            }
 
                          ).Take(7).ToList();
 
             return Producttbl;
         }
+
+        public List<UserModel> NumOFUsers()
+        {
+            var Usertbl = (from user in context.User_table
+                           join type in context.Type_table
+                           on user.Type_id equals type.Type_id
+                           orderby user.User_Id descending
+                           select new UserModel
+                           {
+                               userid = user.User_Id,
+                               username = user.User_Name,
+                               email = user.User_Email,
+                               phone = user.PhoneNumber,
+                               NationalId = user.SSN,
+                               gender = user.Gender,
+                               typeName=type.Type_Name
+                           }
+
+                         ).Take(9).ToList();
+
+            return Usertbl;
+        }
+
 
 
         public List<Product_table> DisplayPendingProducts()

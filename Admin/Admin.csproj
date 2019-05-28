@@ -1872,6 +1872,8 @@
     <Content Include="Views\Admin\AfterAdminLogin.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\TablesView.cshtml" />
+    <Content Include="Views\Admin\Num_Customers.cshtml" />
+    <Content Include="Views\Admin\Num_Products.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

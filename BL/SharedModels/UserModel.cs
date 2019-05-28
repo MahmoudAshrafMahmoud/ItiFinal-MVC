@@ -28,5 +28,7 @@ namespace BL.SharedModels
 
         public string gender { set; get; }
 
+        public string typeName { set; get; }
+
     }
 }

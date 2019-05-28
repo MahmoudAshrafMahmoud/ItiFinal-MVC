@@ -117,6 +117,18 @@ namespace Admin.Controllers
             return View();
         }
 
+        public ActionResult Num_Customers()
+        {
+            ViewBag.Num_Users = admin.NumOFUsers();
+            return View();
+        }
+
+        public ActionResult Num_Products()
+        {
+            ViewBag.ProductTable = admin.ProductTable();
+            return View();
+        }
+
              
             
     }
