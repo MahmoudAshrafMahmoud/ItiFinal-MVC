@@ -84,6 +84,9 @@
     <Compile Include="Order_table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Posts_table.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product_table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -157,14 +157,17 @@ namespace BL
             CartModel Mycart = (CartModel)HttpContext.Current.Session["cart"];
             using (CraftsEntities conn = new CraftsEntities())
             {
-                if (HttpContext.Current.Session["userID"] != null)
+                if (HttpContext.Current.Session["User_Id"] != null)
                 {
                     Order_table NewOrder = new Order_table();
                     NewOrder.Expected_Price = Mycart.OrderTotalPrice;
-                    NewOrder.User_Id = int.Parse(HttpContext.Current.Session["userID"].ToString());
+                    NewOrder.User_Id = int.Parse(HttpContext.Current.Session["User_Id"].ToString());
                     NewOrder.Order_Date = DateTime.Now;
                     NewOrder.Order_Phone = phone;
                     NewOrder.Order_Address = address;
+                    NewOrder.status = "pending";
+                    NewOrder.rating = 0;
+                   
                     //add instances to context
                     conn.Order_table.Add(NewOrder);
                     for (int i = 0; i < Mycart.CartItem.Count; i++)
@@ -174,6 +177,7 @@ namespace BL
                         NewOrderItem.Pro_Id = Mycart.CartItem[i].ProductData.Product_Id;
                         NewOrderItem.Quantity = Mycart.CartItem[i].ProductQty;
                         NewOrderItem.Approval = "pending";
+                        NewOrderItem.rating = 0;
                         conn.OrderDetails_table.Add(NewOrderItem);
                     }
                     conn.SaveChanges();

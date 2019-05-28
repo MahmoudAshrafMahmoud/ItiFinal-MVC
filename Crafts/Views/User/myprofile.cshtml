@@ -5,21 +5,12 @@
 }
 
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Addpost</title>
+
 
     <link href="~/Assests/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/Assests/js/jquery-3.2.1.min.js"></script>
-    <script src="~/Assests/js/popper.js"></script>
-    <script src="~/Assests/js/bootstrap.min.js"></script>
-    <script src="~/Assests/js/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-</head>
-<body>
+
+
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -35,7 +26,26 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="posts" role="tabpanel" aria-labelledby="posts-tab">
 
-                Posts area
+@using (Ajax.BeginForm("Insetuserpost",
+                            new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                UpdateTargetId = "postsarearaget",
+                                InsertionMode = InsertionMode.Replace
+                            }))
+{
+                    <div class="form-group margin-bottom-none">
+                        <div class="col-sm-7 mt-2">
+                            <input style="height:100px" name="post" class="form-control input-sm" placeholder="Write Here">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Post</button>
+                     </div>
+                    </div>
+}
+                <div class="col-8 mt-5 pt-5" id="postsarearaget">
+                    @{Html.RenderAction("getposts", "User");}
+                </div>
             </div>
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                 @{Html.RenderAction("Show_Orders", "user");}
@@ -47,9 +57,3 @@
     </div>
 
 
-    @section scripts{
-        @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
-    }
-
-</body>
-</html>

@@ -45,6 +45,7 @@ namespace Crafts.Controllers
         {
             BL.Order order = new BL.Order();
             int id = (int)Session["User_Id"];
+            
             List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
 
             return View(ViewOrders);
@@ -92,15 +93,19 @@ namespace Crafts.Controllers
                 Session.Add("Rating", user.Rating);
                 Session.Add("Bio", user.Bio);
                 Session.Add("Gender", user.Gender);
-
+                if (user.Type_id == 2)
+                {
+                    Session.Add("vendor", "vendor");
+                }
                 if (Session["checkOutRequest"] != null)
-                {
-                    return RedirectToAction("cartDisplay", "Cart");
-                }
-                else
-                {
-                    return RedirectToAction("Home", "User");
-                }
+                    {
+                        return RedirectToAction("cartDisplay", "Cart");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Home", "User");
+                    }
+               
             }
             else
             {
@@ -193,10 +198,6 @@ namespace Crafts.Controllers
 
         }
 
-
-
-
-
         public ActionResult myprofile()
         {
             if (Session["User_Id"] != null)
@@ -226,6 +227,22 @@ namespace Crafts.Controllers
         {
             List<int> Vendors = ul.PersonsHasSameCategory(id);
             return View();
+        }
+        [HttpGet]
+        public PartialViewResult getposts()
+        {
+            int userid = int.Parse(Session["User_Id"].ToString());
+            List<PostModel> posts = ul.getuserposts(userid);
+            return PartialView(posts);
+        }
+     
+
+        public ActionResult Insetuserpost(string post)
+        {
+            
+                int userid = int.Parse(Session["User_Id"].ToString());
+                ul.Insertuserpost(post, userid);
+            return RedirectToAction("getposts");
         }
     }
 

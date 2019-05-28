@@ -113,8 +113,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assests\css\AdminLTE.min.css" />
     <Content Include="Assests\css\bootstrap.css" />
     <Content Include="Assests\css\breadcrumb.css" />
+    <Content Include="Assests\css\Facebook.css" />
     <Content Include="Assests\css\font-awesome.min.css" />
     <Content Include="Assests\css\multiItemSlider.css" />
     <Content Include="Assests\css\responsive.css" />
@@ -206,9 +208,11 @@
     <Content Include="Assests\img\product\single-product\s-product-s-4.jpg" />
     <Content Include="Assests\img\profile-female.png" />
     <Content Include="Assests\img\upload.png" />
+    <Content Include="Assests\js\adminlte.min.js" />
     <Content Include="Assests\js\bootstrap.min.js" />
     <Content Include="Assests\js\contact.js" />
     <Content Include="Assests\js\custom.js" />
+    <Content Include="Assests\js\Facebook.js" />
     <Content Include="Assests\js\gmaps.min.js" />
     <Content Include="Assests\js\jquery-3.2.1.min.js" />
     <Content Include="Assests\js\jquery.ajaxchimp.min.js" />
@@ -358,6 +362,7 @@
     <Content Include="Views\Category\errorview.cshtml" />
     <Content Include="Views\Vendor\outofstock.cshtml" />
     <Content Include="Views\Vendor\restoreProducts.cshtml" />
+    <Content Include="Views\User\getposts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

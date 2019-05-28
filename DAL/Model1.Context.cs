@@ -32,6 +32,7 @@ namespace DAL
         public virtual DbSet<Message_table> Message_table { get; set; }
         public virtual DbSet<Order_table> Order_table { get; set; }
         public virtual DbSet<OrderDetails_table> OrderDetails_table { get; set; }
+        public virtual DbSet<Posts_table> Posts_table { get; set; }
         public virtual DbSet<Product_table> Product_table { get; set; }
         public virtual DbSet<Request_table> Request_table { get; set; }
         public virtual DbSet<Subscribtion_table> Subscribtion_table { get; set; }

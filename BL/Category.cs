@@ -49,5 +49,10 @@ namespace BL
             }
             return "false";
         }
+
+        public string categoryname (int id)
+        {
+            return context.Category_table.Where(s => s.Cat_Id == id).Select(s => s.Cat_Name).First();
+        }
     }
 }

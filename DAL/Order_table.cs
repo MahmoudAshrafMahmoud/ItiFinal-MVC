@@ -26,6 +26,8 @@ namespace DAL
         public int Order_Phone { get; set; }
         public double Expected_Price { get; set; }
         public int User_Id { get; set; }
+        public Nullable<int> rating { get; set; }
+        public string status { get; set; }
     
         public virtual User_table User_table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

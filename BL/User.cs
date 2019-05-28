@@ -351,16 +351,42 @@ namespace BL
 
 
             return SelectedVendors;
-
-
-           
-
-
-
         }
-            
-            
 
-
+        public void Insertuserpost(string post, int userid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                Posts_table newpost = new Posts_table {  Post_date=DateTime.Now, Post_body = post, User_id = userid, Post_pic=null };
+                context.Posts_table.Add(newpost);
+                context.SaveChanges();
+            }
         }
+
+        public List<PostModel> getuserposts(int userid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                List<PostModel> post = (from p in context.Posts_table
+                            where p.User_id == userid
+                            orderby p.Post_id descending
+                            select new PostModel
+                            {
+                                Post_id = p.Post_id,
+                                Post_body = p.Post_body,
+                                Post_pic = p.Post_pic,
+                                Post_date =p.Post_date,
+                                user_id = p.User_table.User_Id,
+                                user_image = p.User_table.ProfilePicture,
+                                username = p.User_table.FName + " " + p.User_table.LName
+                                
+                            }).ToList();
+                return post;
+            }
+
+            
+        }
+
+
+    }
     }

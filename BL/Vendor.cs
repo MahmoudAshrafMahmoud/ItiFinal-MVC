@@ -266,7 +266,7 @@ namespace BL
         public bool unfollowvendor(int user_id, int vendor_id)
         {
             List<Following_table> myRecord = context.Following_table.Where(s => s.User_id == user_id && s.Vendor_id == vendor_id).Select(s => s).ToList();
-            if (myRecord.Count() == 0)
+            if (myRecord.Count() != 0)
             {
                 context.Following_table.Remove(myRecord[0]);
                 context.SaveChanges();

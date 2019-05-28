@@ -234,7 +234,7 @@
                                         </ul>
                                     </li>
 
-                                    <li class="nav-item active">
+                                    <li  id="VendorID" class="nav-item active">
                                         <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Manage My sells</a>
                                     </li>
 
@@ -265,13 +265,7 @@
 
                                     <hr>
 
-                                    @*<li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="far fa-heart" aria-hidden="true"></i>
-                                        </a>
-                                    </li>*@
-
-                                    <hr>
+                
 
                                     <li class="nav-item">
                                         <a href="@Url.Action("cartDisplay","Cart")" class="icons">
@@ -372,36 +366,41 @@
     <script src="~/Assests/js/mail-script.js"></script>
     <script src="~/Assests/js/theme.js"></script>
     <script src="~/Assests/js/navbaricons.js"></script>
-
+    <script src="~/Assests/js/bootstrap.min.js"></script>
+    <script src="~/Assests/js/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src=" ~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+   
     @RenderSection("scripts", required: false)
+
+
+
+
 
 
     <script src="~/Assests/js/multiItemSlider.js"></script>
 
     <script type="text/javascript">
-      
-        if ('@Session["User_Id"]' == "") {
-            document.getElementById("LoginID").classList.remove("hide")
-            document.getElementById("RegisterID").classList.remove("hide")
-            document.getElementById("ProfileID").classList.add("hide")
+             if ('@Session["vendor"]' != "vendor") {
+
             document.getElementById("VendorID").classList.add("hide")
-          
-        }
-        else {
-            
-            document.getElementById("LoginID").classList.add("hide")
-            document.getElementById("RegisterID").classList.add("hide")
-            document.getElementById("ProfileID").classList.remove("hide")
-            document.getElementById("VendorID").classList.remove("hide")
 
         }
+        if ('@Session["User_Id"]' == "") {
+                 document.getElementById("LoginID").classList.remove("hide");
+                 document.getElementById("RegisterID").classList.remove("hide");
+                 document.getElementById("ProfileID").classList.add("hide");
+             }
+             else {
+
+                 document.getElementById("LoginID").classList.add("hide");
+                 document.getElementById("RegisterID").classList.add("hide");
+                 document.getElementById("ProfileID").classList.remove("hide");
+             }
+
 
     </script>
 
-
-  
-
-    <script src="~/Assests/js/multiItemSlider.js"></script>
 
 
 </body>

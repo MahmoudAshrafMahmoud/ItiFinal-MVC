@@ -30,6 +30,5 @@ namespace DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Admin_Req_App_table> Admin_Req_App_table { get; set; }
-        public virtual User_table User_table { get; set; }
     }
 }
