@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Num_Products";
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Data OF Product Table
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                <div class="col-sm-12" style="margin-bottom:100px">
+                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                        <thead>
+                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 149px;">Product ID</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="E-mail: activate to sort column ascending" style="width: 233px;">Product Name</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="subject: activate to sort column ascending" style="width: 107px;">Product Price</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="3" aria-label="Message: activate to sort column ascending" style="width: 47px;">Category</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="3" aria-label="Details: activate to sort column ascending" style="width: 104px;">Vendor Name</th>
+                        
+                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 149px;">Status</th>
+                        
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var item in ViewBag.ProductTable)
+                            {
+                                <tr role="row" class="odd">
+
+                                    <td rowspan="1" colspan="1" class="">@item.Product_Id</td>
+
+                                    <td rowspan="1" colspan="1">@item.Product_Name</td>
+
+                                    <td rowspan="1" colspan="1">@item.Product_Price</td>
+
+                                    <td rowspan="1" colspan="3">@item.CatName</td>
+
+                                    <td rowspan="1" colspan="3">@item.VendorName</td>
+
+                                    <td rowspan="1" colspan="3">@item.state</td>
+                                    
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

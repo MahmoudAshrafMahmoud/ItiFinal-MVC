@@ -55,20 +55,105 @@ namespace BL
                 AdminApprove.State = status;
 
                 Admin_table admin = (Admin_table)HttpContext.Current.Session["admin"];
-
+                AdminApprove.Admin_Id = 1;
                 //    return VendorRequest;
 
                 context.Admin_Req_App_table.Add(AdminApprove);
 
+            context.SaveChanges();
        }
 
-           
-     
 
-        //public void display()
-        //{
+        //User Table For Admin
+        public List<UserModel> UserTable()
+        {
+            var Usertbl = (from user in context.User_table
+                           where user.Type_id == 1
+                           orderby user.User_Id descending
+                           select new UserModel
+                           {
+                               userid = user.User_Id,
+                               username = user.User_Name,
+                               email = user.User_Email,
+                               phone = user.PhoneNumber,
+                               NationalId = user.SSN,
+                               gender = user.Gender
+                           }
 
-        //}
+                         ).Take(7).ToList();
+
+            return Usertbl;
+        }
+
+        // Vendor Table For Admin
+        public List<UserModel> VendorTable()
+        {
+            var Vendortbl = (from user in context.User_table
+                           where user.Type_id == 2
+                           orderby user.User_Id descending
+                           select new UserModel
+                           {
+                               userid = user.User_Id,
+                               username = user.User_Name,
+                               email = user.User_Email,
+                               phone = user.PhoneNumber,
+                               NationalId = user.SSN,
+                               gender = user.Gender
+                           }
+
+                         ).Take(7).ToList();
+
+            return Vendortbl;
+        }
+
+        //Product Table
+
+        public List<ProductModel> ProductTable()
+        {
+            var Producttbl = (from product in context.Product_table
+                           join Category in context.Category_table
+                           on product.Cat_id equals Category.Cat_Id
+                           join vendor in context.User_table
+                           on product.Vendor_id equals vendor.User_Id
+                           orderby product.Product_Id descending
+                           select new ProductModel
+                           {
+                               Product_Id = product.Product_Id,
+                               Product_Name = product.Product_Name,
+                               Product_Price = product.Product_Price,
+                               CatName = Category.Cat_Name,
+                               VendorName = vendor.User_Name,
+                               state=product.State
+                           }
+
+                         ).Take(7).ToList();
+
+            return Producttbl;
+        }
+
+        public List<UserModel> NumOFUsers()
+        {
+            var Usertbl = (from user in context.User_table
+                           join type in context.Type_table
+                           on user.Type_id equals type.Type_id
+                           orderby user.User_Id descending
+                           select new UserModel
+                           {
+                               userid = user.User_Id,
+                               username = user.User_Name,
+                               email = user.User_Email,
+                               phone = user.PhoneNumber,
+                               NationalId = user.SSN,
+                               gender = user.Gender,
+                               typeName=type.Type_Name
+                           }
+
+                         ).Take(9).ToList();
+
+            return Usertbl;
+        }
+
+
 
         public List<Product_table> DisplayPendingProducts()
         {

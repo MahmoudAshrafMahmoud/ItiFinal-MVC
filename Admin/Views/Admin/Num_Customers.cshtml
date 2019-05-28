@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Num_Customers";
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Data OF User Table
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                <div class="col-sm-12" style="margin-bottom:100px">
+                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                        <thead>
+                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 149px;">User ID</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="E-mail: activate to sort column ascending" style="width: 233px;">USer Name</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="subject: activate to sort column ascending" style="width: 107px;">User Email</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="3" aria-label="Message: activate to sort column ascending" style="width: 47px;">User Phone</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending" style="width: 104px;">User SSN</th><th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="3" aria-label="Delete: activate to sort column ascending" aria-sort="descending" style="width: 83px;">Gender</th>
+                        
+                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 149px;">Type</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var item in ViewBag.Num_Users)
+                            {
+                                <tr role="row" class="odd">
+
+                                    <td rowspan="1" colspan="1" class="">@item.userid</td>
+
+                                    <td rowspan="1" colspan="1">@item.username</td>
+
+                                    <td rowspan="1" colspan="1">@item.email</td>
+
+                                    <td rowspan="1" colspan="3">@item.phone</td>
+
+                                    <td rowspan="1" colspan="1">@item.NationalId</td>
+
+                                    <td rowspan="1" colspan="3">@item.gender</td>
+                                    
+                                    <td rowspan="1" colspan="3">@item.typeName</td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
