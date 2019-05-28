@@ -356,6 +356,8 @@
     <Content Include="Views\User\mysubvendors.cshtml" />
     <Content Include="Views\User\SelectedUser.cshtml" />
     <Content Include="Views\Category\errorview.cshtml" />
+    <Content Include="Views\Vendor\outofstock.cshtml" />
+    <Content Include="Views\Vendor\restoreProducts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

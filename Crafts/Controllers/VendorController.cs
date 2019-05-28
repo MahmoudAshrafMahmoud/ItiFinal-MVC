@@ -33,6 +33,8 @@ namespace Crafts.Controllers
             ViewBag.Pendingproduct = Pendingproduct;
             var Rejectedproduct = Vendor.rejectedProducts(userid);
             ViewBag.Rejectedproduct = Rejectedproduct;
+            var outofstockproducts = Vendor.outofstockProducts(userid);
+            ViewBag.outofstock = outofstockproducts;
             return View(Approvedproduct);
         }
 
@@ -57,6 +59,7 @@ namespace Crafts.Controllers
             myvendor.RejectOrder(id);
             return RedirectToAction("VendorOrders");
         }
+
         public PartialViewResult Search(string search,int id)
         {
             Vendor myvendor = new Vendor();
@@ -86,6 +89,19 @@ namespace Crafts.Controllers
             return PartialView();
         }
 
+        public PartialViewResult outofstock(int id)
+        {
+            Vendor myvendor = new Vendor();
+            myvendor.outofstock(id);
+            return PartialView();
+        }
+        public PartialViewResult restoreProducts(int id)
+        {
+            Vendor myvendor = new Vendor();
+            myvendor.restoreproduct(id);
+            return PartialView();
+        }
+        
     }
 
 }
