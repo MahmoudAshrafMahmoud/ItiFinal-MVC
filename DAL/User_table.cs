@@ -35,9 +35,9 @@ namespace DAL
         public int SSN { get; set; }
         public int Type_id { get; set; }
         public byte[] ProfilePicture { get; set; }
-        public double Rating { get; set; }
         public string Gender { get; set; }
         public string Bio { get; set; }
+        public double rating { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Following_table> Following_table { get; set; }

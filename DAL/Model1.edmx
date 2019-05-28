@@ -59,6 +59,8 @@
           <Property Name="Order_Phone" Type="int" Nullable="false" />
           <Property Name="Expected_Price" Type="float" Nullable="false" />
           <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="rating" Type="int" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="OrderDetails_table">
           <Key>
@@ -69,6 +71,7 @@
           <Property Name="Approval" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Pro_Id" Type="int" Nullable="false" />
           <Property Name="Order_Id" Type="int" Nullable="false" />
+          <Property Name="rating" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Product_table">
           <Key>
@@ -135,9 +138,9 @@
           <Property Name="SSN" Type="int" Nullable="false" />
           <Property Name="Type_id" Type="int" Nullable="false" />
           <Property Name="ProfilePicture" Type="image" Nullable="false" />
-          <Property Name="Rating" Type="float" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Bio" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rating" Type="float" Nullable="false" />
         </EntityType>
         <Association Name="FK_Admin_Req_App_table_Admin_table">
           <End Role="Admin_table" Type="Self.Admin_table" Multiplicity="1" />
@@ -494,8 +497,10 @@
           <Property Name="Order_Phone" Type="Int32" Nullable="false" />
           <Property Name="Expected_Price" Type="Double" Nullable="false" />
           <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="rating" Type="Int32" />
           <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Order_table_User_table" FromRole="Order_table" ToRole="User_table" />
           <NavigationProperty Name="OrderDetails_table" Relationship="CraftsModel.FK_OrderDetails_table_Order_table" FromRole="Order_table" ToRole="OrderDetails_table" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OrderDetails_table">
           <Key>
@@ -506,6 +511,7 @@
           <Property Name="Approval" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Pro_Id" Type="Int32" Nullable="false" />
           <Property Name="Order_Id" Type="Int32" Nullable="false" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order_table" Relationship="CraftsModel.FK_OrderDetails_table_Order_table" FromRole="OrderDetails_table" ToRole="Order_table" />
           <NavigationProperty Name="Product_table" Relationship="CraftsModel.FK_OrderDetails_table_Product_table" FromRole="OrderDetails_table" ToRole="Product_table" />
         </EntityType>
@@ -582,9 +588,9 @@
           <Property Name="SSN" Type="Int32" Nullable="false" />
           <Property Name="Type_id" Type="Int32" Nullable="false" />
           <Property Name="ProfilePicture" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="Rating" Type="Double" Nullable="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Bio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rating" Type="Double" Nullable="false" />
           <NavigationProperty Name="Following_table" Relationship="CraftsModel.FK_Following_table_User_table2" FromRole="User_table" ToRole="Following_table" />
           <NavigationProperty Name="Following_table1" Relationship="CraftsModel.FK_Following_table_User_table3" FromRole="User_table" ToRole="Following_table" />
           <NavigationProperty Name="Order_table" Relationship="CraftsModel.FK_Order_table_User_table" FromRole="User_table" ToRole="Order_table" />
@@ -807,6 +813,8 @@
           <EntitySetMapping Name="Order_table">
             <EntityTypeMapping TypeName="CraftsModel.Order_table">
               <MappingFragment StoreEntitySet="Order_table">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Expected_Price" ColumnName="Expected_Price" />
                 <ScalarProperty Name="Order_Phone" ColumnName="Order_Phone" />
@@ -819,6 +827,7 @@
           <EntitySetMapping Name="OrderDetails_table">
             <EntityTypeMapping TypeName="CraftsModel.OrderDetails_table">
               <MappingFragment StoreEntitySet="OrderDetails_table">
+                <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
                 <ScalarProperty Name="Pro_Id" ColumnName="Pro_Id" />
                 <ScalarProperty Name="Approval" ColumnName="Approval" />
@@ -886,9 +895,9 @@
           <EntitySetMapping Name="User_table">
             <EntityTypeMapping TypeName="CraftsModel.User_table">
               <MappingFragment StoreEntitySet="User_table">
+                <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="Bio" ColumnName="Bio" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="Type_id" ColumnName="Type_id" />
                 <ScalarProperty Name="SSN" ColumnName="SSN" />

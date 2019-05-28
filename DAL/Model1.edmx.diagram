@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2d59b57f368d4777a25c2cd3f89cc124" Name="Diagram1">
-        <EntityTypeShape EntityType="CraftsModel.Admin_Req_App_table" Width="1.5" PointX="7.5" PointY="9.375" />
-        <EntityTypeShape EntityType="CraftsModel.Admin_table" Width="1.5" PointX="5.25" PointY="1.375" />
-        <EntityTypeShape EntityType="CraftsModel.Category_table" Width="1.5" PointX="3" PointY="3.5" />
-        <EntityTypeShape EntityType="CraftsModel.Following_table" Width="1.5" PointX="5.25" PointY="15.375" />
+        <EntityTypeShape EntityType="CraftsModel.Admin_Req_App_table" Width="1.5" PointX="7.5" PointY="12.125" />
+        <EntityTypeShape EntityType="CraftsModel.Admin_table" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="CraftsModel.Category_table" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="CraftsModel.Following_table" Width="1.5" PointX="5.25" PointY="18.875" />
         <EntityTypeShape EntityType="CraftsModel.Message_table" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CraftsModel.Order_table" Width="1.5" PointX="5.25" PointY="18" />
-        <EntityTypeShape EntityType="CraftsModel.OrderDetails_table" Width="1.5" PointX="7.5" PointY="12.5" />
-        <EntityTypeShape EntityType="CraftsModel.Product_table" Width="1.5" PointX="5.25" PointY="4.75" />
-        <EntityTypeShape EntityType="CraftsModel.Request_table" Width="1.5" PointX="5.25" PointY="9.125" />
-        <EntityTypeShape EntityType="CraftsModel.Subscribtion_table" Width="1.5" PointX="8.25" PointY="6.375" />
+        <EntityTypeShape EntityType="CraftsModel.Order_table" Width="1.5" PointX="5.25" PointY="15.375" />
+        <EntityTypeShape EntityType="CraftsModel.OrderDetails_table" Width="1.5" PointX="10.5" PointY="11.125" />
+        <EntityTypeShape EntityType="CraftsModel.Product_table" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="CraftsModel.Request_table" Width="1.5" PointX="5.25" PointY="11.875" />
+        <EntityTypeShape EntityType="CraftsModel.Subscribtion_table" Width="1.5" PointX="8.25" PointY="8.5" />
         <EntityTypeShape EntityType="CraftsModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CraftsModel.Type_table" Width="1.5" PointX="0.75" PointY="8.625" />
-        <EntityTypeShape EntityType="CraftsModel.User_table" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="CraftsModel.Type_table" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CraftsModel.User_table" Width="1.5" PointX="3" PointY="7.125" />
         <AssociationConnector Association="CraftsModel.FK_Admin_Req_App_table_Admin_table" />
         <AssociationConnector Association="CraftsModel.FK_Admin_Req_App_table_Request_table" />
         <AssociationConnector Association="CraftsModel.FK_Product_table_Category_table" />

@@ -106,10 +106,22 @@ namespace Admin.Controllers
             List<Order_table> orders = admin.Orders();
             return View();
         }
+
+
+        public ActionResult Dashboard()
+        {
+
+            int messageCount = admin.MessageCount();
+            int pendingOrdersCount = admin.OrdersStatus("pending");
+            int deleveredOrderCount = admin.OrdersStatus("delevered");
+            int rejectedOrderCount = admin.OrdersStatus("rejected");
+            int productCount = admin.prodCount("approved");
+            return View();
+        }
              
             
     }
 
    
 
-    }
+}

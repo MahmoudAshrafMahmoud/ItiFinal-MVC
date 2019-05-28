@@ -114,10 +114,10 @@ namespace BL
 
         public List<Message_table> userMessages()
         {
-  
-            var messages = (from ms in context.Message_table
-                     select ms).ToList();
-            return messages;
+
+
+            return context.Message_table.ToList();
+                   
         }
 
 
@@ -132,5 +132,34 @@ namespace BL
             }
             catch { }
         }
+
+
+        public int MessageCount()
+        {
+            return (from m in context.Message_table
+                    select m).Count();
+        }
+
+
+        public int OrdersStatus(string status)
+        {
+            return (from o in context.Order_table
+                    where o.status == status
+                    select o).Count();
+        }
+
+        public int prodCount(string state)
+        {
+            return (from pc in context.Product_table
+                    where pc.State == state
+                    select pc).Count();
+        }
+        public int vedorRequestsCount()
+        {
+            return (from vr in context.Request_table
+                    where vr.reqState =="pending"
+                    select vr).Count();
+        }
+
     }
 }

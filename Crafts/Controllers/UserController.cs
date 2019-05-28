@@ -89,7 +89,7 @@ namespace Crafts.Controllers
                 Session.Add("UserFullname", user.FName + " " +user.LName);
                 Session.Add("User_Email", user.User_Email);
                 Session.Add("ProfilePicture", ImgSRC);
-                Session.Add("Rating", user.Rating);
+                Session.Add("Rating", user.rating);
                 Session.Add("Bio", user.Bio);
                 Session.Add("Gender", user.Gender);
 
@@ -142,7 +142,7 @@ namespace Crafts.Controllers
             using (CraftsEntities myData = new CraftsEntities())
 
             {
-                newUser.Rating = 0;
+                newUser.rating = 0;
                 newUser.Type_id = 1;
                 myData.User_table.Add(newUser);
                 myData.SaveChanges();
