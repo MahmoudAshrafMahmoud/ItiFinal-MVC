@@ -38,13 +38,43 @@
             </p>
             <div class="br"></div>
         </aside>
-        <aside class="single_sidebar_widget ads_widget">
-            <a class="ml-5  btn  btn-primary" href="#"> Follow @Model.FName
-            </a>
-            <div class="br"></div>
-        </aside>
-      
-    </div>
+    
+
+            <aside class="single_sidebar_widget ads_widget">
+
+                <div class="widgets_inner">
+                    @using (Ajax.BeginForm("follow", "Vendor", new { vendor_id = @ViewBag.user_id }, new AjaxOptions { UpdateTargetId = "msgerror", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "myfn" }))
+                    {
+                        <div id="subscribe" class="">
+                            <b id="checkstate" class="text-white"> @ViewBag.substate</b>
+                            <input type="submit" value="Follow @Model.FName" class="col-12 pl-1 pr-1 btn btn-primary" />
+                        </div>
+
+                    }
+
+
+                    @using (Ajax.BeginForm("unfollow", "Vendor", new { vendor_id = @ViewBag.user_id }, new AjaxOptions { UpdateTargetId = "msgerror", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "myfn" }))
+                    {
+                        <div id="unsubscribe" class="">
+                            <b id="" class="text-white"> @ViewBag.substate</b>
+                            <input type="submit" value="Unfollow @Model.FName" class="col-12 pl-1 pr-1 btn btn-danger" />
+                        </div>
+                    }
+
+                    <div class="widgets_inner pl-1 hide" id="error">
+                        @Session["User_Id"]
+                    <a href="@Url.Action("Login","User")" class=" genric-btn danger circle arrow">
+                        Login First
+                        <span class="lnr lnr-arrow-right"></span>
+                    </a>
+                </div>
+                    </div>
+
+</aside>
+
+
+
+</div>
 </div>
 
 <div class="col-lg-9">
@@ -82,7 +112,7 @@
                         </div>
                     </div>
                     <div class="prodec">
-                        <a href="#">
+                        <a href="@Url.Action("ProductView","Product",new {id= @item.Product_Id })">
                             <h4>@item.Product_Name</h4>
                         </a>
                     </div>
@@ -126,7 +156,7 @@
                         </div>
                     </div>
                     <div class="prodec">
-                        <a href="#">
+                        <a href="@Url.Action("ProductView","Product",new {id= @item.Product_Id })">
                             <h4>@item.Product_Name</h4>
                         </a>
                     </div>
@@ -142,91 +172,49 @@
 </div>
 
 
-@*<div class="col-lg-3">
-    <div class="blog_right_sidebar">
+<script type="text/javascript">
 
-        <aside class="single_sidebar_widget author_widget">
-            <img class="mt-5 author_img rounded-circle" src="@Session["ProfilePicture"]" width="150px" alt="">
-            <h4>@Model.User_Name</h4>
-            <div class="social_icon">
-                <a href="#">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-github"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-behance"></i>
-                </a>
-            </div>
-            <p>
-                @Model.Bio
-            </p>
-            <div class="br"></div>
-        </aside>
-        <aside class="single_sidebar_widget ads_widget">
-            <a href="#">
-                <img class="img-fluid" src="~/Assests/img/blog/add.jpg" alt="">
-            </a>
-            <div class="br"></div>
-        </aside>
-        <aside class="single_sidebar_widget post_category_widget">
-            <h4 class="widget_title">Post Catgories</h4>
-            <ul class="list cat-list">
+    var sub = document.getElementById("subscribe");
+    var unsub = document.getElementById("unsubscribe");
+    var checkstate = document.getElementById("checkstate");
+    var error = document.getElementById("error");
+    if (checkstate.innerText =="true") {
+        sub.classList.add("hide")
+    }
+    else {
+        unsub.classList.add("hide")
+    }
 
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Fashion</p>
-                        <p>59</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Art</p>
-                        <p>29</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Food</p>
-                        <p>15</p>
-                    </a>
-                </li>
+        function myfn() {
+            if ("@Session["User_Id"]" == 0) {
+                error.classList.remove("hide")
+                unsub.classList.add("hide")
+                sub.classList.add("hide")
+            }
+            else {
+                var subclass = sub.className;
 
-            </ul>
-            <div class="br"></div>
-        </aside>
+                if (subclass == "hide") {
 
-        <aside class="single-sidebar-widget tag_cloud_widget">
-            <h4 class="widget_title">Subscribed Categories</h4>
-            <ul class="list">
-
-                <li>
-                    <a href="#">Fashion</a>
-                </li>
-                <li>
-                    <a href="#">Food</a>
-                </li>
-                <li>
-                    <a href="#">Technology</a>
-                </li>
-                <li>
-                    <a href="#">Lifestyle</a>
-                </li>
-                <li>
-                    <a href="#">Art</a>
-                </li>
+                    sub.classList.remove("hide")
+                    unsub.classList.add("hide")
+                }
+                else {
+                    sub.classList.add("hide")
+                    unsub.classList.remove("hide")
+                }
+            }
+        }
 
 
-            </ul>
-        </aside>
-    </div>
-</div>*@
+</script>
+
+
 
 @section scripts{
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
 }
+
+
+
 

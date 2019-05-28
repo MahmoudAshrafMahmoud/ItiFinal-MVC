@@ -5,7 +5,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="~/Assests/img/favicon.png" type="image/png">
     <title>Handmade Crafts</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Assests/css/bootstrap.css">
@@ -73,7 +72,7 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
+                                        <a class="nav-link" href="@Url.Action("contact","User")">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -146,10 +145,10 @@
     <!--================End Home Banner Area =================-->
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area p_120">
-        <div class="container">
+        <div class="container m-1 col-12">
             <div class="row">
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="blog_right_sidebar">
            
 
@@ -192,7 +191,7 @@
 
                     </div>
                 </div>
-                <div class="col-lg-8 posts-list">
+                <div class="col-lg-9 posts-list">
                     @RenderBody()
                 </div>
             </div>

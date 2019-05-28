@@ -9,35 +9,41 @@ namespace Crafts.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: Category Products
-        //We will replace id input parameter (this default one) with any id  
-        //public ActionResult CatProducts(int id = 1)
-        //{
-        //    Product pro = new Product();
-        //    ViewBag.products = pro.CategoryProducts(id);
-        //    returF:\ITI_fullstack\MVC Final Project\ItiFinal-MVC\Crafts\Controllers\CategoryController.csn View();
-        //}
+ 
+
+        Category mycat = new Category();
+
         public ActionResult SelectedCategory(int id)
         {
             Product pro = new Product();
             ViewBag.products = pro.CategoryProducts(id);
             ViewBag.cat_id = id;
-            return View();
+            if (Session["user"] != null)
+            {
+                ViewBag.substate = mycat.checksubscribe((int)Session["User_Id"], id);
+
+            }
+
+                return View();
         }
+
         public ActionResult showCategories()
         {
-            Category mycat = new Category();
             ViewBag.Categories = mycat.AllCategories();
             return View();
         }
         [HttpPost]
         public PartialViewResult Subscribe(int user_id,int cat_id)
         {
-            Product pro = new Product();
-            ViewBag.products = pro.CategoryProducts(cat_id);
-            Category mycat = new Category();
-            mycat.Subscribe(user_id, cat_id);
-            return PartialView();
+            if (Session["user"] != null)
+            {
+                Product pro = new Product();
+                ViewBag.products = pro.CategoryProducts(cat_id);
+                Category mycat = new Category();
+                mycat.Subscribe((int)Session["User_Id"], cat_id);
+                return PartialView();
+            }
+            return PartialView("errorview");
         }
 
         [HttpPost]
@@ -46,7 +52,7 @@ namespace Crafts.Controllers
             Product pro = new Product();
             ViewBag.products = pro.CategoryProducts(cat_id);
             Category mycat = new Category();
-            mycat.UnSubscribe(user_id, cat_id);
+            mycat.UnSubscribe((int)Session["User_Id"], cat_id);
             return PartialView();
         }
 

@@ -91,11 +91,12 @@ namespace BL
 
 
             List<ProductModel> pro = (from p in context.Product_table
-                                      where p.Vendor_id == Vendorid && p.State.ToLower()=="approved"
+                                      where p.Vendor_id == Vendorid && p.State.ToLower() == "approved"
                                       select new ProductModel
                                       {
                                           Product_Price = p.Product_Price,
                                           Product_Name = p.Product_Name,
+                                          Product_Id = p.Product_Id,
                                           Image = p.Image,
                                           
                                       }

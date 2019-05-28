@@ -1,7 +1,7 @@
 ﻿
 
 @foreach (var item in ViewBag.Categories){
-<li >
+<li class="nav-item" >
     @Html.ActionLink((string)item.Cat_Name, "SelectedCategory", "Category", new { id = item.Cat_Id }, new { @class = "nav-link" })
 </li>
 }

@@ -37,7 +37,7 @@ namespace BL
                              Order_Address = s.Order_Address,
                              Order_Phone = s.Order_Phone,
                              Expected_Price = (float)s.Expected_Price,
-                             Image = (byte[])l.Image,
+                             Image = l.Image,
                              OrderDetail_Id=v.OrderDetail_Id
                          }).ToList();
                                              
@@ -142,7 +142,9 @@ namespace BL
                                Product_Description = p.Product_Description,
                                Product_Price = p.Product_Price,
                                Catigory_name = c.Cat_Name,
-                               Product_Name=p.Product_Name
+                               Product_Name=p.Product_Name,
+                               Product_Id = p.Product_Id
+
                            }).ToList();
                 return pro;
                            
@@ -191,7 +193,8 @@ namespace BL
                                Product_Description = p.Product_Description,
                                Product_Price = p.Product_Price,
                                Catigory_name = c.Cat_Name,
-                               Product_Name = p.Product_Name
+                               Product_Name = p.Product_Name,
+                               Product_Id = p.Product_Id
                            }).ToList();
                 return pro;
 
@@ -213,12 +216,94 @@ namespace BL
                                Product_Description = p.Product_Description,
                                Product_Price = p.Product_Price,
                                Catigory_name = c.Cat_Name,
-                               Product_Name = p.Product_Name
+                               Product_Name = p.Product_Name,
+                               Product_Id = p.Product_Id
+
                            }).ToList();
                 return pro;
 
             }
         }
 
+        public static List<ProductModel> outofstockProducts(int userid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                var pro = (from p in context.Product_table
+                           where p.Vendor_id == userid && p.State == "out of stock"
+                           join c in context.Category_table
+                           on p.Cat_id equals c.Cat_Id
+                           select new ProductModel
+                           {
+                               Image = p.Image,
+                               Product_Description = p.Product_Description,
+                               Product_Price = p.Product_Price,
+                               Catigory_name = c.Cat_Name,
+                               Product_Name = p.Product_Name,
+                               Product_Id = p.Product_Id
+
+                           }).ToList();
+                return pro;
+
+            }
+        }
+
+        public bool followvendor(int user_id, int vendor_id)
+        {
+            List<Following_table> myRecord = context.Following_table.Where(s => s.User_id == user_id && s.Vendor_id == vendor_id).Select(s => s).ToList();
+            if (myRecord.Count() == 0)
+            {
+                Following_table model = new Following_table() { User_id = user_id, Vendor_id = vendor_id };
+                context.Following_table.Add(model);
+                context.SaveChanges();
+            }
+            return true;
+
+        }
+
+
+
+        public bool unfollowvendor(int user_id, int vendor_id)
+        {
+            List<Following_table> myRecord = context.Following_table.Where(s => s.User_id == user_id && s.Vendor_id == vendor_id).Select(s => s).ToList();
+            if (myRecord.Count() == 0)
+            {
+                context.Following_table.Remove(myRecord[0]);
+                context.SaveChanges();
+            }
+            return true;
+
+        }
+
+        public string checkfollow(int user_id, int vendor_id)
+        {
+            List<Following_table> myRecord = context.Following_table.Where(s => s.User_id == user_id && s.Vendor_id == vendor_id).Select(s => s).ToList();
+            if (myRecord.Count > 0)
+            {
+                return "true";
+
+            }
+            return "false";
+        }
+
+        public bool outofstock(int id)
+        {
+            (from p in context.Product_table
+             where p.Product_Id == id
+             select p).ToList().ForEach(x => x.State = "out of stock");
+
+            context.SaveChanges();
+            return true;
+        }
+
+        public bool restoreproduct(int id)
+        {
+            (from p in context.Product_table
+             where p.Product_Id == id
+             select p).ToList().ForEach(x => x.State = "pending");
+
+            context.SaveChanges();
+            return true;
+        }
     }
 }

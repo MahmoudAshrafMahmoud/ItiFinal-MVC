@@ -38,5 +38,16 @@ namespace BL
             return true;
 
         }
+
+        public string checksubscribe(int user_id, int cat_id)
+        {
+            List<Subscribtion_table> myRecord = context.Subscribtion_table.Where(s => s.User_Id == user_id && s.Cat_Id == cat_id).Select(s => s).ToList();
+            if(myRecord.Count > 0)
+            {
+                return "true";
+
+            }
+            return "false";
+        }
     }
 }

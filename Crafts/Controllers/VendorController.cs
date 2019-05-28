@@ -33,6 +33,8 @@ namespace Crafts.Controllers
             ViewBag.Pendingproduct = Pendingproduct;
             var Rejectedproduct = Vendor.rejectedProducts(userid);
             ViewBag.Rejectedproduct = Rejectedproduct;
+            var outofstockproducts = Vendor.outofstockProducts(userid);
+            ViewBag.outofstock = outofstockproducts;
             return View(Approvedproduct);
         }
 
@@ -57,13 +59,49 @@ namespace Crafts.Controllers
             myvendor.RejectOrder(id);
             return RedirectToAction("VendorOrders");
         }
+
         public PartialViewResult Search(string search,int id)
         {
             Vendor myvendor = new Vendor();
             ViewBag.orders=myvendor.SearchOrder(search, id);
             return PartialView();
         }
-     
+
+        Vendor vendorlogic = new Vendor();
+
+
+        [HttpPost]
+        public PartialViewResult follow(int vendor_id)
+        {
+            if (Session["user"] != null)
+            {
+
+                bool result = vendorlogic.followvendor((int)Session["User_Id"], vendor_id);
+                return PartialView();
+            }
+            return PartialView("errorview");
+        }
+
+        [HttpPost]
+        public PartialViewResult unfollow(int vendor_id)
+        {
+            bool result = vendorlogic.unfollowvendor((int)Session["User_Id"], vendor_id);
+            return PartialView();
+        }
+
+        public PartialViewResult outofstock(int id)
+        {
+            Vendor myvendor = new Vendor();
+            myvendor.outofstock(id);
+            return PartialView();
+        }
+        public PartialViewResult restoreProducts(int id)
+        {
+            Vendor myvendor = new Vendor();
+            myvendor.restoreproduct(id);
+            return PartialView();
+        }
+        
     }
 
 }
