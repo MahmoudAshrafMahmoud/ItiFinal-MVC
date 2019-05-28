@@ -104,6 +104,16 @@ namespace Admin.Controllers
         public ActionResult AdminShowOrders()
         {
             List<Order_table> orders = admin.Orders();
+            return View(orders);
+        }
+
+
+        public ActionResult TablesView()
+        {
+            ViewBag.UserTable = admin.UserTable();
+            ViewBag.VendorTable = admin.VendorTable();
+            ViewBag.ProductTable = admin.ProductTable();
+
             return View();
         }
 
@@ -118,6 +128,21 @@ namespace Admin.Controllers
             int productCount = admin.prodCount("approved");
             return View();
         }
+             
+            
+
+        public ActionResult Num_Customers()
+        {
+            ViewBag.Num_Users = admin.NumOFUsers();
+            return View();
+        }
+
+        public ActionResult Num_Products()
+        {
+            ViewBag.ProductTable = admin.ProductTable();
+            return View();
+        }
+
              
             
     }
