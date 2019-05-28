@@ -1870,6 +1870,7 @@
     <Content Include="Views\Admin\userMessages.cshtml" />
     <Content Include="Views\Admin\AdminShowOrders.cshtml" />
     <Content Include="Views\Admin\AfterAdminLogin.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\TablesView.cshtml" />
     <Content Include="Views\Admin\Num_Customers.cshtml" />

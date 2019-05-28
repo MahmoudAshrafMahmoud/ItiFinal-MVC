@@ -34,6 +34,7 @@ namespace DAL
         public string Gender { get; set; }
         public string Bio { get; set; }
         public double Rating { get; set; }
+        public double rating { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_table> Order_table { get; set; }

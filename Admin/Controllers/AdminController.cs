@@ -117,6 +117,34 @@ namespace Admin.Controllers
             return View();
         }
 
+
+        public ActionResult Dashboard()
+        {
+
+            int messageCount = admin.MessageCount();
+            ViewBag.messageCount = messageCount;
+
+
+            int requestCount = admin.vedorRequestsCount();
+            ViewBag.requestCount = requestCount;
+
+            int pendingOrdersCount = admin.OrdersStatus("pending");
+            ViewBag.pendingOrdersCount = pendingOrdersCount;
+            int deleveredOrderCount = admin.OrdersStatus("delevered");
+            ViewBag.deleveredOrderCount = deleveredOrderCount;
+            int rejectedOrderCount = admin.OrdersStatus("rejected");
+            ViewBag.rejectedOrderCount = rejectedOrderCount;
+
+
+            int approvedProductCount = admin.prodCount("approved");
+            ViewBag.productCount = approvedProductCount;
+            int pendingProductCount = admin.prodCount("pending");
+            ViewBag.productCount = pendingProductCount;
+            return View();
+        }
+             
+            
+
         public ActionResult Num_Customers()
         {
             ViewBag.Num_Users = admin.NumOFUsers();
@@ -135,4 +163,4 @@ namespace Admin.Controllers
 
    
 
-    }
+}
