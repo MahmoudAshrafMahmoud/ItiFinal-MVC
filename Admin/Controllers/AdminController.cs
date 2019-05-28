@@ -129,8 +129,10 @@ namespace Admin.Controllers
             ViewBag.deleveredOrderCount = deleveredOrderCount;
             int rejectedOrderCount = admin.OrdersStatus("rejected");
             ViewBag.rejectedOrderCount = rejectedOrderCount;
-            int productCount = admin.prodCount("approved");
-            ViewBag.productCount = productCount;
+            int approvedProductCount = admin.prodCount("approved");
+            ViewBag.productCount = approvedProductCount;
+            int pendingProductCount = admin.prodCount("pending");
+            ViewBag.productCount = pendingProductCount;
             return View();
         }
              
