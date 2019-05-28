@@ -206,7 +206,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html">
+                    <a class="navbar-brand logo_h" href="@Url.Action("Home","User")">
                         <img src="~/Assests/img/logo.png" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -220,7 +220,7 @@
                             <div class="col-lg-7 pr-0" style="padding-right: 0px;">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link"  href="@Url.Action("Index","Home")">Home</a>
+                                        <a class="nav-link"  href="@Url.Action("Home","User")">Home</a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="@Url.Action("About","Home")">About</a>
@@ -234,21 +234,11 @@
                                         </ul>
                                     </li>
 
-                                 
-
-
-                                    <li class="nav-item submenu dropdown" id="VendorID">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Add Post</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("VendorOrders","Vendor")">Vendor Orders</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Search","Vendor")">Search</a>
-                                            </li>
-                                        </ul>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Manage My sells</a>
                                     </li>
+
+
                                     <li class="nav-item active " id="LoginID">
                                         <a class="nav-link" href="@Url.Action("Login","User")">Login</a>
                                     </li>
@@ -291,7 +281,7 @@
                                     <a href="@Url.Action("cartDisplay","Cart")">
                                         <span id="shoppingCartID" class="font-weight-bold pr-4 mt-3 nav-link">
                                             @Session["count"]  <br />
-                                            @Session["TotalPrice"] L.E
+                                            @Session["TotalPrice"] 0 L.E
                                         </span>
                                     </a>
 

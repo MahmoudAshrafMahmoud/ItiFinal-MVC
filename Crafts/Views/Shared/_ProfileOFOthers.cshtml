@@ -62,19 +62,10 @@
 
 
 
-
-                                    <li class="nav-item submenu dropdown" id="VendorID">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Add Post</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("VendorOrders","Vendor")">Vendor Orders</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Search","Vendor")">Search</a>
-                                            </li>
-                                        </ul>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Manage My sells</a>
                                     </li>
+
                                     <li class="nav-item active " id="LoginID">
                                         <a class="nav-link" href="@Url.Action("Login","User")">Login</a>
                                     </li>
