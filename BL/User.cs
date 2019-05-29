@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BL.SharedModels;
 using System.Web;
 using System.Net.Mail;
+using System.IO;
 
 namespace BL
 {
@@ -58,6 +59,166 @@ namespace BL
             }
             return topSoldProducts;
         }
+
+
+        //Get User_id After Signup
+        public int GetUSerID(string email)
+        {
+            var get = context.User_table.Where(x => x.User_Email == email).Select(x=>x.User_Id).FirstOrDefault();
+            return get;
+        }
+
+
+        //User Register (Sign Up)
+        public bool Sign_Up_As_User(UserModel newUser)
+        {
+            bool Check;
+            byte[] fileData = null;
+            var binaryReader = new BinaryReader(newUser.ProfilePicture.InputStream);
+            fileData = binaryReader.ReadBytes(newUser.ProfilePicture.ContentLength);
+
+            var RegistUser = (from RegUser in context.User_table
+                              where RegUser.User_Email.Equals(newUser.email)
+                              select RegUser.User_Email
+                              ).FirstOrDefault();
+
+
+            if (RegistUser==null)
+            {
+                User_table user = new User_table();
+
+                user.FName = newUser.fname;
+                user.LName = newUser.lname;
+                user.User_Name = newUser.username;
+                user.User_Email = newUser.email;
+                user.Password = newUser.password;
+                user.PhoneNumber = newUser.phone;
+                user.SSN = newUser.ssn;
+                user.Type_id = 1;
+                user.ProfilePicture = fileData;
+                user.Gender = newUser.gender;
+                user.Bio = newUser.Bio;
+                user.rating = 0;
+
+                context.User_table.Add(user);
+                context.SaveChanges();
+                Check = true;
+            }
+
+            else
+            {
+                Check = false;
+            }
+
+            return Check;
+
+        }
+
+
+        //Insert SubscribedCategories in Subscribtion table
+
+        public void putSubscribeCategories(int[] Categories,int id)
+        {
+
+            Subscribtion_table subscribe = new Subscribtion_table();
+            subscribe.User_Id =id ;
+
+
+
+ //         Enter Session           subscribe.User_Id =;
+
+
+
+            for (int i = 0; i < Categories.Length; i++)
+            {
+                subscribe.Cat_Id = Categories[i];
+                context.Subscribtion_table.Add(subscribe);
+                context.SaveChanges();
+            }
+        }
+
+
+
+        List<int> VendorshasCategories = new List<int>();
+        List<string>VendorsName=new List<string>();
+        public List<string> FollowVendorsSuppliedThatCategories(int User_id)
+        {
+            List<int> SubCategries = context.Subscribtion_table.Where(x => x.User_Id == User_id).Select(x=>x.Cat_Id).ToList();
+            for (int i = 0; i < SubCategries.Count(); i++)
+            {
+                int SelectedCategories = SubCategries[i];
+                List<int> Vendors = context.Product_table.Where(x => x.Cat_id == SelectedCategories).Select(x => x.Vendor_id).ToList();
+
+
+                
+                foreach (var item in Vendors)
+                {
+                    if (VendorshasCategories.Count() == 0)
+                    {
+                        VendorshasCategories.Add(Vendors[0]);
+                    }
+
+                    int count = 0;
+
+                    for (int j = 0; j < VendorshasCategories.Count(); j++)
+                    {
+                        if (item == VendorshasCategories[j])
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            count++;
+                            
+                        }
+                    }
+
+                    if (count == VendorshasCategories.Count())
+                    {
+                        VendorshasCategories.Add(item);
+
+                    }
+
+
+                }
+                
+            }
+
+            for (int i = 0; i < VendorshasCategories.Count(); i++)
+            {
+                int usrid = VendorshasCategories[i];
+                var VendorName = context.User_table.Where(x => x.User_Id == usrid).Select(x => x.User_Name).FirstOrDefault().ToString();
+                VendorsName.Add(VendorName);
+            }
+
+
+            return VendorsName;
+
+        }
+
+        //Regist Vendor that selected by user
+        List<int>Vendors=new List<int>();
+        public void RegisterFollowedVendor(string[] SelectedVendor,int id)
+        {
+            for (int i = 0; i < SelectedVendor.Length; i++)
+            {
+                string selected = SelectedVendor[i];
+                int vendorid = context.User_table.Where(x => x.User_Name.Equals(selected)).Select(x => x.User_Id).FirstOrDefault();
+                Vendors.Add(vendorid);
+            }
+
+            Following_table followVendor=new Following_table();
+
+            for (int i = 0; i < Vendors.Count(); i++)
+            {
+                followVendor.User_id = id;
+                followVendor.Vendor_id = Vendors[i];
+                context.Following_table.Add(followVendor);
+                context.SaveChanges();
+            }
+
+        }
+
 
         //user regist as vendor
         public string Vendor_Register(string FullName, int NationalID, string SellerInfo, int id)

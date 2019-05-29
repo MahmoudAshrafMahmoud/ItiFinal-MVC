@@ -120,6 +120,36 @@ namespace Crafts.Controllers
         public ActionResult RegisterNewUser()
         {
 
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ActionResult RegisterNewUser(UserModel newUser)
+
+        {
+
+            bool check_email = ul.Sign_Up_As_User(newUser);
+
+            if (check_email == true)
+            {
+                Session.Add("User", ul.GetUSerID(newUser.email));
+                return RedirectToAction("UserSubscribeCategories");
+            }
+
+            else
+            {
+                return RedirectToAction("RegisterNewUser");
+            }
+
+            
+        }
+
+        public ActionResult UserSubscribeCategories()
+
+        {
+
             BL.Category myCategory = new Category();
             List<CategoryModel> selectedCategory = myCategory.AllCategories();
             ViewBag.selectedCategory = selectedCategory;
@@ -127,32 +157,28 @@ namespace Crafts.Controllers
             return View();
         }
 
+        [HttpPost]
 
+        public ActionResult UserSubscribeCategorie(int[] SelectedCategories)
+        {
+
+            int userId = int.Parse(Session["User"].ToString());
+            ul.putSubscribeCategories(SelectedCategories,userId);
+            List<string> FollowVendor = ul.FollowVendorsSuppliedThatCategories(userId);
+            ViewBag.FollowVendors = FollowVendor;
+
+            return PartialView();
+        }
 
         [HttpPost]
-        public ActionResult RegisterNewUser(User_table newUser, HttpPostedFileBase fileSelected)
-
+        public ActionResult AfterFollow(string[] SelectedVendors)
         {
-            byte[] fileData = null;
-            var binaryReader = new BinaryReader(fileSelected.InputStream);
-            fileData = binaryReader.ReadBytes(fileSelected.ContentLength);
-            newUser.ProfilePicture = fileData;
-
-
-            using (CraftsEntities myData = new CraftsEntities())
-
-            {
-                newUser.rating = 0;
-                newUser.Type_id = 1;
-                myData.User_table.Add(newUser);
-                myData.SaveChanges();
-                Session["userID"] = newUser.User_Id;
-                ModelState.Clear();
-                newUser = null;
-            }
-
-            return View();
+            int userId = int.Parse(Session["User"].ToString());
+            ul.RegisterFollowedVendor(SelectedVendors,userId);
+            return RedirectToAction("");
         }
+
+
 
 
         [HttpGet]

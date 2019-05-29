@@ -358,6 +358,8 @@
     <Content Include="Views\Category\errorview.cshtml" />
     <Content Include="Views\Vendor\outofstock.cshtml" />
     <Content Include="Views\Vendor\restoreProducts.cshtml" />
+    <Content Include="Views\User\UserSubscribeCategories.cshtml" />
+    <Content Include="Views\User\UserSubscribeCategorie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
