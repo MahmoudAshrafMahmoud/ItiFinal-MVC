@@ -95,7 +95,7 @@ namespace BL
                 user.ProfilePicture = fileData;
                 user.Gender = newUser.gender;
                 user.Bio = newUser.Bio;
-                user.rating = 0;
+                user.Rating = 0;
 
                 context.User_table.Add(user);
                 context.SaveChanges();
@@ -126,7 +126,8 @@ namespace BL
 
 
 
-            for (int i = 0; i < Categories.Length; i++)
+            for (int i = 0; 
+                i < Categories.Length; i++)
             {
                 subscribe.Cat_Id = Categories[i];
                 context.Subscribtion_table.Add(subscribe);

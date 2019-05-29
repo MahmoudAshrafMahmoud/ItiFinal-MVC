@@ -33,6 +33,10 @@ namespace Crafts.Controllers
             ViewBag.selectedPro = selectedPro;
         }
 
+        public ActionResult about()
+        {
+            return View();
+        }
 
     }
 }

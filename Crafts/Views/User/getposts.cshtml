@@ -22,8 +22,8 @@
         </p>
       
         <ul class="list-inline mb-5 mr-5 pr-5">
-            <li class="pull-right">
-                <button id="@i.Post_id" onclick="showmore(id)" class="link-black text-sm">
+            <li class="pull-right mt-5 mb-3">
+                <button id="@i.Post_id" onclick="showmore(id)" class="genric-btn info-border radius">
                     <i class="fa fa-comments-o margin-r-5"></i> Comments
                     (@i.commentsofpost.Count)
                 </button> 
@@ -98,8 +98,7 @@
     function showmore(id)
     {
         var items = document.getElementsByClassName(id)
-
-        for (var i = 3; i < items.length ; i++)
+        for (var i = 0; i < items.length ; i++)
         {
             items[i].classList.remove("hide");
         }

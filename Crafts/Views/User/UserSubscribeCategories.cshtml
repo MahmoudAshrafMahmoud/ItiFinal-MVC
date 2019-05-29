@@ -3,7 +3,8 @@
     ViewBag.Title = "UserSubscribeCategories";
     Layout = "~/Views/Shared/_Main.cshtml";
 }
-<div id="change">
+<div id="change" class="mt-5 pt-5">
+    <h5 id="warnmsg" class="text-danger pl-5 mb-5">Please choose at least five categories</h5>
     @using (Ajax.BeginForm("UserSubscribeCategorie", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "change" }))
 
     {
@@ -25,9 +26,9 @@
         }
 
        
-    </div>
-    <button  id="btn"  disabled type="submit" class="btn btn-outline-primary" style="margin-left:30%" >Next</button>
-@*</form>*@
+    </div> 
+    <button  disabled id="btn" type="submit" class="btn btn-outline-primary" style="margin-left:30%" >Next</button>
+ 
 
 }
 </div>
@@ -39,6 +40,7 @@
         x = x + 1;
         if (x > 4) {
             document.getElementById("btn").removeAttribute("disabled");
+            document.getElementById("warnmsg").classList.add("hide");
 
         }
     }

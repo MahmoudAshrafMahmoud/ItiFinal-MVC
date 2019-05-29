@@ -366,6 +366,7 @@
     <Content Include="Views\User\UserSubscribeCategorie.cshtml" />
     <Content Include="Views\User\getposts.cshtml" />
     <Content Include="Views\User\followedUsersPosts.cshtml" />
+    <Content Include="Views\Home\about.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

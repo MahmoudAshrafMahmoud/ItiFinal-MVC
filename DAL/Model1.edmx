@@ -117,7 +117,7 @@
           <Property Name="Seller_info" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="User_Id" Type="int" Nullable="false" />
           <Property Name="reqState" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="National_ID" Type="int" Nullable="false" />
+          <Property Name="National_ID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Subscribtion-table">
           <Key>
@@ -155,7 +155,7 @@
           <Property Name="User_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PhoneNumber" Type="int" Nullable="false" />
-          <Property Name="SSN" Type="int" Nullable="false" />
+          <Property Name="SSN" Type="bigint" Nullable="false" />
           <Property Name="Type_id" Type="int" Nullable="false" />
           <Property Name="ProfilePicture" Type="image" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />

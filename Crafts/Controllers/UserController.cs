@@ -45,7 +45,7 @@ namespace Crafts.Controllers
         {
             BL.Order order = new BL.Order();
             int id = (int)Session["User_Id"];
-            
+
             List<MyOrdersModel> ViewOrders = order.ShowMyOrders(id);
 
             return View(ViewOrders);
@@ -98,14 +98,14 @@ namespace Crafts.Controllers
                     Session.Add("vendor", "vendor");
                 }
                 if (Session["checkOutRequest"] != null)
-                    {
-                        return RedirectToAction("cartDisplay", "Cart");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Home", "User");
-                    }
-               
+                {
+                    return RedirectToAction("cartDisplay", "Cart");
+                }
+                else
+                {
+                    return RedirectToAction("Home", "User");
+                }
+
             }
             else
             {
@@ -148,7 +148,7 @@ namespace Crafts.Controllers
                 return RedirectToAction("RegisterNewUser");
             }
 
-            
+
         }
 
         public ActionResult UserSubscribeCategories()
@@ -168,7 +168,7 @@ namespace Crafts.Controllers
         {
 
             int userId = int.Parse(Session["User"].ToString());
-            ul.putSubscribeCategories(SelectedCategories,userId);
+            ul.putSubscribeCategories(SelectedCategories, userId);
             List<string> FollowVendor = ul.FollowVendorsSuppliedThatCategories(userId);
             ViewBag.FollowVendors = FollowVendor;
 
@@ -179,18 +179,18 @@ namespace Crafts.Controllers
         public ActionResult AfterFollow(string[] SelectedVendors)
         {
             int userId = int.Parse(Session["User"].ToString());
-            ul.RegisterFollowedVendor(SelectedVendors,userId);
-            return RedirectToAction("");
+            ul.RegisterFollowedVendor(SelectedVendors, userId);
+            return RedirectToAction("login", "User");
         }
-            {
-                newUser.Rating = 0;
-                newUser.Type_id = 1;
-                myData.User_table.Add(newUser);
-                myData.SaveChanges();
-                Session["userID"] = newUser.User_Id;
-                ModelState.Clear();
-                newUser = null;
-            }
+        //{
+        //    newUser.Rating = 0;
+        //    newUser.Type_id = 1;
+        //    myData.User_table.Add(newUser);
+        //    myData.SaveChanges();
+        //    Session["userID"] = newUser.User_Id;
+        //    ModelState.Clear();
+        //    newUser = null;
+        //}
 
 
 
@@ -270,20 +270,20 @@ namespace Crafts.Controllers
             List<PostModel> posts = ul.getuserposts(userid);
             return PartialView(posts);
         }
-     
+
 
         public ActionResult Insetuserpost(string post)
-        {     
-                int userid = int.Parse(Session["User_Id"].ToString());
-                ul.Insertuserpost(post, userid);
+        {
+            int userid = int.Parse(Session["User_Id"].ToString());
+            ul.Insertuserpost(post, userid);
 
             return RedirectToAction("getposts");
         }
-        public ActionResult Insetusercomment(string comment , int postid)
+        public ActionResult Insetusercomment(string comment, int postid)
         {
 
             int userid = int.Parse(Session["User_Id"].ToString());
-            ul.Insertusercomments(comment, userid , postid);
+            ul.Insertusercomments(comment, userid, postid);
             return RedirectToAction("getposts");
         }
 
@@ -303,7 +303,8 @@ namespace Crafts.Controllers
         }
 
     }
+}
 
-        }
+       
 
 

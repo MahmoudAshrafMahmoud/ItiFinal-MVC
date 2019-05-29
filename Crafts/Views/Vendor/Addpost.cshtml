@@ -3,19 +3,12 @@
     Layout = "~/Views/Shared/_Profile.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
     <meta name="viewport" content="width=device-width" />
     <title>Addpost</title>
 
     <link href="~/Assests/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/Assests/js/jquery-3.2.1.min.js"></script>
-    <script src="~/Assests/js/popper.js"></script>
-    <script src="~/Assests/js/bootstrap.min.js"></script>
-    <script src="~/Assests/js/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
     <style>
         .dropbtn {
             background-color: #4CAF50;
@@ -117,8 +110,7 @@
         }
      
     </style>
-</head>
-<body>
+
 
 
 
@@ -396,13 +388,7 @@
                 cities.push(input[i].value);
             }
 
-            //if (cities.length === 0) {
-            //    $('.error').text('please select a city...stupid');
-            //} else {
-            //    $('.error').text('');
-            //    var data = JSON.stringify(cities);
-            //    console.log(data);
-            //}
+     
         });
     </script>
     <script>
@@ -441,15 +427,5 @@
         })
     </script>
 
-    <script type="text/javascript">
 
-    </script>
-    @section scripts{
-        @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
-    }
-
-
-
-</body>
-</html>
 
