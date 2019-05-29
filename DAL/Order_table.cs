@@ -29,7 +29,6 @@ namespace DAL
         public Nullable<int> rating { get; set; }
         public string status { get; set; }
     
-        public virtual User_table User_table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetails_table> OrderDetails_table { get; set; }
     }

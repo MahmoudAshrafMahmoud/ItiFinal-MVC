@@ -112,7 +112,7 @@ namespace BL
         {
             var result = context.User_table 
 
-              .OrderByDescending(g => g.rating).Where(s=>s.Type_id==2)
+              .OrderByDescending(g => g.Rating).Where(s=>s.Type_id==2)
                .Take(5)                      
               .Select(                            
               r => new { User_Id = r.User_Id, Name = r.FName , Image = r.ProfilePicture}).ToList();

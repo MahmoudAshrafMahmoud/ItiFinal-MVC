@@ -16,5 +16,7 @@ namespace BL.SharedModels
         public DateTime Post_date { get; set; }
         public int user_id { get; set; }
         public byte[] user_image { get; set; }
+
+        public List<CommentModel> commentsofpost { get; set; }
     }
 }

@@ -181,6 +181,9 @@ namespace BL
                         conn.OrderDetails_table.Add(NewOrderItem);
                     }
                     conn.SaveChanges();
+                    HttpContext.Current.Session["cart"] = null;
+                    HttpContext.Current.Session["count"] = 0;
+                    HttpContext.Current.Session["TotalPrice"] = 0;
                     success = true;
                 }
                 else { success = false; }

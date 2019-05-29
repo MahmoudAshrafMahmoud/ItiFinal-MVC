@@ -20,9 +20,6 @@ namespace BL
             return user;
         }
 
-
-
-
         public List<ProductModel> topSeller()
         {
 
@@ -277,7 +274,7 @@ namespace BL
 
         public User_table GetSelectedUser(int id)
         {
-            User_table SelectedUser = context.User_table.Where(x => x.User_Id == id && x.Type_id==2).FirstOrDefault();
+            User_table SelectedUser = context.User_table.Where(x => x.User_Id == id ).FirstOrDefault();
             return SelectedUser;
         }
 
@@ -363,23 +360,47 @@ namespace BL
             }
         }
 
+        public void Insertusercomments(string comment, int userid, int postid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                Comments_Table newpost = new Comments_Table { Comment_postID=postid, Comment_Date = DateTime.Now, Comment_body = comment, Comment_UserID = userid };
+                context.Comments_Table.Add(newpost);
+                context.SaveChanges();
+            }
+        }
+
         public List<PostModel> getuserposts(int userid)
         {
             using (CraftsEntities context = new CraftsEntities())
             {
                 List<PostModel> post = (from p in context.Posts_table
-                            where p.User_id == userid
-                            orderby p.Post_id descending
-                            select new PostModel
-                            {
-                                Post_id = p.Post_id,
-                                Post_body = p.Post_body,
-                                Post_pic = p.Post_pic,
-                                Post_date =p.Post_date,
-                                user_id = p.User_table.User_Id,
-                                user_image = p.User_table.ProfilePicture,
-                                username = p.User_table.FName + " " + p.User_table.LName
-                                
+                                        where p.User_id == userid
+                                        orderby p.Post_id descending
+                                        select new PostModel
+                                        {
+                                            Post_id = p.Post_id,
+                                            Post_body = p.Post_body,
+                                            Post_pic = p.Post_pic,
+                                            Post_date = p.Post_date,
+                                            user_id = p.User_table.User_Id,
+                                            user_image = p.User_table.ProfilePicture,
+                                            username = p.User_table.FName + " " + p.User_table.LName,
+                                            commentsofpost = (from c in context.Comments_Table
+                                                              where c.Comment_postID == p.Post_id
+                                                              orderby c.Comment_Date descending
+                                                              select new CommentModel
+                                                              {
+                                                                  Comment_id = c.Comment_id,
+                                                                  Comment_Username = c.User_table.FName + " " + c.User_table.LName,
+                                                                  Comment_body = c.Comment_body,
+                                                                  Comment_Date = c.Comment_Date,
+                                                                  Comment_profilePicture = c.User_table.ProfilePicture,
+                                                                  Comment_UserID = c.User_table.User_Id
+
+                                                              }).ToList()
+
+
                             }).ToList();
                 return post;
             }
@@ -387,6 +408,63 @@ namespace BL
             
         }
 
+public List<CommentModel> getpostcomments(int postid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                List<CommentModel> comments = (from p in context.Comments_Table
+                                               where p.Comment_postID == postid
+                                               orderby p.Comment_id descending
+                                               select new CommentModel
+                                               {
+                                                   Comment_id = p.Comment_id,
+                                                   Comment_body = p.Comment_body,
+                                                   Comment_Date = p.Comment_Date,
+                                                   Comment_postID = p.Posts_table.Post_id,
+                                                   Comment_Username = p.User_table.FName + " " + p.User_table.LName,
+                                                   Comment_profilePicture =p.User_table.ProfilePicture,
+                                                   Comment_UserID =p.User_table.User_Id
+                                        }).ToList();
+                return comments;
+            }
+        }
 
+
+        public List<PostModel> followedUsersPosts(int userID)
+        {
+            var posts = (from u in context.User_table
+                                join f in context.Following_table
+                                on u.User_Id equals f.User_id
+                                join p in context.Posts_table
+                                on f.Vendor_id equals p.User_id
+                                where u.User_Id == userID
+                                orderby p.Post_id descending
+                         select new PostModel
+                         {
+                             Post_id = p.Post_id,
+                             Post_body = p.Post_body,
+                             Post_pic = p.Post_pic,
+                             Post_date = p.Post_date,
+                             user_id = p.User_table.User_Id,
+                             user_image = p.User_table.ProfilePicture,
+                             username = p.User_table.FName + " " + p.User_table.LName,
+                             commentsofpost = (from c in context.Comments_Table
+                                               where c.Comment_postID == p.Post_id
+                                               orderby c.Comment_Date descending
+                                               select new CommentModel
+                                               {
+                                                   Comment_id = c.Comment_id,
+                                                   Comment_Username = c.User_table.FName + " " + c.User_table.LName,
+                                                   Comment_body = c.Comment_body,
+                                                   Comment_Date = c.Comment_Date,
+                                                   Comment_profilePicture = c.User_table.ProfilePicture,
+                                                   Comment_UserID = c.User_table.User_Id
+
+                                               }).ToList()
+
+
+                         }).ToList();
+            return posts;
+        }
     }
     }

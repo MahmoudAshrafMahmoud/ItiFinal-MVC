@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User_table()
         {
-            this.Order_table = new HashSet<Order_table>();
+            this.Comments_Table = new HashSet<Comments_Table>();
             this.Posts_table = new HashSet<Posts_table>();
         }
     
@@ -34,10 +34,9 @@ namespace DAL
         public string Gender { get; set; }
         public string Bio { get; set; }
         public double Rating { get; set; }
-        public double rating { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order_table> Order_table { get; set; }
+        public virtual ICollection<Comments_Table> Comments_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Posts_table> Posts_table { get; set; }
     }

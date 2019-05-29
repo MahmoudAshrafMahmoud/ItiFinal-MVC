@@ -7,8 +7,7 @@
 }
 
 
-
-<div class="col-lg-3">
+<div class="col-lg-4">
     <div class="blog_right_sidebar">
 
         <aside class="single_sidebar_widget author_widget">
@@ -38,68 +37,89 @@
             </p>
             <div class="br"></div>
         </aside>
-    
-
-            <aside class="single_sidebar_widget ads_widget">
-
-                <div class="widgets_inner">
-                    @using (Ajax.BeginForm("follow", "Vendor", new { vendor_id = @ViewBag.user_id }, new AjaxOptions { UpdateTargetId = "msgerror", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "myfn" }))
-                    {
-                        <div id="subscribe" class="">
-                            <b id="checkstate" class="text-white"> @ViewBag.substate</b>
-                            <input type="submit" value="Follow @Model.FName" class="col-12 pl-1 pr-1 btn btn-primary" />
-                        </div>
-
-                    }
 
 
-                    @using (Ajax.BeginForm("unfollow", "Vendor", new { vendor_id = @ViewBag.user_id }, new AjaxOptions { UpdateTargetId = "msgerror", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "myfn" }))
-                    {
-                        <div id="unsubscribe" class="">
-                            <b id="" class="text-white"> @ViewBag.substate</b>
-                            <input type="submit" value="Unfollow @Model.FName" class="col-12 pl-1 pr-1 btn btn-danger" />
-                        </div>
-                    }
+        <aside class="single_sidebar_widget ads_widget">
 
-                    <div class="widgets_inner pl-1 hide" id="error">
-                        @Session["User_Id"]
+            <div class="widgets_inner">
+                @using (Ajax.BeginForm("follow", "Vendor", new { vendor_id = @ViewBag.user_id }, new AjaxOptions { UpdateTargetId = "msgerror", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "myfn" }))
+                {
+                    <div id="subscribe" class="">
+                        <b id="checkstate" class="text-white"> @ViewBag.substate</b>
+                        <input type="submit" value="Follow @Model.FName" class="col-12 pl-1 pr-1 btn btn-primary" />
+                    </div>
+
+                }
+
+
+                @using (Ajax.BeginForm("unfollow", "Vendor", new { vendor_id = @ViewBag.user_id }, new AjaxOptions { UpdateTargetId = "msgerror", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "myfn" }))
+                {
+                    <div id="unsubscribe" class="">
+                        <b id="" class="text-white"> @ViewBag.substate</b>
+                        <input type="submit" value="Unfollow @Model.FName" class="col-12 pl-1 pr-1 btn btn-danger" />
+                    </div>
+                }
+
+                <div class="widgets_inner pl-1 hide" id="error">
+                    @Session["User_Id"]
                     <a href="@Url.Action("Login","User")" class=" genric-btn danger circle arrow">
                         Login First
                         <span class="lnr lnr-arrow-right"></span>
                     </a>
                 </div>
-                    </div>
+            </div>
 
-</aside>
+        </aside>
 
 
 
-</div>
-</div>
-
-<div class="col-lg-9">
-
-    <div class="row">
-        <div class="main_title">
-            <h3>Vendor Best Seller</h3>
-        </div>
     </div>
-    <div class="row">
+</div>
+<div class="col-lg-8">
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
 
-        @foreach (var item in ViewBag.BestSellingVendorProducts)
-        {
-            var base64 = Convert.ToBase64String(@item.Image);
-            var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
-            <div class="col col1">
-                <div class="f_p_item">
-                    <div class="f_p_img">
-                        <img class="img-fluid proimage" src="@ImgSRC" alt="">
-                        <div class="p_icon">
-                            <a href="#">
-                                <i class="far fa-heart"></i>
-                            </a>
+            <li class="nav-item">
+                <a class="nav-link active show" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                   aria-selected="true">Products</a>
+            </li>
 
-                            @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+
+            <li class="nav-item">
+                <a class="nav-link " id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="home"
+                   aria-selected="false">@Model.FName's Posts</a>
+            </li>
+        
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade  active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+
+
+                <div class="row">
+                    <div class="main_title">
+                        <h3>Vendor Best Seller</h3>
+                    </div>
+                </div>
+                <div class="row">
+
+                    @foreach (var item in ViewBag.BestSellingVendorProducts)
+                    {
+                        var base64 = Convert.ToBase64String(@item.Image);
+                        var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
+                        <div class="col col1">
+                            <div class="f_p_item">
+                                <div class="f_p_img">
+                                    <img class="img-fluid proimage" src="@ImgSRC" alt="">
+                                    <div class="p_icon">
+                                        <a href="#">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+
+                                        @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
                                    new AjaxOptions
                                    {
                                        UpdateTargetId = "shoppingCartID",
@@ -109,41 +129,41 @@
                                    new { @class = "fas fa-cart-plus" })
 
 
+                                    </div>
+                                </div>
+                                <div class="prodec">
+                                    <a href="@Url.Action("ProductView","Product",new {id= @item.Product_Id })">
+                                        <h4>@item.Product_Name</h4>
+                                    </a>
+                                </div>
+
+                                <h5>@item.Product_Price LE</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="prodec">
-                        <a href="@Url.Action("ProductView","Product",new {id= @item.Product_Id })">
-                            <h4>@item.Product_Name</h4>
-                        </a>
-                    </div>
+                    }
 
-                    <h5>@item.Product_Price LE</h5>
                 </div>
-            </div>
-        }
+                <div class="row">
+                    <div class="main_title">
+                        <h3>Products</h3>
+                    </div>
+                </div>
+                <div class="row">
 
-    </div>
-    <div class="row">
-        <div class="main_title">
-            <h3>Products</h3>
-        </div>
-    </div>
-    <div class="row">
-
-        @foreach (var item in ViewBag.VendorProducts)
+                    @foreach (var item in ViewBag.VendorProducts)
             {
                 var base64 = Convert.ToBase64String(@item.Image);
                 var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
-            <div class="col col1">
-                <div class="f_p_item">
-                    <div class="f_p_img">
-                        <img class="img-fluid proimage" src="@ImgSRC" alt="">
-                        <div class="p_icon">
-                            <a href="#">
-                                <i class="far fa-heart"></i>
-                            </a>
+                        <div class="col col1">
+                            <div class="f_p_item">
+                                <div class="f_p_img">
+                                    <img class="img-fluid proimage" src="@ImgSRC" alt="">
+                                    <div class="p_icon">
+                                        <a href="#">
+                                            <i class="far fa-heart"></i>
+                                        </a>
 
-                            @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
+                                        @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
                                    new AjaxOptions
                                    {
                                        UpdateTargetId = "shoppingCartID",
@@ -153,23 +173,53 @@
                                    new { @class = "fas fa-cart-plus" })
 
 
+                                    </div>
+                                </div>
+                                <div class="prodec">
+                                    <a href="@Url.Action("ProductView","Product",new {id= @item.Product_Id })">
+                                        <h4>@item.Product_Name</h4>
+                                    </a>
+                                </div>
+
+                                <h5>@item.Product_Price LE</h5>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+
+                @using (Ajax.BeginForm("Insetuserpost",
+                            new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                UpdateTargetId = "postsarearaget",
+                                InsertionMode = InsertionMode.Replace
+                            }))
+            {
+                    <div class="form-group margin-bottom-none">
+                        <div class="col-sm-10 mt-2">
+                            <input style="height:100px" name="post" class="form-control input-sm" placeholder="Write Here">
+                        </div>
+                        <div class="col-sm-2 mt-2">
+                            <button type="submit" class="btn btn-primary  pull-right btn-block btn-sm">Post</button>
                         </div>
                     </div>
-                    <div class="prodec">
-                        <a href="@Url.Action("ProductView","Product",new {id= @item.Product_Id })">
-                            <h4>@item.Product_Name</h4>
-                        </a>
-                    </div>
-
-                    <h5>@item.Product_Price LE</h5>
+            }
+                <div class="col-10 mt-5 pt-5" id="postsarearaget">
+                    @{Html.RenderAction("getposts", "User");}
                 </div>
             </div>
-        }
+        </div>
 
     </div>
-
-
 </div>
+
+
+
 
 
 <script type="text/javascript">

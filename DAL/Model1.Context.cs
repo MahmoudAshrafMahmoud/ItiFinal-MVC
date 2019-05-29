@@ -28,6 +28,7 @@ namespace DAL
         public virtual DbSet<Admin_Req_App_table> Admin_Req_App_table { get; set; }
         public virtual DbSet<Admin_table> Admin_table { get; set; }
         public virtual DbSet<Category_table> Category_table { get; set; }
+        public virtual DbSet<Comments_Table> Comments_Table { get; set; }
         public virtual DbSet<Following_table> Following_table { get; set; }
         public virtual DbSet<Message_table> Message_table { get; set; }
         public virtual DbSet<Order_table> Order_table { get; set; }

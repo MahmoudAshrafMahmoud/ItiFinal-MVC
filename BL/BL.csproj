@@ -55,6 +55,7 @@
     <Compile Include="SharedModels\CartListModel.cs" />
     <Compile Include="SharedModels\CartModel.cs" />
     <Compile Include="SharedModels\CategoryModel.cs" />
+    <Compile Include="SharedModels\CommentModel.cs" />
     <Compile Include="SharedModels\MyOrdersModel.cs" />
     <Compile Include="SharedModels\OrderModel.cs" />
     <Compile Include="SharedModels\PostModel.cs" />
