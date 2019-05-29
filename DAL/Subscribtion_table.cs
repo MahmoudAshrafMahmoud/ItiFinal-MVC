@@ -19,6 +19,5 @@ namespace DAL
         public int Cat_Id { get; set; }
     
         public virtual Category_table Category_table { get; set; }
-        public virtual User_table User_table { get; set; }
     }
 }

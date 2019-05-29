@@ -21,15 +21,10 @@ namespace BL.SharedModels
         public bool state { set; get; }
         public byte[] Image { get; set; }
         public string FullName { get; set; }
-
         public int NationalId { get; set; }
-
         public string Bio { get; set; }
-
         public int userid { set; get; }
-
         public string gender { set; get; }
-
         public string typeName { set; get; }
         public HttpPostedFileBase ProfilePicture { get; set; }
 

@@ -12,15 +12,15 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetails_table
+    public partial class Comments_Table
     {
-        public int OrderDetail_Id { get; set; }
-        public int Quantity { get; set; }
-        public string Approval { get; set; }
-        public int Pro_Id { get; set; }
-        public int Order_Id { get; set; }
-        public int rating { get; set; }
+        public int Comment_id { get; set; }
+        public string Comment_body { get; set; }
+        public int Comment_postID { get; set; }
+        public int Comment_UserID { get; set; }
+        public System.DateTime Comment_Date { get; set; }
     
-        public virtual Order_table Order_table { get; set; }
+        public virtual Posts_table Posts_table { get; set; }
+        public virtual User_table User_table { get; set; }
     }
 }

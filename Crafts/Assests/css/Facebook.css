@@ -1,0 +1,373 @@
+* {box-sizing: border-box;
+margin: 0;
+padding: 0;}
+
+/* Add padding to containers */
+.container {
+    /* display: none; */
+  padding: 16px;
+  /*width: 50%;*/
+}
+
+/* Full-width input fields */
+.container input {
+  width: 70%;
+  height: 40px;
+  margin-bottom: 10px;
+  position: relative;
+  left: 150px;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.container label{
+    position: absolute;
+    height: 40px;
+padding-top: 15px;
+}
+
+.container input:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+  width: 50%;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+} 
+
+
+
+
+/*pop up sign in */
+
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+
+/*profile page*/
+
+#profilePage{
+        display: none;
+}
+/* Aside Menu*/
+#aside {
+  padding-top: 2em;
+  width: 25%;
+  text-align: left;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  /* overflow-y: scroll; */
+  background: rgba(0, 0, 0, 0.04); 
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+
+    #main-menu li {
+    margin: 10px 0 15px 10%;
+    list-style: none;
+    font-size: 0.6em;
+    font-weight: 700; }
+
+    #main-menu  a {
+    color: rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    position: relative;
+    padding: 10px 0;
+}
+
+.ProfilePic{
+    width: 10em;
+    height: 10em;
+ border-radius: 50%; 
+ margin-left:15%;
+ margin-bottom: 10px;
+ background-color:white;
+
+}
+#aside #PUsername {
+    font-weight: 900;
+margin-left: 2em;
+ font-size: 2em;
+ color: rgb(80, 112, 182);
+ }
+
+#PUsername span i {color: green; font-size: 0.4em;  }
+.icons i{font-size: 25px;  margin-left: 5%; color: rgba(80, 112, 182, 0.74);
+}
+ul i{
+    color: rgba(80, 112, 182, 0.438);
+}
+
+.SignOut {
+    margin-top: 20px;
+    margin-left: 10%;
+   font-size: 20px;
+}
+.SignOut a{text-decoration: none ;      color: rgba(80, 112, 182, 0.438);}
+.SignOut i{
+    color: rgba(255, 0, 0, 0.445)
+}
+/*Main Page*/
+
+
+#main {
+    text-align: center;
+    width: 75%;
+    margin-left: 25%;
+}
+.ProfileContent{
+    width: 100%;
+    text-align: center;
+    margin: 0%;
+    padding: 0px;
+}
+.cover{
+height: 600px;
+background-image: url("img/bk.jpeg");
+background-size: cover;
+opacity: 0.3;
+}
+
+.ProfileInfo{
+    position: absolute;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    width: inherit;
+    color: #555;
+    top: 100px; margin-top: 150px;
+}
+
+.ProfileInfo h1{margin-bottom: 30px;}
+.ProfileInfo p{  
+ line-height: 1.7em; font-weight: normal   }
+
+ .posts{
+margin-top: 90px; 
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#Scroll{font-size: 2em; color: rgb(71, 67, 67); margin-top: 50px;}
+
+.down{ font-size: 70px; color: khaki;}
+
+/* New post */
+#newPost button{cursor:pointer;
+    width:14%;
+    color:rgb(65, 60, 60);
+    font-weight: bold;
+    border-radius: 10%;
+    height: 2.2em;;
+    font-size:1.2em;}
+
+#newPost textarea{
+    color:rgb(65, 60, 60);
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2%;
+    width: 60%;
+    height: auto;
+    overflow: hidden;
+    resize: none; 
+    font-size:1.5em;}
+
+.fa-thumbs-up,.fa-thumbs-down{color: rgb(45, 45, 151);}
+.fa-heart{color: red;}
+.fa-grin-squint-tears,.fa-sad-tear{color: rgb(240, 178, 46); font-weight: bold;}
+#Myposts i{ font-size: 1.5em; position: relative; }
+#Myposts{
+  align-items: center;
+  DISPLAY: FLEX;
+  FLEX-DIRECTION: column;}
+.post{
+  width: 70%;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 50px;
+  padding-bottom: 15px;
+  DISPLAY: FLEX;
+  FLEX-DIRECTION: COLUMN;
+  BORDER: 0.1PX SOLID #8080800d;
+  /* border-style: hidden; */
+  background-color: rgba(245, 245, 245, 0.65);
+  border-bottom: 6px solid #5070b6a8;
+  border-radius: 2%;
+   
+}
+.MypostContent{
+    min-height: auto;  
+  border: rgba(156, 116, 116, 0.582) 0.2pt solid;
+  margin: 15px 0;
+  border-top: aliceblue;
+  border-left: aliceblue;
+}
+.MypostContent p {margin: 0.2em 1em}
+
+#Myposts h3{width: 90%;}
+.mypostuserimage{
+  border-radius: 50%;
+  width: 2.8em;
+  height: 2.8em}
+
+#Myposts .postusername{
+  position: relative;
+  top: -1.2em;
+  left: 0.8em;
+  font-size: 0.8em;}
+
+.react{
+    margin-left: 20%; }
+
+/* Comments styling */
+
+
+/* New Comment */
+.newComment {
+
+  width: 100%;
+  align-items: center;
+}
+
+.newComment textarea{
+  color:rgb(65, 60, 60);
+  border-radius: 10px;
+  width: 80%;
+  margin-left: 10%;
+  height: auto;
+  resize: none;
+  overflow: hidden;
+  font-size:1em;}
+
+
+
+  .Comments{
+    width: 80%;
+    DISPLAY: FLEX;
+    FLEX-DIRECTION: COLUMN;
+    border-radius: 2%; 
+  margin-top: 1em;}
+  .Commentuserpic{
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;}
+
+  .commentusername{
+    position: relative;
+    top: -1em;
+    left: 0.8em;
+    font-size: 0.6em;}
+
+  .MyCommentContent{font-size: 0.8em;}
+  .comment{  
+    width: 70%;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    DISPLAY: FLEX;
+    FLEX-DIRECTION: COLUMN;
+    border-bottom: 1px solid #5070b6a8;
+    border-radius: 2%;}
+  
+    .commentbuttonstyle {
+      background-color: rgb(204, 214, 204);
+      height: 30PX;
+      width: 5%;}

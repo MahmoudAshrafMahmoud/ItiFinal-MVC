@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="~/Assests/vendors/nice-select/css/nice-select.css">
     <link rel="stylesheet" href="~/Assests/vendors/animate-css/animate.css">
     <link rel="stylesheet" href="~/Assests/vendors/jquery-ui/jquery-ui.css">
+    <link href="~/Assests/css/AdminLTE.min.css" rel="stylesheet" />
+
     <!-- main css -->
     <link rel="stylesheet" href="~/Assests/css/style.css">
 
@@ -206,7 +208,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html">
+                    <a class="navbar-brand logo_h" href="@Url.Action("Home","User")">
                         <img src="~/Assests/img/logo.png" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -220,7 +222,7 @@
                             <div class="col-lg-7 pr-0" style="padding-right: 0px;">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link"  href="@Url.Action("Index","Home")">Home</a>
+                                        <a class="nav-link"  href="@Url.Action("Home","User")">Home</a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="@Url.Action("About","Home")">About</a>
@@ -234,21 +236,11 @@
                                         </ul>
                                     </li>
 
-                                 
-
-
-                                    <li class="nav-item submenu dropdown" id="VendorID">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Add Post</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("VendorOrders","Vendor")">Vendor Orders</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Search","Vendor")">Search</a>
-                                            </li>
-                                        </ul>
+                                    <li  id="VendorID" class="nav-item active">
+                                        <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Manage My sells</a>
                                     </li>
+
+
                                     <li class="nav-item active " id="LoginID">
                                         <a class="nav-link" href="@Url.Action("Login","User")">Login</a>
                                     </li>
@@ -275,13 +267,7 @@
 
                                     <hr>
 
-                                    @*<li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="far fa-heart" aria-hidden="true"></i>
-                                        </a>
-                                    </li>*@
-
-                                    <hr>
+                
 
                                     <li class="nav-item">
                                         <a href="@Url.Action("cartDisplay","Cart")" class="icons">
@@ -291,7 +277,7 @@
                                     <a href="@Url.Action("cartDisplay","Cart")">
                                         <span id="shoppingCartID" class="font-weight-bold pr-4 mt-3 nav-link">
                                             @Session["count"]  <br />
-                                            @Session["TotalPrice"] L.E
+                                            @Session["TotalPrice"] 0 L.E
                                         </span>
                                     </a>
 
@@ -382,36 +368,42 @@
     <script src="~/Assests/js/mail-script.js"></script>
     <script src="~/Assests/js/theme.js"></script>
     <script src="~/Assests/js/navbaricons.js"></script>
+    <script src="~/Assests/js/bootstrap.min.js"></script>
+    <script src="~/Assests/js/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src=" ~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Assests/js/adminlte.min.js"></script>
 
     @RenderSection("scripts", required: false)
+
+
+
+
 
 
     <script src="~/Assests/js/multiItemSlider.js"></script>
 
     <script type="text/javascript">
-      
-        if ('@Session["User_Id"]' == "") {
-            document.getElementById("LoginID").classList.remove("hide")
-            document.getElementById("RegisterID").classList.remove("hide")
-            document.getElementById("ProfileID").classList.add("hide")
+             if ('@Session["vendor"]' != "vendor") {
+
             document.getElementById("VendorID").classList.add("hide")
-          
-        }
-        else {
-            
-            document.getElementById("LoginID").classList.add("hide")
-            document.getElementById("RegisterID").classList.add("hide")
-            document.getElementById("ProfileID").classList.remove("hide")
-            document.getElementById("VendorID").classList.remove("hide")
 
         }
+        if ('@Session["User_Id"]' == "") {
+                 document.getElementById("LoginID").classList.remove("hide");
+                 document.getElementById("RegisterID").classList.remove("hide");
+                 document.getElementById("ProfileID").classList.add("hide");
+             }
+             else {
+
+                 document.getElementById("LoginID").classList.add("hide");
+                 document.getElementById("RegisterID").classList.add("hide");
+                 document.getElementById("ProfileID").classList.remove("hide");
+             }
+
 
     </script>
 
-
-  
-
-    <script src="~/Assests/js/multiItemSlider.js"></script>
 
 
 </body>

@@ -32,9 +32,13 @@ namespace BL
         
         public bool UnSubscribe(int user_id, int cat_id)
         {
-            Subscribtion_table myRecord = context.Subscribtion_table.Where(s => s.User_Id == user_id && s.Cat_Id == cat_id).Select(s => s).First();
-            context.Subscribtion_table.Remove(myRecord);
-            context.SaveChanges();
+            List<Subscribtion_table> myRecord = context.Subscribtion_table.Where(s => s.User_Id == user_id && s.Cat_Id == cat_id).Select(s => s).ToList();
+            if (myRecord.Count > 0)
+            {
+                context.Subscribtion_table.Remove(myRecord[0]);
+                context.SaveChanges();
+            }
+          
             return true;
 
         }
@@ -48,6 +52,11 @@ namespace BL
 
             }
             return "false";
+        }
+
+        public string categoryname (int id)
+        {
+            return context.Category_table.Where(s => s.Cat_Id == id).Select(s => s.Cat_Name).First();
         }
     }
 }

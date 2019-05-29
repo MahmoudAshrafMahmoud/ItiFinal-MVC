@@ -14,16 +14,7 @@ namespace DAL
     
     public partial class Type_table
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type_table()
-        {
-            this.User_table = new HashSet<User_table>();
-        }
-    
         public int Type_id { get; set; }
         public string Type_Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_table> User_table { get; set; }
     }
 }

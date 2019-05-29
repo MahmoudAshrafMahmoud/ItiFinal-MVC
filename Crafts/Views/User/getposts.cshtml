@@ -1,0 +1,107 @@
+﻿@model List<BL.SharedModels.PostModel>
+
+<link href="~/Assests/css/AdminLTE.min.css" rel="stylesheet" />
+
+
+@foreach (var i in Model)
+{
+    var base64 = Convert.ToBase64String(i.user_image);
+    var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
+
+    <div class="post">
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="@ImgSRC" alt="">
+            <span class="username">
+                <a href="@Url.Action("SelectedUser", "User",new {id= @Session["User_Id"]})">@i.username </a>
+            </span>
+            <span class="description"> @i.Post_date</span>
+        </div>
+        <!-- /.user-block -->
+        <p>
+            @i.Post_body
+        </p>
+      
+        <ul class="list-inline mb-5 mr-5 pr-5">
+            <li class="pull-right">
+                <button id="@i.Post_id" onclick="showmore(id)" class="link-black text-sm">
+                    <i class="fa fa-comments-o margin-r-5"></i> Comments
+                    (@i.commentsofpost.Count)
+                </button> 
+            </li>
+        </ul>
+
+
+        <ul class="mt-3 commentsul">
+            @{  var x = 0;}
+            @foreach (var item in i.commentsofpost)
+            {
+                
+                var base642 = Convert.ToBase64String(item.Comment_profilePicture);
+                var ImgSRC2 = string.Format("data:image/gif;base64,{0}", base642);
+                if (x<3)
+                { 
+                <li class="list-unstyled commentsli">
+                    <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="@ImgSRC2" alt="">
+                        <span class="username">
+                            <a href="@Url.Action("SelectedUser", "User",new { id = item.Comment_UserID })">@item.Comment_Username </a>
+                        </span>
+                        <span class="description"> @item.Comment_Date</span>
+                    </div>
+                    <p>
+                        @item.Comment_body
+                    </p>
+                </li>
+                }
+                else
+                {
+                    <li class="list-unstyled commentsli @i.Post_id hide">
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="@ImgSRC2" alt="">
+                            <span class="username">
+                                <a href="@Url.Action("SelectedUser", "User",new { id = item.Comment_UserID })">@item.Comment_Username </a>
+                            </span>
+                            <span class="description"> @item.Comment_Date</span>
+                        </div>
+                        <p>
+                            @item.Comment_body
+                        </p>
+                    </li>
+                }
+                x = x + 1;
+            }
+
+        </ul>
+
+
+        @using (Ajax.BeginForm("Insetusercomment", new { postid = @i.Post_id } ,
+                                                        new AjaxOptions
+                                                        {
+                                                            HttpMethod = "POST",
+                                                            UpdateTargetId = "postsarearaget",
+                                                            InsertionMode = InsertionMode.Replace
+                                                        }))
+        {
+            <input name="comment" class="col-10 form-control input-sm d-inline-block" type="text" placeholder="Type a comment">
+            <div class="col-sm-2 d-inline-block float-right ">
+                <button type="submit" class=" btn btn-primary    pull-right btn-block btn-sm">Share</button>
+            </div>
+
+        }
+    </div>
+}
+
+<script src="~/Assests/js/adminlte.min.js"></script>
+
+
+<script type="text/javascript">
+    function showmore(id)
+    {
+        var items = document.getElementsByClassName(id)
+
+        for (var i = 3; i < items.length ; i++)
+        {
+            items[i].classList.remove("hide");
+        }
+    }
+</script>

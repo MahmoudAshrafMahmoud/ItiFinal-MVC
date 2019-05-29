@@ -18,6 +18,7 @@ namespace Crafts.Controllers
             Product pro = new Product();
             ViewBag.products = pro.CategoryProducts(id);
             ViewBag.cat_id = id;
+            ViewBag.catname = mycat.categoryname(id);
             if (Session["user"] != null)
             {
                 ViewBag.substate = mycat.checksubscribe((int)Session["User_Id"], id);

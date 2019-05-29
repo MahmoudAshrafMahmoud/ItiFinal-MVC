@@ -17,12 +17,8 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User_table()
         {
-            this.Following_table = new HashSet<Following_table>();
-            this.Following_table1 = new HashSet<Following_table>();
-            this.Order_table = new HashSet<Order_table>();
-            this.Product_table = new HashSet<Product_table>();
-            this.Request_table = new HashSet<Request_table>();
-            this.Subscribtion_table = new HashSet<Subscribtion_table>();
+            this.Comments_Table = new HashSet<Comments_Table>();
+            this.Posts_table = new HashSet<Posts_table>();
         }
     
         public int User_Id { get; set; }
@@ -37,20 +33,11 @@ namespace DAL
         public byte[] ProfilePicture { get; set; }
         public string Gender { get; set; }
         public string Bio { get; set; }
-        public double rating { get; set; }
+        public double Rating { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Following_table> Following_table { get; set; }
+        public virtual ICollection<Comments_Table> Comments_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Following_table> Following_table1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order_table> Order_table { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product_table> Product_table { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request_table> Request_table { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subscribtion_table> Subscribtion_table { get; set; }
-        public virtual Type_table Type_table { get; set; }
+        public virtual ICollection<Posts_table> Posts_table { get; set; }
     }
 }

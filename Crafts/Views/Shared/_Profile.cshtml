@@ -29,7 +29,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html">
+                    <a class="navbar-brand logo_h" href="@Url.Action("Home","User")">
                         <img src="~/Assests/img/logo.png" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -58,17 +58,8 @@
                                         </ul>
                                     </li>
 
-                                    <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage My sells</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Add Post</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("VendorOrders","Vendor")">Vendor Orders</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Search","Vendor")">Search</a>
-                                            </li>
-                                        </ul>
+                                    <li id="VendorID" class="nav-item active">
+                                        <a class="nav-link" href="@Url.Action("Addpost","Vendor")">Manage My sells</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -80,13 +71,7 @@
                             <div class="col-lg-5">
                                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                     <hr>
-                                    <li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-
-                                    <hr>
+                            
 
                                     <li class="nav-item" >
                                         <a href="@Url.Action("myprofile","User")" class="icons">
@@ -96,13 +81,6 @@
 
                                     <hr>
 
-                                    @*<li class="nav-item">
-                                        <a href="#" class="icons">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </a>
-                                    </li>*@
-
-                                    <hr>
                                     <li class="nav-item">
                                         <a href="@Url.Action("cartDisplay","Cart")" class="icons">
                                             <i class="fas fa-shopping-cart"></i>
@@ -293,22 +271,23 @@
 
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
+             if ('@Session["vendor"]' != "vendor") {
 
-        if ('@Session["User_Id"]' == "") {
-            document.getElementById("LoginID").classList.remove("hide")
-            document.getElementById("RegisterID").classList.remove("hide")
-            document.getElementById("ProfileID").classList.add("hide")
             document.getElementById("VendorID").classList.add("hide")
 
         }
-        else {
+        if ('@Session["User_Id"]' == "") {
+                 document.getElementById("LoginID").classList.remove("hide");
+                 document.getElementById("RegisterID").classList.remove("hide");
+                 document.getElementById("ProfileID").classList.add("hide");
+             }
+             else {
 
-            document.getElementById("LoginID").classList.add("hide")
-            document.getElementById("RegisterID").classList.add("hide")
-            document.getElementById("ProfileID").classList.remove("hide")
-            document.getElementById("VendorID").classList.remove("hide")
+                 document.getElementById("LoginID").classList.add("hide");
+                 document.getElementById("RegisterID").classList.add("hide");
+                 document.getElementById("ProfileID").classList.remove("hide");
+             }
 
-        }
 
     </script>
 

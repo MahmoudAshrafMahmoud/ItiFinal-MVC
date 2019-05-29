@@ -3,12 +3,12 @@
     ViewBag.Title = "Be_Vendor";
 }
 
-<script src="~/Scripts/jquery-1.8.2.min.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 <div id="ajaxdiv">
 
-    @using (Ajax.BeginForm("VendorRegister", new AjaxOptions { HttpMethod = "POST",UpdateTargetId= "ajaxdiv", InsertionMode = InsertionMode.Replace }))
+    @using (Ajax.BeginForm("VendorRegister",
+        new AjaxOptions { HttpMethod = "POST",UpdateTargetId= "ajaxdiv",
+            InsertionMode = InsertionMode.Replace }))
     {
         <div class="form-group">
             <label for="exampleFormControlInput1">Full Name <span style="color: red">*</span></label>

@@ -31,6 +31,16 @@
           <Property Name="Cat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cat_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Comments_Table">
+          <Key>
+            <PropertyRef Name="Comment_id" />
+          </Key>
+          <Property Name="Comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment_body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comment_postID" Type="int" Nullable="false" />
+          <Property Name="Comment_UserID" Type="int" Nullable="false" />
+          <Property Name="Comment_Date" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Following_table">
           <Key>
             <PropertyRef Name="follow_id" />
@@ -54,13 +64,13 @@
             <PropertyRef Name="Order_Id" />
           </Key>
           <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Order_Date" Type="date" Nullable="false" />
+          <Property Name="Order_Date" Type="datetime" Nullable="false" />
           <Property Name="Order_Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Order_Phone" Type="int" Nullable="false" />
           <Property Name="Expected_Price" Type="float" Nullable="false" />
           <Property Name="User_Id" Type="int" Nullable="false" />
           <Property Name="rating" Type="int" />
-          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderDetails_table">
           <Key>
@@ -72,6 +82,16 @@
           <Property Name="Pro_Id" Type="int" Nullable="false" />
           <Property Name="Order_Id" Type="int" Nullable="false" />
           <Property Name="rating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts_table">
+          <Key>
+            <PropertyRef Name="Post_id" />
+          </Key>
+          <Property Name="Post_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Post_body" Type="nvarchar(max)" />
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Post_pic" Type="image" />
+          <Property Name="Post_date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Product_table">
           <Key>
@@ -139,8 +159,8 @@
           <Property Name="Type_id" Type="int" Nullable="false" />
           <Property Name="ProfilePicture" Type="image" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Bio" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="rating" Type="float" Nullable="false" />
+          <Property Name="Bio" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
         </EntityType>
         <Association Name="FK_Admin_Req_App_table_Admin_table">
           <End Role="Admin_table" Type="Self.Admin_table" Multiplicity="1" />
@@ -166,39 +186,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Following_table_User_table2">
-          <End Role="User_table" Type="Self.User_table" Multiplicity="1" />
-          <End Role="Following_table" Type="Self.Following_table" Multiplicity="*" />
+        <Association Name="FK_Comments_Table_Posts_table">
+          <End Role="Posts_table" Type="Self.Posts_table" Multiplicity="1" />
+          <End Role="Comments_Table" Type="Self.Comments_Table" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
+            <Principal Role="Posts_table">
+              <PropertyRef Name="Post_id" />
             </Principal>
-            <Dependent Role="Following_table">
-              <PropertyRef Name="User_id" />
+            <Dependent Role="Comments_Table">
+              <PropertyRef Name="Comment_postID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Following_table_User_table3">
+        <Association Name="FK_Comments_Table_User_table">
           <End Role="User_table" Type="Self.User_table" Multiplicity="1" />
-          <End Role="Following_table" Type="Self.Following_table" Multiplicity="*" />
+          <End Role="Comments_Table" Type="Self.Comments_Table" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User_table">
               <PropertyRef Name="User_Id" />
             </Principal>
-            <Dependent Role="Following_table">
-              <PropertyRef Name="Vendor_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_table_User_table">
-          <End Role="User_table" Type="Self.User_table" Multiplicity="1" />
-          <End Role="Order_table" Type="Self.Order_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
-            </Principal>
-            <Dependent Role="Order_table">
-              <PropertyRef Name="User_Id" />
+            <Dependent Role="Comments_Table">
+              <PropertyRef Name="Comment_UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -214,15 +222,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderDetails_table_Product_table">
-          <End Role="Product_table" Type="Self.Product_table" Multiplicity="1" />
-          <End Role="OrderDetails_table" Type="Self.OrderDetails_table" Multiplicity="*" />
+        <Association Name="FK_Posts_table_User_table">
+          <End Role="User_table" Type="Self.User_table" Multiplicity="1" />
+          <End Role="Posts_table" Type="Self.Posts_table" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product_table">
-              <PropertyRef Name="Product_Id" />
+            <Principal Role="User_table">
+              <PropertyRef Name="User_Id" />
             </Principal>
-            <Dependent Role="OrderDetails_table">
-              <PropertyRef Name="Pro_Id" />
+            <Dependent Role="Posts_table">
+              <PropertyRef Name="User_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -238,30 +246,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_table_User_table">
-          <End Role="User_table" Type="Self.User_table" Multiplicity="1" />
-          <End Role="Product_table" Type="Self.Product_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
-            </Principal>
-            <Dependent Role="Product_table">
-              <PropertyRef Name="Vendor_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Request_table_User_table">
-          <End Role="User_table" Type="Self.User_table" Multiplicity="1" />
-          <End Role="Request_table" Type="Self.Request_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
-            </Principal>
-            <Dependent Role="Request_table">
-              <PropertyRef Name="User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Subscribtion-table_Category_table">
           <End Role="Category_table" Type="Self.Category_table" Multiplicity="1" />
           <End Role="Subscribtion-table" Type="Self.Subscribtion-table" Multiplicity="*" />
@@ -274,38 +258,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Subscribtion-table_User_table">
-          <End Role="User_table" Type="Self.User_table" Multiplicity="1" />
-          <End Role="Subscribtion-table" Type="Self.Subscribtion-table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
-            </Principal>
-            <Dependent Role="Subscribtion-table">
-              <PropertyRef Name="User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_table_Type_table">
-          <End Role="Type_table" Type="Self.Type_table" Multiplicity="1" />
-          <End Role="User_table" Type="Self.User_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type_table">
-              <PropertyRef Name="Type_id" />
-            </Principal>
-            <Dependent Role="User_table">
-              <PropertyRef Name="Type_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CraftsModelStoreContainer">
           <EntitySet Name="Admin_Req_App_table" EntityType="Self.Admin_Req_App_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Admin_table" EntityType="Self.Admin_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category_table" EntityType="Self.Category_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments_Table" EntityType="Self.Comments_Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Following_table" EntityType="Self.Following_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message-table" EntityType="Self.Message-table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_table" EntityType="Self.Order_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails_table" EntityType="Self.OrderDetails_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts_table" EntityType="Self.Posts_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_table" EntityType="Self.Product_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request_table" EntityType="Self.Request_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subscribtion-table" EntityType="Self.Subscribtion-table" Schema="dbo" store:Type="Tables" />
@@ -320,49 +282,29 @@
             <End Role="Request_table" EntitySet="Request_table" />
             <End Role="Admin_Req_App_table" EntitySet="Admin_Req_App_table" />
           </AssociationSet>
-          <AssociationSet Name="FK_Following_table_User_table2" Association="Self.FK_Following_table_User_table2">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Following_table" EntitySet="Following_table" />
+          <AssociationSet Name="FK_Comments_Table_Posts_table" Association="Self.FK_Comments_Table_Posts_table">
+            <End Role="Posts_table" EntitySet="Posts_table" />
+            <End Role="Comments_Table" EntitySet="Comments_Table" />
           </AssociationSet>
-          <AssociationSet Name="FK_Following_table_User_table3" Association="Self.FK_Following_table_User_table3">
+          <AssociationSet Name="FK_Comments_Table_User_table" Association="Self.FK_Comments_Table_User_table">
             <End Role="User_table" EntitySet="User_table" />
-            <End Role="Following_table" EntitySet="Following_table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_table_User_table" Association="Self.FK_Order_table_User_table">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Order_table" EntitySet="Order_table" />
+            <End Role="Comments_Table" EntitySet="Comments_Table" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetails_table_Order_table" Association="Self.FK_OrderDetails_table_Order_table">
             <End Role="Order_table" EntitySet="Order_table" />
             <End Role="OrderDetails_table" EntitySet="OrderDetails_table" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_table_Product_table" Association="Self.FK_OrderDetails_table_Product_table">
-            <End Role="Product_table" EntitySet="Product_table" />
-            <End Role="OrderDetails_table" EntitySet="OrderDetails_table" />
+          <AssociationSet Name="FK_Posts_table_User_table" Association="Self.FK_Posts_table_User_table">
+            <End Role="User_table" EntitySet="User_table" />
+            <End Role="Posts_table" EntitySet="Posts_table" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_table_Category_table" Association="Self.FK_Product_table_Category_table">
             <End Role="Category_table" EntitySet="Category_table" />
             <End Role="Product_table" EntitySet="Product_table" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_table_User_table" Association="Self.FK_Product_table_User_table">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Product_table" EntitySet="Product_table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_table_User_table" Association="Self.FK_Request_table_User_table">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Request_table" EntitySet="Request_table" />
-          </AssociationSet>
           <AssociationSet Name="FK_Subscribtion-table_Category_table" Association="Self.FK_Subscribtion-table_Category_table">
             <End Role="Category_table" EntitySet="Category_table" />
             <End Role="Subscribtion-table" EntitySet="Subscribtion-table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subscribtion-table_User_table" Association="Self.FK_Subscribtion-table_User_table">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Subscribtion-table" EntitySet="Subscribtion-table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_table_Type_table" Association="Self.FK_User_table_Type_table">
-            <End Role="Type_table" EntitySet="Type_table" />
-            <End Role="User_table" EntitySet="User_table" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -373,10 +315,12 @@
           <EntitySet Name="Admin_Req_App_table" EntityType="CraftsModel.Admin_Req_App_table" />
           <EntitySet Name="Admin_table" EntityType="CraftsModel.Admin_table" />
           <EntitySet Name="Category_table" EntityType="CraftsModel.Category_table" />
+          <EntitySet Name="Comments_Table" EntityType="CraftsModel.Comments_Table" />
           <EntitySet Name="Following_table" EntityType="CraftsModel.Following_table" />
           <EntitySet Name="Message_table" EntityType="CraftsModel.Message_table" />
           <EntitySet Name="Order_table" EntityType="CraftsModel.Order_table" />
           <EntitySet Name="OrderDetails_table" EntityType="CraftsModel.OrderDetails_table" />
+          <EntitySet Name="Posts_table" EntityType="CraftsModel.Posts_table" />
           <EntitySet Name="Product_table" EntityType="CraftsModel.Product_table" />
           <EntitySet Name="Request_table" EntityType="CraftsModel.Request_table" />
           <EntitySet Name="Subscribtion_table" EntityType="CraftsModel.Subscribtion_table" />
@@ -399,41 +343,21 @@
             <End Role="Category_table" EntitySet="Category_table" />
             <End Role="Subscribtion_table" EntitySet="Subscribtion_table" />
           </AssociationSet>
-          <AssociationSet Name="FK_Following_table_User_table2" Association="CraftsModel.FK_Following_table_User_table2">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Following_table" EntitySet="Following_table" />
+          <AssociationSet Name="FK_Comments_Table_Posts_table" Association="CraftsModel.FK_Comments_Table_Posts_table">
+            <End Role="Posts_table" EntitySet="Posts_table" />
+            <End Role="Comments_Table" EntitySet="Comments_Table" />
           </AssociationSet>
-          <AssociationSet Name="FK_Following_table_User_table3" Association="CraftsModel.FK_Following_table_User_table3">
+          <AssociationSet Name="FK_Comments_Table_User_table" Association="CraftsModel.FK_Comments_Table_User_table">
             <End Role="User_table" EntitySet="User_table" />
-            <End Role="Following_table" EntitySet="Following_table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_table_User_table" Association="CraftsModel.FK_Order_table_User_table">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Order_table" EntitySet="Order_table" />
+            <End Role="Comments_Table" EntitySet="Comments_Table" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetails_table_Order_table" Association="CraftsModel.FK_OrderDetails_table_Order_table">
             <End Role="Order_table" EntitySet="Order_table" />
             <End Role="OrderDetails_table" EntitySet="OrderDetails_table" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_table_Product_table" Association="CraftsModel.FK_OrderDetails_table_Product_table">
-            <End Role="Product_table" EntitySet="Product_table" />
-            <End Role="OrderDetails_table" EntitySet="OrderDetails_table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_table_User_table" Association="CraftsModel.FK_Product_table_User_table">
+          <AssociationSet Name="FK_Posts_table_User_table" Association="CraftsModel.FK_Posts_table_User_table">
             <End Role="User_table" EntitySet="User_table" />
-            <End Role="Product_table" EntitySet="Product_table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Request_table_User_table" Association="CraftsModel.FK_Request_table_User_table">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Request_table" EntitySet="Request_table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subscribtion_table_User_table" Association="CraftsModel.FK_Subscribtion_table_User_table">
-            <End Role="User_table" EntitySet="User_table" />
-            <End Role="Subscribtion_table" EntitySet="Subscribtion_table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_table_Type_table" Association="CraftsModel.FK_User_table_Type_table">
-            <End Role="Type_table" EntitySet="Type_table" />
-            <End Role="User_table" EntitySet="User_table" />
+            <End Role="Posts_table" EntitySet="Posts_table" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Admin_Req_App_table">
@@ -467,6 +391,18 @@
           <NavigationProperty Name="Product_table" Relationship="CraftsModel.FK_Product_table_Category_table" FromRole="Category_table" ToRole="Product_table" />
           <NavigationProperty Name="Subscribtion_table" Relationship="CraftsModel.FK_Subscribtion_table_Category_table" FromRole="Category_table" ToRole="Subscribtion_table" />
         </EntityType>
+        <EntityType Name="Comments_Table">
+          <Key>
+            <PropertyRef Name="Comment_id" />
+          </Key>
+          <Property Name="Comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment_body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment_postID" Type="Int32" Nullable="false" />
+          <Property Name="Comment_UserID" Type="Int32" Nullable="false" />
+          <Property Name="Comment_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Posts_table" Relationship="CraftsModel.FK_Comments_Table_Posts_table" FromRole="Comments_Table" ToRole="Posts_table" />
+          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Comments_Table_User_table" FromRole="Comments_Table" ToRole="User_table" />
+        </EntityType>
         <EntityType Name="Following_table">
           <Key>
             <PropertyRef Name="follow_id" />
@@ -474,8 +410,6 @@
           <Property Name="follow_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="User_id" Type="Int32" Nullable="false" />
           <Property Name="Vendor_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Following_table_User_table2" FromRole="Following_table" ToRole="User_table" />
-          <NavigationProperty Name="User_table1" Relationship="CraftsModel.FK_Following_table_User_table3" FromRole="Following_table" ToRole="User_table" />
         </EntityType>
         <EntityType Name="Message_table">
           <Key>
@@ -492,15 +426,14 @@
             <PropertyRef Name="Order_Id" />
           </Key>
           <Property Name="Order_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Order_Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Order_Phone" Type="Int32" Nullable="false" />
           <Property Name="Expected_Price" Type="Double" Nullable="false" />
           <Property Name="User_Id" Type="Int32" Nullable="false" />
           <Property Name="rating" Type="Int32" />
-          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Order_table_User_table" FromRole="Order_table" ToRole="User_table" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="OrderDetails_table" Relationship="CraftsModel.FK_OrderDetails_table_Order_table" FromRole="Order_table" ToRole="OrderDetails_table" />
-          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OrderDetails_table">
           <Key>
@@ -513,7 +446,18 @@
           <Property Name="Order_Id" Type="Int32" Nullable="false" />
           <Property Name="rating" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order_table" Relationship="CraftsModel.FK_OrderDetails_table_Order_table" FromRole="OrderDetails_table" ToRole="Order_table" />
-          <NavigationProperty Name="Product_table" Relationship="CraftsModel.FK_OrderDetails_table_Product_table" FromRole="OrderDetails_table" ToRole="Product_table" />
+        </EntityType>
+        <EntityType Name="Posts_table">
+          <Key>
+            <PropertyRef Name="Post_id" />
+          </Key>
+          <Property Name="Post_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Post_body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Post_pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Post_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Comments_Table" Relationship="CraftsModel.FK_Comments_Table_Posts_table" FromRole="Posts_table" ToRole="Comments_Table" />
+          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Posts_table_User_table" FromRole="Posts_table" ToRole="User_table" />
         </EntityType>
         <EntityType Name="Product_table">
           <Key>
@@ -529,8 +473,6 @@
           <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Add_Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Category_table" Relationship="CraftsModel.FK_Product_table_Category_table" FromRole="Product_table" ToRole="Category_table" />
-          <NavigationProperty Name="OrderDetails_table" Relationship="CraftsModel.FK_OrderDetails_table_Product_table" FromRole="Product_table" ToRole="OrderDetails_table" />
-          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Product_table_User_table" FromRole="Product_table" ToRole="User_table" />
         </EntityType>
         <EntityType Name="Request_table">
           <Key>
@@ -544,7 +486,6 @@
           <Property Name="reqState" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="National_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Admin_Req_App_table" Relationship="CraftsModel.FK_Admin_Req_App_table_Request_table" FromRole="Request_table" ToRole="Admin_Req_App_table" />
-          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Request_table_User_table" FromRole="Request_table" ToRole="User_table" />
         </EntityType>
         <EntityType Name="Subscribtion_table">
           <Key>
@@ -554,7 +495,6 @@
           <Property Name="User_Id" Type="Int32" Nullable="false" />
           <Property Name="Cat_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category_table" Relationship="CraftsModel.FK_Subscribtion_table_Category_table" FromRole="Subscribtion_table" ToRole="Category_table" />
-          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Subscribtion_table_User_table" FromRole="Subscribtion_table" ToRole="User_table" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -572,7 +512,6 @@
           </Key>
           <Property Name="Type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_User_table_Type_table" FromRole="Type_table" ToRole="User_table" />
         </EntityType>
         <EntityType Name="User_table">
           <Key>
@@ -589,15 +528,10 @@
           <Property Name="Type_id" Type="Int32" Nullable="false" />
           <Property Name="ProfilePicture" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Bio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="rating" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Following_table" Relationship="CraftsModel.FK_Following_table_User_table2" FromRole="User_table" ToRole="Following_table" />
-          <NavigationProperty Name="Following_table1" Relationship="CraftsModel.FK_Following_table_User_table3" FromRole="User_table" ToRole="Following_table" />
-          <NavigationProperty Name="Order_table" Relationship="CraftsModel.FK_Order_table_User_table" FromRole="User_table" ToRole="Order_table" />
-          <NavigationProperty Name="Product_table" Relationship="CraftsModel.FK_Product_table_User_table" FromRole="User_table" ToRole="Product_table" />
-          <NavigationProperty Name="Request_table" Relationship="CraftsModel.FK_Request_table_User_table" FromRole="User_table" ToRole="Request_table" />
-          <NavigationProperty Name="Subscribtion_table" Relationship="CraftsModel.FK_Subscribtion_table_User_table" FromRole="User_table" ToRole="Subscribtion_table" />
-          <NavigationProperty Name="Type_table" Relationship="CraftsModel.FK_User_table_Type_table" FromRole="User_table" ToRole="Type_table" />
+          <Property Name="Bio" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Comments_Table" Relationship="CraftsModel.FK_Comments_Table_User_table" FromRole="User_table" ToRole="Comments_Table" />
+          <NavigationProperty Name="Posts_table" Relationship="CraftsModel.FK_Posts_table_User_table" FromRole="User_table" ToRole="Posts_table" />
         </EntityType>
         <Association Name="FK_Admin_Req_App_table_Admin_table">
           <End Type="CraftsModel.Admin_table" Role="Admin_table" Multiplicity="1" />
@@ -647,39 +581,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Following_table_User_table2">
-          <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="1" />
-          <End Type="CraftsModel.Following_table" Role="Following_table" Multiplicity="*" />
+        <Association Name="FK_Comments_Table_Posts_table">
+          <End Type="CraftsModel.Posts_table" Role="Posts_table" Multiplicity="1" />
+          <End Type="CraftsModel.Comments_Table" Role="Comments_Table" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
+            <Principal Role="Posts_table">
+              <PropertyRef Name="Post_id" />
             </Principal>
-            <Dependent Role="Following_table">
-              <PropertyRef Name="User_id" />
+            <Dependent Role="Comments_Table">
+              <PropertyRef Name="Comment_postID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Following_table_User_table3">
+        <Association Name="FK_Comments_Table_User_table">
           <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="1" />
-          <End Type="CraftsModel.Following_table" Role="Following_table" Multiplicity="*" />
+          <End Type="CraftsModel.Comments_Table" Role="Comments_Table" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User_table">
               <PropertyRef Name="User_Id" />
             </Principal>
-            <Dependent Role="Following_table">
-              <PropertyRef Name="Vendor_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_table_User_table">
-          <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="1" />
-          <End Type="CraftsModel.Order_table" Role="Order_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
-            </Principal>
-            <Dependent Role="Order_table">
-              <PropertyRef Name="User_Id" />
+            <Dependent Role="Comments_Table">
+              <PropertyRef Name="Comment_UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -695,63 +617,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderDetails_table_Product_table">
-          <End Type="CraftsModel.Product_table" Role="Product_table" Multiplicity="1" />
-          <End Type="CraftsModel.OrderDetails_table" Role="OrderDetails_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product_table">
-              <PropertyRef Name="Product_Id" />
-            </Principal>
-            <Dependent Role="OrderDetails_table">
-              <PropertyRef Name="Pro_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_table_User_table">
+        <Association Name="FK_Posts_table_User_table">
           <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="1" />
-          <End Type="CraftsModel.Product_table" Role="Product_table" Multiplicity="*" />
+          <End Type="CraftsModel.Posts_table" Role="Posts_table" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User_table">
               <PropertyRef Name="User_Id" />
             </Principal>
-            <Dependent Role="Product_table">
-              <PropertyRef Name="Vendor_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Request_table_User_table">
-          <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="1" />
-          <End Type="CraftsModel.Request_table" Role="Request_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
-            </Principal>
-            <Dependent Role="Request_table">
-              <PropertyRef Name="User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Subscribtion_table_User_table">
-          <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="1" />
-          <End Type="CraftsModel.Subscribtion_table" Role="Subscribtion_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User_table">
-              <PropertyRef Name="User_Id" />
-            </Principal>
-            <Dependent Role="Subscribtion_table">
-              <PropertyRef Name="User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_table_Type_table">
-          <End Type="CraftsModel.Type_table" Role="Type_table" Multiplicity="1" />
-          <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type_table">
-              <PropertyRef Name="Type_id" />
-            </Principal>
-            <Dependent Role="User_table">
-              <PropertyRef Name="Type_id" />
+            <Dependent Role="Posts_table">
+              <PropertyRef Name="User_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -787,6 +661,17 @@
               <MappingFragment StoreEntitySet="Category_table">
                 <ScalarProperty Name="Cat_Name" ColumnName="Cat_Name" />
                 <ScalarProperty Name="Cat_Id" ColumnName="Cat_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments_Table">
+            <EntityTypeMapping TypeName="CraftsModel.Comments_Table">
+              <MappingFragment StoreEntitySet="Comments_Table">
+                <ScalarProperty Name="Comment_Date" ColumnName="Comment_Date" />
+                <ScalarProperty Name="Comment_UserID" ColumnName="Comment_UserID" />
+                <ScalarProperty Name="Comment_postID" ColumnName="Comment_postID" />
+                <ScalarProperty Name="Comment_body" ColumnName="Comment_body" />
+                <ScalarProperty Name="Comment_id" ColumnName="Comment_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -833,6 +718,17 @@
                 <ScalarProperty Name="Approval" ColumnName="Approval" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="OrderDetail_Id" ColumnName="OrderDetail_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts_table">
+            <EntityTypeMapping TypeName="CraftsModel.Posts_table">
+              <MappingFragment StoreEntitySet="Posts_table">
+                <ScalarProperty Name="Post_date" ColumnName="Post_date" />
+                <ScalarProperty Name="Post_pic" ColumnName="Post_pic" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Post_body" ColumnName="Post_body" />
+                <ScalarProperty Name="Post_id" ColumnName="Post_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -895,7 +791,7 @@
           <EntitySetMapping Name="User_table">
             <EntityTypeMapping TypeName="CraftsModel.User_table">
               <MappingFragment StoreEntitySet="User_table">
-                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="Bio" ColumnName="Bio" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />

@@ -12,23 +12,22 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Request_table
+    public partial class Posts_table
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Request_table()
+        public Posts_table()
         {
-            this.Admin_Req_App_table = new HashSet<Admin_Req_App_table>();
+            this.Comments_Table = new HashSet<Comments_Table>();
         }
     
-        public int Request_Id { get; set; }
-        public System.DateTime Request_Date { get; set; }
-        public string Full_Name { get; set; }
-        public string Seller_info { get; set; }
-        public int User_Id { get; set; }
-        public string reqState { get; set; }
-        public int National_ID { get; set; }
+        public int Post_id { get; set; }
+        public string Post_body { get; set; }
+        public int User_id { get; set; }
+        public byte[] Post_pic { get; set; }
+        public System.DateTime Post_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Admin_Req_App_table> Admin_Req_App_table { get; set; }
+        public virtual ICollection<Comments_Table> Comments_Table { get; set; }
+        public virtual User_table User_table { get; set; }
     }
 }
