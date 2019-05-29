@@ -95,7 +95,7 @@ namespace BL
                 user.ProfilePicture = fileData;
                 user.Gender = newUser.gender;
                 user.Bio = newUser.Bio;
-                user.rating = 0;
+                user.Rating = 0;
 
                 context.User_table.Add(user);
                 context.SaveChanges();

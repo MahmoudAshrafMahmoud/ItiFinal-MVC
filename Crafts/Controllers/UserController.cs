@@ -182,7 +182,7 @@ namespace Crafts.Controllers
             ul.RegisterFollowedVendor(SelectedVendors,userId);
             return RedirectToAction("");
         }
-            {
+            /*{
                 newUser.Rating = 0;
                 newUser.Type_id = 1;
                 myData.User_table.Add(newUser);
@@ -190,7 +190,7 @@ namespace Crafts.Controllers
                 Session["userID"] = newUser.User_Id;
                 ModelState.Clear();
                 newUser = null;
-            }
+            }*/
 
 
 
