@@ -3,11 +3,17 @@
     Layout = "~/Views/Shared/_Profile.cshtml";
 }
 
+<!DOCTYPE html>
 
+<html>
+<head>
     <meta name="viewport" content="width=device-width" />
     <title>Addpost</title>
 
     <link href="~/Assests/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Assests/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Assests/js/popper.js"></script>
+    <script src="~/Assests/js/bootstrap.min.js"></script>
 
     <style>
         .dropbtn {
@@ -93,24 +99,28 @@
             vertical-align: middle;
         }
 
-   .contflex{
-       display:flex;
-   }
+        .contflex {
+            display: flex;
+        }
 
-        .limitedheight{
-            height:190px;
-        } .flexelements {
+        .limitedheight {
+            height: 190px;
+        }
+
+        .flexelements {
             width: 31%;
         }
 
-        .claimedRight{
-            height:65px;
-        } .proname {
+        .claimedRight {
+            height: 65px;
+        }
+
+        .proname {
             font-size: 1.2rem !important;
         }
-     
     </style>
-
+</head>
+<body>
 
 
 
@@ -144,28 +154,28 @@
                        role="tab" aria-controls="review" aria-selected="false">Out of Stock Products</a>
                 </li>
             </ul>
-         </div>
-            <div class="tab-content mt-5 pt-5" id="myTabContent">
-                <div class="tab-pane fade active show" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                    <div class="container">
-                        <div class="row contflex">
-                            @foreach (var i in Model)
-                            {
-                                var getimage = Convert.ToBase64String(i.Image);
-                                var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
-                                string x = @i.Product_Id.ToString();
-                                <div class=" flexelements p-0 m-1" id="@i.Product_Id">
-                                    <figure class="card card-product">
-                                        <div class="img-wrap"><img src="@Url.Content(picture)"></div>
-                                        <figcaption class="info-wrap limitedheight">
+        </div>
+        <div class="tab-content mt-5 pt-5" id="myTabContent">
+            <div class="tab-pane fade active show" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                <div class="container">
+                    <div class="row contflex">
+                        @foreach (var i in Model)
+                        {
+                            var getimage = Convert.ToBase64String(i.Image);
+                            var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
+                            string x = @i.Product_Id.ToString();
+                            <div class=" flexelements p-0 m-1" id="@i.Product_Id">
+                                <figure class="card card-product">
+                                    <div class="img-wrap"><img src="@Url.Content(picture)"></div>
+                                    <figcaption class="info-wrap limitedheight">
 
-                                            <a class="d-inline" href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
+                                        <a class="d-inline" href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
 
-                                                <h5 class="title proname">@i.Product_Name</h5>
-                                            </a>
+                                            <h5 class="title proname">@i.Product_Name</h5>
+                                        </a>
 
 
-                                            @Ajax.ActionLink(" ", "outofstock", "Vendor", new { id = @i.Product_Id },
+                                        @Ajax.ActionLink(" ", "outofstock", "Vendor", new { id = @i.Product_Id },
                                    new AjaxOptions
                                    {
                                        UpdateTargetId = x,
@@ -176,113 +186,113 @@
                                    new { @class = "fas fa-trash-alt d-inline d-inline" })
 
 
-                                            <b class="title">@i.Catigory_name</b>
-                                            <p class="desc claimedRight">@i.Product_Description</p>
-                                            <div class="rating-wrap">
-                                                <div class="label-rating">132 reviews</div>
-                                                <div class="label-rating">154 orders </div>
-                                            </div> <!-- rating-wrap.// -->
-                                        </figcaption>
-                                        <div class="bottom-wrap">
-                                            <div class="price-wrap h5">
-                                                <span class="price-new">@i.Product_Price L.E </span>
-                                            </div> <!-- price-wrap.// -->
-                                        </div> <!-- bottom-wrap.// -->
-                                    </figure>
-                                </div> <!-- col // -->
-                            }
-                        </div> <!-- row.// -->
-                    </div>
+                                        <b class="title">@i.Catigory_name</b>
+                                        <p class="desc claimedRight">@i.Product_Description</p>
+                                        <div class="rating-wrap">
+                                            <div class="label-rating">132 reviews</div>
+                                            <div class="label-rating">154 orders </div>
+                                        </div> <!-- rating-wrap.// -->
+                                    </figcaption>
+                                    <div class="bottom-wrap">
+                                        <div class="price-wrap h5">
+                                            <span class="price-new">@i.Product_Price L.E </span>
+                                        </div> <!-- price-wrap.// -->
+                                    </div> <!-- bottom-wrap.// -->
+                                </figure>
+                            </div> <!-- col // -->
+                        }
+                    </div> <!-- row.// -->
                 </div>
-                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="container">
-                        <div class="row contflex">
-                            @foreach (var i in ViewBag.Pendingproduct)
-                            {
-                                var getimage = Convert.ToBase64String(i.Image);
-                                var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
+            </div>
+            <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="container">
+                    <div class="row contflex">
+                        @foreach (var i in ViewBag.Pendingproduct)
+                        {
+                            var getimage = Convert.ToBase64String(i.Image);
+                            var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
 
-                                <div class=" flexelements p-0 m-1">
-                                    <figure class="card card-product">
-                                        <div class="img-wrap"><img src="@Url.Content(picture)"></div>
-                                        <figcaption class="info-wrap limitedheight">
-                                            <a href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
-                                                <h5 class="title proname">@i.Product_Name</h5>
-                                            </a>
+                            <div class=" flexelements p-0 m-1">
+                                <figure class="card card-product">
+                                    <div class="img-wrap"><img src="@Url.Content(picture)"></div>
+                                    <figcaption class="info-wrap limitedheight">
+                                        <a href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
+                                            <h5 class="title proname">@i.Product_Name</h5>
+                                        </a>
 
-                                            <b class="title">@i.Catigory_name</b>
-                                            <p class="desc claimedRight">@i.Product_Description</p>
-                                            <div class="rating-wrap">
-                                                <div class="label-rating">132 reviews</div>
-                                                <div class="label-rating">154 orders </div>
-                                            </div> <!-- rating-wrap.// -->
-                                        </figcaption>
-                                        <div class="bottom-wrap">
-                                            <div class="price-wrap h5">
-                                                <span class="price-new">@i.Product_Price L.E </span>
-                                            </div> <!-- price-wrap.// -->
-                                        </div> <!-- bottom-wrap.// -->
-                                    </figure>
-                                </div> <!-- col // -->
-                            }
-                        </div> <!-- row.// -->
-                    </div>
+                                        <b class="title">@i.Catigory_name</b>
+                                        <p class="desc claimedRight">@i.Product_Description</p>
+                                        <div class="rating-wrap">
+                                            <div class="label-rating">132 reviews</div>
+                                            <div class="label-rating">154 orders </div>
+                                        </div> <!-- rating-wrap.// -->
+                                    </figcaption>
+                                    <div class="bottom-wrap">
+                                        <div class="price-wrap h5">
+                                            <span class="price-new">@i.Product_Price L.E </span>
+                                        </div> <!-- price-wrap.// -->
+                                    </div> <!-- bottom-wrap.// -->
+                                </figure>
+                            </div> <!-- col // -->
+                        }
+                    </div> <!-- row.// -->
                 </div>
-                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                    <div class="container">
-                        <div class="row contflex">
+            </div>
+            <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                <div class="container">
+                    <div class="row contflex">
 
-                            @foreach (var i in ViewBag.Rejectedproduct)
-                            {
-                                var getimage = Convert.ToBase64String(i.Image);
-                                var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
+                        @foreach (var i in ViewBag.Rejectedproduct)
+                        {
+                            var getimage = Convert.ToBase64String(i.Image);
+                            var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
 
-                                <div class=" flexelements p-0 m-1">
-                                    <figure class="card card-product">
-                                        <div class="img-wrap"><img src="@Url.Content(picture)"></div>
-                                        <figcaption class="info-wrap limitedheight">
-                                            <a href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
-                                                <h5 class="title proname">@i.Product_Name</h5>
-                                            </a>
+                            <div class=" flexelements p-0 m-1">
+                                <figure class="card card-product">
+                                    <div class="img-wrap"><img src="@Url.Content(picture)"></div>
+                                    <figcaption class="info-wrap limitedheight">
+                                        <a href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
+                                            <h5 class="title proname">@i.Product_Name</h5>
+                                        </a>
 
-                                            <b class="title">@i.Catigory_name</b>
-                                            <p class="desc claimedRight">@i.Product_Description</p>
-                                            <div class="rating-wrap">
-                                                <div class="label-rating">132 reviews</div>
-                                                <div class="label-rating">154 orders </div>
-                                            </div> <!-- rating-wrap.// -->
-                                        </figcaption>
-                                        <div class="bottom-wrap">
-                                            <div class="price-wrap h5">
-                                                <span class="price-new">@i.Product_Price L.E </span>
-                                            </div> <!-- price-wrap.// -->
-                                        </div> <!-- bottom-wrap.// -->
-                                    </figure>
-                                </div> <!-- col // -->
-                            }
-                        </div> <!-- row.// -->
-                    </div>
+                                        <b class="title">@i.Catigory_name</b>
+                                        <p class="desc claimedRight">@i.Product_Description</p>
+                                        <div class="rating-wrap">
+                                            <div class="label-rating">132 reviews</div>
+                                            <div class="label-rating">154 orders </div>
+                                        </div> <!-- rating-wrap.// -->
+                                    </figcaption>
+                                    <div class="bottom-wrap">
+                                        <div class="price-wrap h5">
+                                            <span class="price-new">@i.Product_Price L.E </span>
+                                        </div> <!-- price-wrap.// -->
+                                    </div> <!-- bottom-wrap.// -->
+                                </figure>
+                            </div> <!-- col // -->
+                        }
+                    </div> <!-- row.// -->
                 </div>
-                <div class="tab-pane fade" id="outofstock" role="tabpanel" aria-labelledby="review-tab">
-                    <div class="container">
-                        <div class="row contflex">
+            </div>
+            <div class="tab-pane fade" id="outofstock" role="tabpanel" aria-labelledby="review-tab">
+                <div class="container">
+                    <div class="row contflex">
 
-                            @foreach (var i in ViewBag.outofstock)
-                            {
-                                string y = @i.Product_Id.ToString();
+                        @foreach (var i in ViewBag.outofstock)
+                        {
+                            string y = @i.Product_Id.ToString();
 
-                                var getimage = Convert.ToBase64String(i.Image);
-                                var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
+                            var getimage = Convert.ToBase64String(i.Image);
+                            var picture = string.Format("data:image/jpeg;base64,{0}", getimage);
 
-                                <div class=" flexelements p-0 m-1" id="@i.Product_Id">
-                                    <figure class="card card-product">
-                                        <div class="img-wrap"><img src="@Url.Content(picture)"></div>
-                                        <figcaption class="info-wrap limitedheight">
-                                            <a href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
-                                                <h5 class="title proname">@i.Product_Name</h5>
-                                            </a>
+                            <div class=" flexelements p-0 m-1" id="@i.Product_Id">
+                                <figure class="card card-product">
+                                    <div class="img-wrap"><img src="@Url.Content(picture)"></div>
+                                    <figcaption class="info-wrap limitedheight">
+                                        <a href="@Url.Action("ProductView","Product",new {id= @i.Product_Id })">
+                                            <h5 class="title proname">@i.Product_Name</h5>
+                                        </a>
 
-                                            @Ajax.ActionLink(" ", "restoreProducts", "Vendor", new { id = @i.Product_Id },
+                                        @Ajax.ActionLink(" ", "restoreProducts", "Vendor", new { id = @i.Product_Id },
                                    new AjaxOptions
                                    {
                                        UpdateTargetId = y,
@@ -294,28 +304,28 @@
 
 
 
-                                            <b class="title">@i.Catigory_name</b>
-                                            <p class="desc claimedRight">@i.Product_Description</p>
-                                            <div class="rating-wrap">
-                                                <div class="label-rating">132 reviews</div>
-                                                <div class="label-rating">154 orders </div>
-                                            </div> <!-- rating-wrap.// -->
-                                        </figcaption>
-                                        <div class="bottom-wrap">
-                                            <div class="price-wrap h5">
-                                                <span class="price-new">@i.Product_Price L.E </span>
-                                            </div> <!-- price-wrap.// -->
-                                        </div> <!-- bottom-wrap.// -->
-                                    </figure>
-                                </div> <!-- col // -->
-                            }
-                        </div> <!-- row.// -->
-                    </div>
+                                        <b class="title">@i.Catigory_name</b>
+                                        <p class="desc claimedRight">@i.Product_Description</p>
+                                        <div class="rating-wrap">
+                                            <div class="label-rating">132 reviews</div>
+                                            <div class="label-rating">154 orders </div>
+                                        </div> <!-- rating-wrap.// -->
+                                    </figcaption>
+                                    <div class="bottom-wrap">
+                                        <div class="price-wrap h5">
+                                            <span class="price-new">@i.Product_Price L.E </span>
+                                        </div> <!-- price-wrap.// -->
+                                    </div> <!-- bottom-wrap.// -->
+                                </figure>
+                            </div> <!-- col // -->
+                        }
+                    </div> <!-- row.// -->
                 </div>
-
-
             </div>
+
+
         </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -323,7 +333,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">New product</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    
+
                 </div>
                 <div class="modal-body">
                     <form id="post-form" action="/Vendor/AddProduct" method="post" enctype="multipart/form-data">
@@ -331,48 +341,48 @@
                             <label for="file-input">
                                 <img src="~/Assests/img/upload.png" />
                             </label>
-                            
-                           
+
+
                             @Html.ValidationMessage("insertedimg", "", new { @class = "text-danger" })
-                            <input id="file-input" type="file" name="insertedimg"  required/>
+                            <input id="file-input" type="file" name="insertedimg" required />
                         </div>
                         <br />
-                   
+
                         @Html.ValidationMessage("Product_Description", "", new { @class = "text-danger" })
                         <input type="text" id="Product_Description " name="Product_Description" placeholder="description" class="form-control col-12" required />
                         <br />
-                       
+
                         @Html.ValidationMessage("Product_Price", "", new { @class = "text-danger" })
                         <input type="number" id="Product_Price " name="Product_Price" placeholder="price" class="form-control col-12" />
                         <br />
-                        
+
                         @Html.ValidationMessage("Product_Name", "", new { @class = "text-danger" })
-                        <input type="text" id="Product_Name" name="Product_Name" placeholder="product Name" class="form-control col-12" required/>
+                        <input type="text" id="Product_Name" name="Product_Name" placeholder="product Name" class="form-control col-12" required />
                         <br />
-                       
+
                         @Html.ValidationMessage("cat_name", "", new { @class = "text-danger" })
-                          <select id="cat" class="dropdown dropdown-menu  col-12 form-control"name="cat_name" size="4" required >
-                              <option class="dropdown-item" selected> Choose Catigory</option>
-                               @foreach (var item in ViewBag.cat)
-                               {
-                                   <option class="dropdown-item">
-                                       @item.Cat_Name 
-                                   </option>
-                               }
-                          </select>
+                        <select id="cat" class="dropdown dropdown-menu  col-12 form-control" name="cat_name" size="4" required>
+                            <option class="dropdown-item" selected> Choose Catigory</option>
+                            @foreach (var item in ViewBag.cat)
+                            {
+                                <option class="dropdown-item">
+                                    @item.Cat_Name
+                                </option>
+                            }
+                        </select>
                         <br /><br />
-                        <button type="submit"id="submit"   style="float:right" class="btn btn-outline-primary form-control">Post</button>
+                        <button type="submit" id="submit" style="float:right" class="btn btn-outline-primary form-control">Post</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-  <script>
-      myform = document.getElementById("post-form");
-      Console.log(myform);
-  </script>
-   
+    <script>
+        myform = document.getElementById("post-form");
+        Console.log(myform);
+    </script>
+
     <script>
         $('#city').focus(function () {
             //open bootsrap modal
@@ -382,13 +392,19 @@
         });
 
         $('#submit').click(function () {
-            
+
             input = $('#post-form');
             for (i = 0; i < input.length; i++) {
                 cities.push(input[i].value);
             }
 
-     
+            //if (cities.length === 0) {
+            //    $('.error').text('please select a city...stupid');
+            //} else {
+            //    $('.error').text('');
+            //    var data = JSON.stringify(cities);
+            //    console.log(data);
+            //}
         });
     </script>
     <script>
@@ -410,7 +426,7 @@
                 this.displayinput = true;
             }
         }
-        
+
     </script>
     <script>
         var newpost = document.getElementById("post-form");
@@ -427,5 +443,12 @@
         })
     </script>
 
+    <script type="text/javascript">
 
+    </script>
+  
+
+
+</body>
+</html>
 

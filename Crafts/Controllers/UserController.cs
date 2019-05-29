@@ -70,9 +70,9 @@ namespace Crafts.Controllers
         {
             User_table USer = (User_table)Session["user"];
 
-            //int id = USer.User_Id;
+            int id = USer.User_Id;
             BL.User user = new BL.User();
-            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, 1);
+            ViewBag.message = user.Vendor_Register(FullName, NationalId, Bio, id);
             return PartialView();
         }
 
