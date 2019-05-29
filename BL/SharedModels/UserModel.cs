@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using System.Web;
+
 namespace BL.SharedModels
 {
    public class UserModel
@@ -24,6 +26,7 @@ namespace BL.SharedModels
         public int userid { set; get; }
         public string gender { set; get; }
         public string typeName { set; get; }
+        public HttpPostedFileBase ProfilePicture { get; set; }
 
     }
 }

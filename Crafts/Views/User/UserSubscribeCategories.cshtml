@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "UserSubscribeCategories";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+<div id="change">
+    @using (Ajax.BeginForm("UserSubscribeCategorie", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "change" }))
+
+    {
+        @*<form action="/user/UserSubscribeCategories" method="post">*@
+
+        <div style=" display:flex ; flex-direction:row ; flex-wrap:wrap ; justify-content:space-around">
+        @foreach (var item in ViewBag.selectedCategory)
+        {
+            <div class="page__toggle col-lg-6" style="padding-left:50px" >
+
+                <label class="toggle">
+                    <input onchange="checkfun()" class="check toggle__input" type="checkbox" value="@item.Cat_Id"  name="SelectedCategories">
+                    <span class="toggle__label">
+                        <span class="toggle__text" style=" font-weight:bolder">@item.Cat_Name</span>
+                    </span>
+                </label>
+            </div>
+      
+        }
+
+       
+    </div>
+    <button  id="btn"  disabled type="submit" class="btn btn-outline-primary" style="margin-left:30%" >Next</button>
+@*</form>*@
+
+}
+</div>
+
+
+<script type="text/javascript">
+    var x = 0;
+    function checkfun() {
+        x = x + 1;
+        if (x > 4) {
+            document.getElementById("btn").removeAttribute("disabled");
+
+        }
+    }
+
+
+
+</script>

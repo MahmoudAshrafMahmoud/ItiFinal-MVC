@@ -362,6 +362,8 @@
     <Content Include="Views\Category\errorview.cshtml" />
     <Content Include="Views\Vendor\outofstock.cshtml" />
     <Content Include="Views\Vendor\restoreProducts.cshtml" />
+    <Content Include="Views\User\UserSubscribeCategories.cshtml" />
+    <Content Include="Views\User\UserSubscribeCategorie.cshtml" />
     <Content Include="Views\User\getposts.cshtml" />
     <Content Include="Views\User\followedUsersPosts.cshtml" />
     <None Include="Web.Debug.config">
