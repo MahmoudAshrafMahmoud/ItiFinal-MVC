@@ -4,33 +4,38 @@
     //Layout = "~/Views/Shared/_Main.cshtml";
 }
 
-<div style="width: 50px; height: 50px;">
+<div class="pl-5">
     
 
-        <form action="/user/AfterFollow" method="post">
+        <form class="row d-flex col-12" action="/user/AfterFollow" method="post">
         @foreach (var item in ViewBag.FollowVendors)
         {
-            <div class="page__toggle">
+            <div  class="page__toggle col-6">
 
                 <label class="toggle">
-                    <input class="toggle__input" type="checkbox" value="@item" checked name="SelectedVendors">
+                    <input  onchange="checkfun()"  class="toggle__input" type="checkbox" value="@item" checked name="SelectedVendors">
                     <span class="toggle__label">
                         <span class="toggle__text">@item</span>
                     </span>
                 </label>
             </div>
         }
-        <button type="submit">OK</button>
+        <button  type="submit" class="btn btn-outline-primary">OK</button>
 </form>
-
-
-    
-
-
-
-
-
-
 
 </div>
 
+
+<script type="text/javascript">
+    var x = 0;
+    function checkfun() {
+        x = x + 1;
+        if (x > 4) {
+            document.getElementById("btn").removeAttribute("disabled");
+
+        }
+    }
+
+
+
+</script>

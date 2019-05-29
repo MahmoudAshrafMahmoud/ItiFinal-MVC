@@ -18,20 +18,7 @@
             <img class="mt-5 author_img rounded-circle" src="@ImgSRC2" width="150px" alt="">
 
             <h4>@Model.User_Name</h4>
-            <div class="social_icon">
-                <a href="#">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-github"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-behance"></i>
-                </a>
-            </div>
+         
             <p>
                 @Model.Bio
             </p>
@@ -87,7 +74,7 @@
 
             <li class="nav-item">
                 <a class="nav-link " id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="home"
-                   aria-selected="false">@Model.FName's Posts</a>
+                   aria-selected="false">@Model.FName's Wall</a>
             </li>
         
 
@@ -260,10 +247,6 @@
 </script>
 
 
-
-@section scripts{
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
-}
 
 
 

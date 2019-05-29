@@ -126,7 +126,8 @@ namespace BL
 
 
 
-            for (int i = 0; i < Categories.Length; i++)
+            for (int i = 0; 
+                i < Categories.Length; i++)
             {
                 subscribe.Cat_Id = Categories[i];
                 context.Subscribtion_table.Add(subscribe);

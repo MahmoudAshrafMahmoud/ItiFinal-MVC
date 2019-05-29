@@ -5,6 +5,16 @@
 }
 
 
+<section class="banner_area mt-3 pt-3">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content text-center">
+
+                <!-- cover image -->
+            </div>
+        </div>
+    </div>
+</section>
 
 <!--================Category Product Area =================-->
 <section class="cat_product_area section_gap">
@@ -12,8 +22,8 @@
         <div class="row flex-row-reverse">
             <div class="col-lg-9">
                 
-              
-                    <div><h3 class="genric-btn info-border radius" id="id"> @ViewBag.catname > </h3></div>
+               
+                    <div><h3 class=" d-block max-auto  col-6 radius x-large" id="id"> @ViewBag.catname  </h3></div>
 
                     <div class="latest_product_inner row">
 
@@ -24,9 +34,7 @@
                                     <div class="f_p_img">
                                         <img class="img-fluid proimage2" src="data:image;base64,@System.Convert.ToBase64String(item.Image)" alt="">
                                         <div class="p_icon">
-                                            <a href="#">
-                                                <i class="lnr lnr-heart"></i>
-                                            </a>
+                                         
 
                                             @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
                                    new AjaxOptions

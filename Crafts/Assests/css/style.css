@@ -536,17 +536,19 @@ a {
   margin: auto; }
 
 .banner_area {
-  position: relative;
-  z-index: 1;
-  min-height: 395px; }
-  .banner_area .banner_inner {
     position: relative;
-    overflow: hidden;
-    width: 100%;
-    min-height: 395px;
-    background: url(../img/breadcrumb/checkout-bg.jpg) no-repeat center bottom;
-    background-size: contain;
-    z-index: 1; }
+    z-index: 1;
+    min-height: 259px;
+}
+    .banner_area .banner_inner {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        min-height: 259px;
+        background: url(../img/breadcrumb/checkout-bg.jpg) no-repeat center bottom;
+        background-size: contain;
+        z-index: 1;
+    }
     .banner_area .banner_inner .overlay {
       background: rgba(0, 0, 0, 0.33);
       position: absolute;
@@ -3710,7 +3712,8 @@ h6 {
     padding: 0px 15px;
     margin-bottom: 20px; }
 .cart_inner .table tbody tr.out_button_area .checkout_btn_inner {
-  margin-left: -388px; }
+    margin-left: -550px;
+}
   .cart_inner .table tbody tr.out_button_area .checkout_btn_inner .main_btn {
     height: 40px;
     padding: 0px 30px;
@@ -4295,7 +4298,7 @@ h6 {
 .single-footer-widget p {
   margin-bottom: 0px;
   color: #777777;
-  max-width: 235px; }
+  /*max-width: 235px;*/ }
 .single-footer-widget ul li a {
   line-height: 25px;
   display: inline-block;
