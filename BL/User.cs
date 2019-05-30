@@ -185,6 +185,7 @@ namespace BL
             for (int i = 0; i < VendorshasCategories.Count(); i++)
             {
                 int usrid = VendorshasCategories[i];
+                
                 var VendorName = context.User_table.Where(x => x.User_Id == usrid).Select(x => x.User_Name).FirstOrDefault().ToString();
                 VendorsName.Add(VendorName);
             }
@@ -522,6 +523,16 @@ namespace BL
             }
         }
 
+        public void InsertProductreview(string post, int userid)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                ProductReview_table newpost = new ProductReview_table { review_date = DateTime.Now, review_body = post, user_id = userid };
+                context.ProductReview_table.Add(newpost);
+                context.SaveChanges();
+            }
+        }
+
         public void Insertusercomments(string comment, int userid, int postid)
         {
             using (CraftsEntities context = new CraftsEntities())
@@ -545,7 +556,7 @@ namespace BL
                                             Post_body = p.Post_body,
                                             Post_pic = p.Post_pic,
                                             Post_date = p.Post_date,
-                                            user_id = p.User_table.User_Id,
+                                            User_id = p.User_table.User_Id,
                                             user_image = p.User_table.ProfilePicture,
                                             username = p.User_table.FName + " " + p.User_table.LName,
                                             commentsofpost = (from c in context.Comments_Table
@@ -563,14 +574,73 @@ namespace BL
                                                               }).ToList()
 
 
-                            }).ToList();
+                                        }).ToList();
                 return post;
             }
 
-            
+
+        }
+            public List<ReviewModel> getproductposts(int pro_id)
+            {
+                using (CraftsEntities context = new CraftsEntities())
+                {
+                    List<ReviewModel> post = (from p in context.ProductReview_table
+                                            where p.product_id == pro_id
+                                            orderby p.review_id descending
+                                            select new ReviewModel
+                                            {
+                                                review_id = p.review_id,
+                                                review_body = p.review_body,
+                                                User_id = p.User_table.User_Id,
+                                                username = p.User_table.FName + " " + p.User_table.LName,
+                                                user_image = p.User_table.ProfilePicture
+
+                                            }).ToList();
+                    return post;
+                }
+
+
+            }
+
+            public List<PostModel> getprofileposts(int profile_id)
+        {
+            using (CraftsEntities context = new CraftsEntities())
+            {
+                List<PostModel> post = (from p in context.Posts_table
+                                        where p.profile_id == profile_id
+                                        orderby p.Post_id descending
+                                        select new PostModel
+                                        {
+                                            Post_id = p.Post_id,
+                                            Post_body = p.Post_body,
+                                            Post_pic = p.Post_pic,
+                                            Post_date = p.Post_date,
+                                            User_id = p.User_table.User_Id,
+                                            user_image = p.User_table.ProfilePicture,
+                                            username = p.User_table.FName + " " + p.User_table.LName,
+                                            commentsofpost = (from c in context.Comments_Table
+                                                              where c.Comment_postID == p.Post_id
+                                                              orderby c.Comment_Date descending
+                                                              select new CommentModel
+                                                              {
+                                                                  Comment_id = c.Comment_id,
+                                                                  Comment_Username = c.User_table.FName + " " + c.User_table.LName,
+                                                                  Comment_body = c.Comment_body,
+                                                                  Comment_Date = c.Comment_Date,
+                                                                  Comment_profilePicture = c.User_table.ProfilePicture,
+                                                                  Comment_UserID = c.User_table.User_Id
+
+                                                              }).ToList()
+
+
+                                        }).ToList();
+                return post;
+            }
+
+
         }
 
-public List<CommentModel> getpostcomments(int postid)
+        public List<CommentModel> getpostcomments(int postid)
         {
             using (CraftsEntities context = new CraftsEntities())
             {
@@ -607,7 +677,7 @@ public List<CommentModel> getpostcomments(int postid)
                              Post_body = p.Post_body,
                              Post_pic = p.Post_pic,
                              Post_date = p.Post_date,
-                             user_id = p.User_table.User_Id,
+                             User_id = p.User_table.User_Id,
                              user_image = p.User_table.ProfilePicture,
                              username = p.User_table.FName + " " + p.User_table.LName,
                              commentsofpost = (from c in context.Comments_Table

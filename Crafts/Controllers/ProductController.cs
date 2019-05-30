@@ -19,7 +19,7 @@ namespace Crafts.Controllers
         public ActionResult ProductView(int id)
         {
             BL.Product proModel = new BL.Product();
-            List<ProductModel> proDuctDetails = proModel.ProductDetailsView(id);
+            ProductModel proDuctDetails = proModel.ProductDetailsView(id);
 
             return View(proDuctDetails);
         }

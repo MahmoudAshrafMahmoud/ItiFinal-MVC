@@ -1,0 +1,29 @@
+﻿
+@model List<BL.SharedModels.ReviewModel>
+
+<link href="~/Assests/css/AdminLTE.min.css" rel="stylesheet" />
+
+
+@foreach (var i in Model)
+{
+    var base64 = Convert.ToBase64String(i.user_image);
+    var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
+
+    <div class="post">
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="@ImgSRC" alt="">
+            <span class="username">
+                <a href="@Url.Action("SelectedUser", "User",new {id= i.User_id})">@i.username </a>
+            </span>
+        </div>
+        <!-- /.user-block -->
+        <p>
+            @i.review_body
+        </p>
+
+
+    </div>
+                }
+
+<script src="~/Assests/js/adminlte.min.js"></script>
+

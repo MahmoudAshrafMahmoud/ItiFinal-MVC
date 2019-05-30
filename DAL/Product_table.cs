@@ -14,6 +14,12 @@ namespace DAL
     
     public partial class Product_table
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product_table()
+        {
+            this.ProductReview_table = new HashSet<ProductReview_table>();
+        }
+    
         public int Product_Id { get; set; }
         public string Product_Name { get; set; }
         public string Product_Description { get; set; }
@@ -25,5 +31,7 @@ namespace DAL
         public System.DateTime Add_Date { get; set; }
     
         public virtual Category_table Category_table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductReview_table> ProductReview_table { get; set; }
     }
 }

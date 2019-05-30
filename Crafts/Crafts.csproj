@@ -367,6 +367,8 @@
     <Content Include="Views\User\getposts.cshtml" />
     <Content Include="Views\User\followedUsersPosts.cshtml" />
     <Content Include="Views\Home\about.cshtml" />
+    <Content Include="Views\User\getprofileposts.cshtml" />
+    <Content Include="Views\User\getproductsreview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

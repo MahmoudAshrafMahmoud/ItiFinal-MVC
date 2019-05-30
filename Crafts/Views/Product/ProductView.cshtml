@@ -1,4 +1,4 @@
-﻿@model List<BL.SharedModels.ProductModel>
+﻿@model BL.SharedModels.ProductModel
 
 
 @{
@@ -24,16 +24,14 @@
     <!--================End Home Banner Area =================-->
     <!--================Single Product Area =================-->
 
-    @foreach (var item in Model)
-    {
 
     <div class="product_image_area">
         <div class="container">
             <div class="row s_product_inner">
                 <div class="col-lg-6">
                     <div class="s_product_img">
-                        @{ var base64 = Convert.ToBase64String(@item.Image);
-                           var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
+                        @{ var base64 = Convert.ToBase64String(@Model.Image);
+                            var ImgSRC = string.Format("data:image/gif;base64,{0}", base64);
                         }
                         <img class="d-block w-100" src="@ImgSRC" alt="First slide">
                     </div>
@@ -42,37 +40,37 @@
 
 
                     <div class="s_product_text">
-                        <h3>@item.Product_Name</h3>
-                        <h2>@item.Product_Price L.E</h2>
+                        <h3>@Model.Product_Name</h3>
+                        <h2>@Model.Product_Price L.E</h2>
                         <ul class="list">
                             <li>
-                                <a class="active" href="@Url.Action("SelectedCategory", "Category",new {id= @item.CatID})">
-                                    <span>Category</span> : @item.CatName
+                                <a class="active" href="@Url.Action("SelectedCategory", "Category", new { id = @Model.CatID })">
+                                    <span>Category</span> : @Model.CatName
                                 </a>
                             </li>
                             <li>
                                     <span>Availibility</span> : In Stock
                             </li>
                             <li>
-                                <a  class="active" href="@Url.Action("SelectedUser", "User",new {id= @item.VendorID})">
-                                    <span>Sold By</span> : @item.VendorName
+                                <a  class="active" href="@Url.Action("SelectedUser", "User", new { id = @Model.VendorID })">
+                                    <span>Sold By</span> : @Model.VendorName
                                 </a>
                             </li>
                         </ul>
 
-                        <p>@item.Product_Description</p>
+                        <p>@Model.Product_Description</p>
 
 
                         <div class="card_area">
 
-                            @Ajax.ActionLink(" ", "Add", "Cart", new { ID = @item.Product_Id },
-                                   new AjaxOptions
-                                   {
-                                       UpdateTargetId = "shoppingCartID",
-                                       InsertionMode = InsertionMode.Replace,
-                                       HttpMethod = "GET"
-                                   },
-                                   new { @class = "fas fa-cart-plus font-size30" })                        
+                            @Ajax.ActionLink(" ", "Add", "Cart", new { ID = Model.Product_Id },
+                new AjaxOptions
+                {
+                    UpdateTargetId = "shoppingCartID",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET"
+                },
+                new { @class = "fas fa-cart-plus font-size30" })                        
 
 
                           
@@ -85,31 +83,5 @@
 
             </div>
         </div>
-  
 
-
-    }
-
-
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="../Assests/js/jquery-3.2.1.min.js"></script>
-    <script src="../Assests/js/popper.js"></script>
-    <script src="../Assests/js/bootstrap.min.js"></script>
-    <script src="../Assests/js/stellar.js"></script>
-    <script src="../Assests/vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="../Assests/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="../Assests/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="../Assests/vendors/isotope/isotope-min.js"></script>
-    <script src="../Assests/vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="../Assests/js/jquery.ajaxchimp.min.js"></script>
-    <script src="../Assests/js/mail-script.js"></script>
-    <script src="../Assests/vendors/jquery-ui/jquery-ui.js"></script>
-    <script src="../Assests/vendors/counter-up/jquery.waypoints.min.js"></script>
-    <script src="../Assests/vendors/counter-up/jquery.counterup.js"></script>
-    <script src="../Assests/js/theme.js"></script>
-
-
+         

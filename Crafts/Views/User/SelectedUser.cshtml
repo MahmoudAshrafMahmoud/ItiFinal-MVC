@@ -74,7 +74,7 @@
 
             <li class="nav-item">
                 <a class="nav-link " id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="home"
-                   aria-selected="false">@Model.FName's Posts</a>
+                   aria-selected="false">@Model.FName's Wall</a>
             </li>
         
 
@@ -197,7 +197,7 @@
                     </div>
             }
                 <div class="col-10 mt-5 pt-5" id="postsarearaget">
-                    @{Html.RenderAction("getposts", "User");}
+                    @{Html.RenderAction("getprofileposts", "User");}
                 </div>
             </div>
         </div>

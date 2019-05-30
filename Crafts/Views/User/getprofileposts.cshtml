@@ -20,13 +20,13 @@
         <p>
             @i.Post_body
         </p>
-      
+
         <ul class="list-inline mb-5 mr-5 pr-5">
             <li class="pull-right mt-5 mb-3">
                 <button id="@i.Post_id" onclick="showmore(id)" class="genric-btn info-border radius">
                     <i class="fa fa-comments-o margin-r-5"></i> Comments
                     (@i.commentsofpost.Count)
-                </button> 
+                </button>
             </li>
         </ul>
 
@@ -35,23 +35,23 @@
             @{  var x = 0;}
             @foreach (var item in i.commentsofpost)
             {
-                
+
                 var base642 = Convert.ToBase64String(item.Comment_profilePicture);
                 var ImgSRC2 = string.Format("data:image/gif;base64,{0}", base642);
-                if (x<3)
-                { 
-                <li class="list-unstyled commentsli">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="@ImgSRC2" alt="">
-                        <span class="username">
-                            <a href="@Url.Action("SelectedUser", "User",new { id = item.Comment_UserID })">@item.Comment_Username </a>
-                        </span>
-                        <span class="description"> @item.Comment_Date</span>
-                    </div>
-                    <p>
-                        @item.Comment_body
-                    </p>
-                </li>
+                if (x < 3)
+                {
+                    <li class="list-unstyled commentsli">
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="@ImgSRC2" alt="">
+                            <span class="username">
+                                <a href="@Url.Action("SelectedUser", "User",new { id = item.Comment_UserID })">@item.Comment_Username </a>
+                            </span>
+                            <span class="description"> @item.Comment_Date</span>
+                        </div>
+                        <p>
+                            @item.Comment_body
+                        </p>
+                    </li>
                 }
                 else
                 {
@@ -74,13 +74,13 @@
         </ul>
 
 
-        @using (Ajax.BeginForm("Insetusercomment", new { postid = @i.Post_id } ,
-                                                        new AjaxOptions
-                                                        {
-                                                            HttpMethod = "POST",
-                                                            UpdateTargetId = "postsarearaget",
-                                                            InsertionMode = InsertionMode.Replace
-                                                        }))
+        @using (Ajax.BeginForm("Insetusercomment", new { postid = @i.Post_id },
+                                                                new AjaxOptions
+                                                                {
+                                                                    HttpMethod = "POST",
+                                                                    UpdateTargetId = "postsarearaget",
+                                                                    InsertionMode = InsertionMode.Replace
+                                                                }))
         {
             <input name="comment" class="col-10 form-control input-sm d-inline-block" type="text" placeholder="Type a comment">
             <div class="col-sm-2 d-inline-block float-right ">
@@ -89,7 +89,7 @@
 
         }
     </div>
-}
+                }
 
 <script src="~/Assests/js/adminlte.min.js"></script>
 

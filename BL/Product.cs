@@ -20,7 +20,9 @@ namespace BL
                 Product_Id = s.Product_Id,
                 Product_Name = s.Product_Name,
                 Product_Description = s.Product_Description,
-                Image = s.Image
+                Image = s.Image,
+                Product_Price = s.Product_Price
+
             }).ToList();
             return query;
         }
@@ -38,7 +40,7 @@ namespace BL
             return producttest;
         }
 
-        public List<ProductModel> ProductDetailsView(int pro_id)
+        public ProductModel ProductDetailsView(int pro_id)
         {
             var productdetail = (from ProductView in context.Product_table join 
                                  CatName in context.Category_table
@@ -57,7 +59,7 @@ namespace BL
                              VendorID=ProductView.Vendor_id,
                             CatName=CatName.Cat_Name,
                              VendorName=Vendorname.User_Name
-                         }).ToList();
+                         }).FirstOrDefault();
 
             return productdetail;
         }

@@ -25,6 +25,7 @@ namespace DAL
         public int User_id { get; set; }
         public byte[] Post_pic { get; set; }
         public System.DateTime Post_date { get; set; }
+        public Nullable<int> profile_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comments_Table> Comments_Table { get; set; }

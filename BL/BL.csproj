@@ -60,6 +60,7 @@
     <Compile Include="SharedModels\OrderModel.cs" />
     <Compile Include="SharedModels\PostModel.cs" />
     <Compile Include="SharedModels\ProductModel.cs" />
+    <Compile Include="SharedModels\ReviewModel.cs" />
     <Compile Include="SharedModels\UserModel.cs" />
     <Compile Include="SharedModels\VendorRequest.cs" />
     <Compile Include="User.cs" />

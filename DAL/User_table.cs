@@ -19,6 +19,7 @@ namespace DAL
         {
             this.Comments_Table = new HashSet<Comments_Table>();
             this.Posts_table = new HashSet<Posts_table>();
+            this.ProductReview_table = new HashSet<ProductReview_table>();
         }
     
         public int User_Id { get; set; }
@@ -28,7 +29,7 @@ namespace DAL
         public string User_Email { get; set; }
         public string Password { get; set; }
         public int PhoneNumber { get; set; }
-        public int SSN { get; set; }
+        public long SSN { get; set; }
         public int Type_id { get; set; }
         public byte[] ProfilePicture { get; set; }
         public string Gender { get; set; }
@@ -39,5 +40,7 @@ namespace DAL
         public virtual ICollection<Comments_Table> Comments_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Posts_table> Posts_table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductReview_table> ProductReview_table { get; set; }
     }
 }

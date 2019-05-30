@@ -215,6 +215,7 @@ namespace Crafts.Controllers
         //Selected User
         public ActionResult SelectedUser(int id)
         {
+            Session.Add("profileid", id);
             BL.User user = new BL.User();
             User_table selecteduser = user.GetSelectedUser(id);
             ViewBag.user_id = selecteduser.User_Id;
@@ -271,6 +272,20 @@ namespace Crafts.Controllers
             return PartialView(posts);
         }
 
+        public PartialViewResult getprofileposts()
+        {
+            int profile_id = int.Parse(Session["profileid"].ToString());
+
+            
+            List<PostModel> posts = ul.getprofileposts(profile_id);
+            return PartialView(posts);
+        }
+
+        public PartialViewResult getproductsreview(int product_id)
+        {
+             List<ReviewModel> posts = ul.getproductposts(product_id);
+            return PartialView(posts);
+        }
 
         public ActionResult Insetuserpost(string post)
         {
@@ -278,6 +293,17 @@ namespace Crafts.Controllers
             ul.Insertuserpost(post, userid);
 
             return RedirectToAction("getposts");
+        }
+
+        public ActionResult InsertProductreview(string post)
+        {
+            if (Session["User_Id"] != null){
+                int userid = int.Parse(Session["User_Id"].ToString());
+                ul.InsertProductreview(post, userid);
+
+            }
+            return RedirectToAction("getproductsreview");
+
         }
         public ActionResult Insetusercomment(string comment, int postid)
         {

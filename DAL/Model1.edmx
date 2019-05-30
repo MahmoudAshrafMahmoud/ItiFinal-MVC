@@ -92,6 +92,7 @@
           <Property Name="User_id" Type="int" Nullable="false" />
           <Property Name="Post_pic" Type="image" />
           <Property Name="Post_date" Type="datetime" Nullable="false" />
+          <Property Name="profile_id" Type="int" />
         </EntityType>
         <EntityType Name="Product_table">
           <Key>
@@ -106,6 +107,16 @@
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Image" Type="image" Nullable="false" />
           <Property Name="Add_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductReview_table">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="review_body" Type="nvarchar" MaxLength="50" />
+          <Property Name="review_date" Type="datetime" />
         </EntityType>
         <EntityType Name="Request_table">
           <Key>
@@ -246,6 +257,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductReview_table_Product_table">
+          <End Role="Product_table" Type="Self.Product_table" Multiplicity="0..1" />
+          <End Role="ProductReview_table" Type="Self.ProductReview_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_table">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="ProductReview_table">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductReview_table_User_table">
+          <End Role="User_table" Type="Self.User_table" Multiplicity="0..1" />
+          <End Role="ProductReview_table" Type="Self.ProductReview_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_table">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="ProductReview_table">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Subscribtion-table_Category_table">
           <End Role="Category_table" Type="Self.Category_table" Multiplicity="1" />
           <End Role="Subscribtion-table" Type="Self.Subscribtion-table" Multiplicity="*" />
@@ -269,6 +304,7 @@
           <EntitySet Name="OrderDetails_table" EntityType="Self.OrderDetails_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts_table" EntityType="Self.Posts_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_table" EntityType="Self.Product_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductReview_table" EntityType="Self.ProductReview_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request_table" EntityType="Self.Request_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subscribtion-table" EntityType="Self.Subscribtion-table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -302,6 +338,14 @@
             <End Role="Category_table" EntitySet="Category_table" />
             <End Role="Product_table" EntitySet="Product_table" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductReview_table_Product_table" Association="Self.FK_ProductReview_table_Product_table">
+            <End Role="Product_table" EntitySet="Product_table" />
+            <End Role="ProductReview_table" EntitySet="ProductReview_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductReview_table_User_table" Association="Self.FK_ProductReview_table_User_table">
+            <End Role="User_table" EntitySet="User_table" />
+            <End Role="ProductReview_table" EntitySet="ProductReview_table" />
+          </AssociationSet>
           <AssociationSet Name="FK_Subscribtion-table_Category_table" Association="Self.FK_Subscribtion-table_Category_table">
             <End Role="Category_table" EntitySet="Category_table" />
             <End Role="Subscribtion-table" EntitySet="Subscribtion-table" />
@@ -322,6 +366,7 @@
           <EntitySet Name="OrderDetails_table" EntityType="CraftsModel.OrderDetails_table" />
           <EntitySet Name="Posts_table" EntityType="CraftsModel.Posts_table" />
           <EntitySet Name="Product_table" EntityType="CraftsModel.Product_table" />
+          <EntitySet Name="ProductReview_table" EntityType="CraftsModel.ProductReview_table" />
           <EntitySet Name="Request_table" EntityType="CraftsModel.Request_table" />
           <EntitySet Name="Subscribtion_table" EntityType="CraftsModel.Subscribtion_table" />
           <EntitySet Name="sysdiagrams" EntityType="CraftsModel.sysdiagram" />
@@ -358,6 +403,14 @@
           <AssociationSet Name="FK_Posts_table_User_table" Association="CraftsModel.FK_Posts_table_User_table">
             <End Role="User_table" EntitySet="User_table" />
             <End Role="Posts_table" EntitySet="Posts_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductReview_table_Product_table" Association="CraftsModel.FK_ProductReview_table_Product_table">
+            <End Role="Product_table" EntitySet="Product_table" />
+            <End Role="ProductReview_table" EntitySet="ProductReview_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductReview_table_User_table" Association="CraftsModel.FK_ProductReview_table_User_table">
+            <End Role="User_table" EntitySet="User_table" />
+            <End Role="ProductReview_table" EntitySet="ProductReview_table" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Admin_Req_App_table">
@@ -456,6 +509,7 @@
           <Property Name="User_id" Type="Int32" Nullable="false" />
           <Property Name="Post_pic" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Post_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="profile_id" Type="Int32" />
           <NavigationProperty Name="Comments_Table" Relationship="CraftsModel.FK_Comments_Table_Posts_table" FromRole="Posts_table" ToRole="Comments_Table" />
           <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_Posts_table_User_table" FromRole="Posts_table" ToRole="User_table" />
         </EntityType>
@@ -473,6 +527,19 @@
           <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Add_Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Category_table" Relationship="CraftsModel.FK_Product_table_Category_table" FromRole="Product_table" ToRole="Category_table" />
+          <NavigationProperty Name="ProductReview_table" Relationship="CraftsModel.FK_ProductReview_table_Product_table" FromRole="Product_table" ToRole="ProductReview_table" />
+        </EntityType>
+        <EntityType Name="ProductReview_table">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="review_body" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product_table" Relationship="CraftsModel.FK_ProductReview_table_Product_table" FromRole="ProductReview_table" ToRole="Product_table" />
+          <NavigationProperty Name="User_table" Relationship="CraftsModel.FK_ProductReview_table_User_table" FromRole="ProductReview_table" ToRole="User_table" />
+          <Property Name="review_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Request_table">
           <Key>
@@ -484,7 +551,7 @@
           <Property Name="Seller_info" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="User_Id" Type="Int32" Nullable="false" />
           <Property Name="reqState" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="National_ID" Type="Int32" Nullable="false" />
+          <Property Name="National_ID" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Admin_Req_App_table" Relationship="CraftsModel.FK_Admin_Req_App_table_Request_table" FromRole="Request_table" ToRole="Admin_Req_App_table" />
         </EntityType>
         <EntityType Name="Subscribtion_table">
@@ -524,7 +591,7 @@
           <Property Name="User_Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
-          <Property Name="SSN" Type="Int32" Nullable="false" />
+          <Property Name="SSN" Type="Int64" Nullable="false" />
           <Property Name="Type_id" Type="Int32" Nullable="false" />
           <Property Name="ProfilePicture" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -532,6 +599,7 @@
           <Property Name="Rating" Type="Double" Nullable="false" />
           <NavigationProperty Name="Comments_Table" Relationship="CraftsModel.FK_Comments_Table_User_table" FromRole="User_table" ToRole="Comments_Table" />
           <NavigationProperty Name="Posts_table" Relationship="CraftsModel.FK_Posts_table_User_table" FromRole="User_table" ToRole="Posts_table" />
+          <NavigationProperty Name="ProductReview_table" Relationship="CraftsModel.FK_ProductReview_table_User_table" FromRole="User_table" ToRole="ProductReview_table" />
         </EntityType>
         <Association Name="FK_Admin_Req_App_table_Admin_table">
           <End Type="CraftsModel.Admin_table" Role="Admin_table" Multiplicity="1" />
@@ -626,6 +694,30 @@
             </Principal>
             <Dependent Role="Posts_table">
               <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductReview_table_Product_table">
+          <End Type="CraftsModel.Product_table" Role="Product_table" Multiplicity="0..1" />
+          <End Type="CraftsModel.ProductReview_table" Role="ProductReview_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_table">
+              <PropertyRef Name="Product_Id" />
+            </Principal>
+            <Dependent Role="ProductReview_table">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductReview_table_User_table">
+          <End Type="CraftsModel.User_table" Role="User_table" Multiplicity="0..1" />
+          <End Type="CraftsModel.ProductReview_table" Role="ProductReview_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_table">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="ProductReview_table">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -724,6 +816,7 @@
           <EntitySetMapping Name="Posts_table">
             <EntityTypeMapping TypeName="CraftsModel.Posts_table">
               <MappingFragment StoreEntitySet="Posts_table">
+                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
                 <ScalarProperty Name="Post_date" ColumnName="Post_date" />
                 <ScalarProperty Name="Post_pic" ColumnName="Post_pic" />
                 <ScalarProperty Name="User_id" ColumnName="User_id" />
@@ -744,6 +837,17 @@
                 <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
                 <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductReview_table">
+            <EntityTypeMapping TypeName="CraftsModel.ProductReview_table">
+              <MappingFragment StoreEntitySet="ProductReview_table">
+                <ScalarProperty Name="review_date" ColumnName="review_date" />
+                <ScalarProperty Name="review_body" ColumnName="review_body" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="review_id" ColumnName="review_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
